@@ -1,26 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Syne:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+/* 
+  Prakash Bal Joshi — Contemporary Editorial Portfolio
+  Authoritative Color Palette:
+  - Main background: #E9ECEF (light, refined gallery wash)
+  - Headings & primary UI: #1B2A49 (deep navy)
+  - Paragraphs & secondary: #38435C (refined slate navy)
+  - Separators: rgba(27, 42, 73, 0.10) to rgba(27, 42, 73, 0.16)
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-main: #E9ECEF;
+  --text-heading: #1B2A49;
+  --text-body: #38435C;
+  --border-subtle: rgba(27, 42, 73, 0.12);
+  --border-muted: rgba(27, 42, 73, 0.07);
+  --border-strong: rgba(27, 42, 73, 0.22);
+  --focus-ring: #1B2A49;
+  
+  --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Newsreader', 'Hoefler Text', 'Cormorant Garamond', 'Baskerville', 'Georgia', serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base resets & typography */
+html {
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  font-size: 1.125rem; /* 18px base */
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Headings with Syne display font */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Sub-labels and meta tracked styling */
+.eyebrow-label {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-body);
+  font-weight: 600;
+}
+
+/* Subtle link underline transition */
+.gallery-link {
+  position: relative;
+  color: var(--text-heading);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.gallery-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.gallery-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Accessible focus styling */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--text-heading);
+  outline-offset: 3px;
+}
+
+/* Restrained artwork card hover */
+.artwork-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: rgba(27, 42, 73, 0.03);
+}
+
+.artwork-img-hover {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.artwork-frame:hover .artwork-img-hover {
+  transform: scale(1.018);
+}
+
+/* Light gallery divider */
+.gallery-divider {
+  border-color: var(--border-subtle);
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
