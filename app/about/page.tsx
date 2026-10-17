@@ -48,8 +48,8 @@ export default function AboutPage() {
               className="object-cover"
             />
           </div>
-          <p className="text-xs text-[#38435C]/75 font-mono text-center sm:text-left">
-            Prakash Bal Joshi in his Mumbai artist studio &middot; Archival Monograph
+          <p className="text-xs text-[#38435C]/75 font-body text-center sm:text-left">
+            Prakash Bal Joshi in his studio &middot; Mumbai
           </p>
 
           {/* Permanent Museum Collections */}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Oswald:wght@400;500;600;700&family=Syne:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 /* 
@@ -10,6 +10,30 @@
   - Separators: rgba(27, 42, 73, 0.10) to rgba(27, 42, 73, 0.16)
 */
 
+/* 
+  Font-face declarations for client-requested licensed typefaces:
+  Heading: "Picsue Sans by Eko" (condensed display sans-serif)
+  Body: "Hoefler & Co" (Hoefler Text / Chronicle Text)
+  When licensed .woff2 files are supplied, place them in /public/fonts/
+*/
+@font-face {
+  font-family: 'Picsue Sans';
+  src: url('/fonts/picsue-sans.woff2') format('woff2'),
+       url('/fonts/picsue-sans.woff') format('woff');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hoefler and Co';
+  src: url('/fonts/hoefler-and-co.woff2') format('woff2'),
+       url('/fonts/hoefler-and-co.woff') format('woff');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-main: #E9ECEF;
   --text-heading: #1B2A49;
@@ -19,8 +43,9 @@
   --border-strong: rgba(27, 42, 73, 0.22);
   --focus-ring: #1B2A49;
   
-  --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Newsreader', 'Hoefler Text', 'Cormorant Garamond', 'Baskerville', 'Georgia', serif;
+  /* Narrower, expressive display sans bringing character closer to client reference */
+  --font-heading: 'Picsue Sans', 'Oswald', 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Hoefler and Co', 'Hoefler Text', 'Newsreader', 'Cormorant Garamond', 'Baskerville', 'Georgia', serif;
 }
 
 /* Base resets & typography */
@@ -43,12 +68,17 @@ body {
   overflow-x: hidden;
 }
 
-/* Headings with Syne display font */
-h1, h2, h3, h4, h5, h6, .font-heading {
+/* Headings: color applied only to heading tags, NOT .font-heading utility */
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-heading);
-  letter-spacing: -0.02em;
-  font-weight: 700;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+
+/* Pure font-family utilities — never force color */
+.font-heading {
+  font-family: var(--font-heading);
 }
 
 .font-body {
@@ -63,6 +93,54 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   text-transform: uppercase;
   color: var(--text-body);
   font-weight: 600;
+}
+
+/* Dedicated filter tab styling with guaranteed contrast */
+.gallery-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.95rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid rgba(27, 42, 73, 0.18);
+  background-color: rgba(255, 255, 255, 0.45);
+  color: #38435C;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.gallery-filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #1B2A49;
+  border-color: rgba(27, 42, 73, 0.35);
+}
+
+.gallery-filter-btn:focus-visible {
+  outline: 2px solid #1B2A49;
+  outline-offset: 2px;
+}
+
+.gallery-filter-btn[aria-selected="true"],
+.gallery-filter-btn.active {
+  background-color: #1B2A49 !important;
+  color: #E9ECEF !important;
+  border-color: #1B2A49 !important;
+  font-weight: 600;
+}
+
+.gallery-filter-btn[aria-selected="true"] *,
+.gallery-filter-btn.active * {
+  color: #E9ECEF !important;
+}
+
+.gallery-filter-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 /* Subtle link underline transition */

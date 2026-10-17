@@ -59,14 +59,14 @@ export default function ExhibitionsPage() {
               <p className="font-serif italic text-base text-[#38435C]">
                 {exh.venue}
               </p>
-              <div className="flex items-center space-x-1.5 text-xs text-[#38435C]/80 font-mono">
+              <div className="flex items-center space-x-1.5 text-xs text-[#38435C]/80 font-body">
                 <MapPin size={13} className="text-[#1B2A49]" />
                 <span>
                   {exh.city}, {exh.country}
                 </span>
               </div>
               {exh.dates && (
-                <div className="flex items-center space-x-1.5 text-xs text-[#38435C]/70 font-mono">
+                <div className="flex items-center space-x-1.5 text-xs text-[#38435C]/70 font-body">
                   <Calendar size={13} className="text-[#1B2A49]" />
                   <span>{exh.dates}</span>
                 </div>

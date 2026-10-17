@@ -4,46 +4,33 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { artistData } from "@/data/artist";
-import {
-  artworksData,
-  artworkCategories,
-  Artwork
-} from "@/data/artworks";
+import { artworksData, Artwork } from "@/data/artworks";
 import { exhibitionsData } from "@/data/exhibitions";
 import ArtworkCard from "@/components/ArtworkCard";
 import LightboxModal from "@/components/LightboxModal";
 import EnquiryModal from "@/components/EnquiryModal";
-import {
-  ArrowRight,
-  Maximize2,
-  Mail,
-  MapPin,
-  Calendar,
-  Sparkles
-} from "lucide-react";
+import { ArrowRight, Maximize2 } from "lucide-react";
 
 export default function HomePage() {
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
   const [enquiryArtwork, setEnquiryArtwork] = useState<Artwork | null>(null);
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<string>("all");
 
   // Hero Featured Artwork (Prominent landscape artwork on the right)
   const heroFeaturedArtwork =
     artworksData.find((a) => a.featuredInHero) || artworksData[0];
 
-  // Asymmetric lower row of three artworks immediately below
+  // Opening asymmetric row of three complementary artworks immediately below
   const lowerRowArtworks = [
     artworksData.find((a) => a.lowerRowPosition === 1) || artworksData[1],
     artworksData.find((a) => a.lowerRowPosition === 2) || artworksData[2],
     artworksData.find((a) => a.lowerRowPosition === 3) || artworksData[3]
   ];
 
-  // Filtered works for curated gallery section
-  const filteredArtworks =
-    activeCategory === "all"
-      ? artworksData
-      : artworksData.filter((a) => a.collectionId === activeCategory);
+  // Distinct approved artworks for the curated homepage preview — eliminates repetition of the first four
+  const additionalCuratedWorks = artworksData.filter(
+    (a) => !a.featuredInHero && !a.featuredInLowerRow
+  );
 
   // Lightbox navigation
   const handleNextLightbox = () => {
@@ -69,35 +56,36 @@ export default function HomePage() {
   return (
     <div className="w-full bg-[#E9ECEF] text-[#38435C]">
       {/* ======================================================== */}
-      {/* SECTION 1: FIRST VIEWPORT / IMAGE 2 ART-DIRECTED HERO    */}
+      {/* SECTION 1: FIRST VIEWPORT / OPENING ART-DIRECTED SUITE   */}
       {/* ======================================================== */}
-      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 border-b border-[#1B2A49]/10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 pt-6 sm:pt-10 lg:pt-12 pb-10 sm:pb-14 border-b border-[#1B2A49]/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Artist Name & Concise Intro (~7 Cols) */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-6 lg:space-y-8 pr-0 lg:pr-4">
-            <div className="space-y-3">
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-5 lg:space-y-6 pr-0 lg:pr-4">
+            <div className="space-y-2.5">
               <span className="eyebrow-label text-[#1B2A49]/80 block">
                 Contemporary Indian Abstract Artist &amp; Writer
               </span>
 
-              {/* Large Artist Name with Approved Diacritics */}
-              <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl xl:text-[5.2rem] font-bold tracking-[0.04em] text-[#1B2A49] leading-[0.98] uppercase">
-                {artistData.diacriticName}
+              {/* Balanced Artist Name with Intentional Line Breaks and Diacritics */}
+              <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl xl:text-[4.4rem] font-bold tracking-[0.06em] text-[#1B2A49] leading-[1.04] uppercase">
+                <span className="block">PRĀKASH BĀL</span>
+                <span className="block">JOSHI</span>
               </h1>
             </div>
 
             {/* Concise Editorial Introduction */}
-            <p className="font-body text-lg sm:text-xl lg:text-[1.35rem] leading-relaxed text-[#38435C] max-w-2xl">
+            <p className="font-body text-base sm:text-lg lg:text-[1.2rem] leading-relaxed text-[#38435C] max-w-xl">
               {artistData.conciseIntro}
             </p>
 
-            {/* Restrained Navigation / Links */}
-            <div className="pt-2 flex flex-wrap items-center gap-6 sm:gap-8 font-heading text-xs sm:text-sm uppercase tracking-[0.16em]">
+            {/* Restrained Navigation: Exactly two clear CTAs */}
+            <div className="pt-2 flex flex-wrap items-center gap-6 sm:gap-8 font-heading text-xs sm:text-sm uppercase tracking-[0.15em]">
               <Link
                 href="/works"
                 className="gallery-link font-bold text-[#1B2A49] inline-flex items-center space-x-2"
               >
-                <span>View Selected Works</span>
+                <span>View Works</span>
                 <ArrowRight size={14} />
               </Link>
 
@@ -105,21 +93,14 @@ export default function HomePage() {
                 href="/about"
                 className="gallery-link text-[#38435C] hover:text-[#1B2A49]"
               >
-                About the Practice
-              </Link>
-
-              <Link
-                href="/contact"
-                className="gallery-link text-[#38435C] hover:text-[#1B2A49]"
-              >
-                Studio Inquiries
+                About the Artist
               </Link>
             </div>
           </div>
 
           {/* Right Column: Prominent Landscape-Format Artwork (~5 Cols) */}
           <div className="lg:col-span-5 flex flex-col">
-            <div className="artwork-frame group relative aspect-[3/2] w-full overflow-hidden bg-[#1B2A49]/5 border border-[#1B2A49]/15 rounded-sm shadow-sm">
+            <div className="artwork-frame group relative aspect-[3/2] w-full overflow-hidden bg-[#1B2A49]/5 border border-[#1B2A49]/15 rounded-sm">
               <Link
                 href={`/works/${heroFeaturedArtwork.id}`}
                 className="block w-full h-full relative"
@@ -139,16 +120,16 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => setSelectedArtwork(heroFeaturedArtwork)}
-                className="absolute bottom-3 right-3 p-2 bg-[#E9ECEF]/90 text-[#1B2A49] rounded-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity border border-[#1B2A49]/20 shadow text-xs font-heading font-medium tracking-wider flex items-center space-x-1"
+                className="absolute bottom-2.5 right-2.5 p-1.5 bg-[#E9ECEF]/95 text-[#1B2A49] rounded-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity border border-[#1B2A49]/20 shadow text-xs font-heading tracking-wider flex items-center space-x-1"
                 aria-label={`Enlarge ${heroFeaturedArtwork.title}`}
               >
                 <Maximize2 size={13} />
-                <span className="hidden sm:inline">Enlarge</span>
+                <span className="text-[11px] uppercase">Enlarge</span>
               </button>
             </div>
 
             {/* Featured Painting Caption */}
-            <div className="mt-3 flex items-baseline justify-between text-left">
+            <div className="mt-2.5 flex items-baseline justify-between text-left gap-2">
               <div>
                 <Link
                   href={`/works/${heroFeaturedArtwork.id}`}
@@ -160,32 +141,22 @@ export default function HomePage() {
                   {heroFeaturedArtwork.medium}
                 </span>
               </div>
-              <span className="font-mono text-xs text-[#38435C]/80">
+              <span className="font-heading text-xs text-[#38435C]/80 font-medium shrink-0">
                 {heroFeaturedArtwork.year}
               </span>
             </div>
-            <p className="text-xs text-[#38435C]/75 font-mono">
+            <p className="font-body text-xs text-[#38435C]/75">
               {heroFeaturedArtwork.dimensions} &middot; {heroFeaturedArtwork.series}
             </p>
           </div>
         </div>
 
         {/* ======================================================== */}
-        {/* ASYMMETRIC ROW OF THREE ARTWORKS IMMEDIATELY BELOW       */}
-        {/* Translates Image 2 lower gallery row:                   */}
-        {/* Left: Portrait / Center: Square / Right: Wider landscape */}
+        {/* ASYMMETRIC ROW OF THREE COMPLEMENTARY ARTWORKS           */}
+        {/* Aligned deliberately along top edges                     */}
         {/* ======================================================== */}
-        <div className="mt-14 sm:mt-18 pt-10 border-t border-[#1B2A49]/10">
-          <div className="mb-6 flex items-center justify-between">
-            <span className="eyebrow-label text-[#1B2A49]">
-              Featured Gallery Row &middot; Curatorial Selection
-            </span>
-            <span className="text-xs text-[#38435C]/70 font-mono hidden sm:inline">
-              3-Artwork Asymmetric Suite
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-end">
+        <div className="mt-8 sm:mt-10 pt-6 border-t border-[#1B2A49]/10">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
             {/* Artwork 1: Left (Portrait format, 3 cols) */}
             <div className="md:col-span-3">
               <ArtworkCard
@@ -214,74 +185,53 @@ export default function HomePage() {
       </section>
 
       {/* ======================================================== */}
-      {/* SECTION 2: CURATED ARTWORK GALLERY & INTERACTIVE FILTERS  */}
+      {/* SECTION 2: DISTINCT SELECTED WORKS (NO REPETITION)       */}
       {/* ======================================================== */}
-      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24 border-b border-[#1B2A49]/10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-[#1B2A49]/10 gap-6">
+      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-14 sm:py-20 border-b border-[#1B2A49]/10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#1B2A49]/10 gap-4">
           <div>
-            <span className="eyebrow-label text-[#1B2A49]">Portfolio Archive</span>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[#1B2A49] mt-1">
+            <span className="eyebrow-label text-[#1B2A49]">Curated Portfolio</span>
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-[#1B2A49] mt-1">
               Selected Works
             </h2>
           </div>
-
-          {/* Meaningful Category Filters */}
-          <div
-            className="flex flex-wrap gap-2"
-            role="tablist"
-            aria-label="Filter artworks by collection"
+          <Link
+            href="/works"
+            className="font-heading text-xs uppercase tracking-wider font-semibold text-[#1B2A49] gallery-link"
           >
-            {artworkCategories.map((cat) => {
-              const isSelected = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  role="tab"
-                  aria-selected={isSelected}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3.5 py-1.5 text-xs font-heading uppercase tracking-wider rounded-sm transition-all border ${
-                    isSelected
-                      ? "bg-[#1B2A49] text-[#E9ECEF] border-[#1B2A49] font-bold"
-                      : "bg-white/40 text-[#38435C] border-[#1B2A49]/15 hover:bg-white/80 hover:text-[#1B2A49]"
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              );
-            })}
-          </div>
+            Complete Archive &rarr;
+          </Link>
         </div>
 
-        {/* Gallery Grid: Respects Natural Proportions */}
+        {/* Grid showing distinct complementary pieces */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {filteredArtworks.map((artwork, idx) => (
+          {additionalCuratedWorks.map((artwork, idx) => (
             <ArtworkCard
               key={artwork.id}
               artwork={artwork}
               priority={idx < 3}
               onOpenLightbox={(art) => setSelectedArtwork(art)}
-              showCuratorNote={true}
             />
           ))}
         </div>
 
-        {/* View All in Works Page Link */}
-        <div className="mt-14 text-center">
+        {/* View All Works CTA */}
+        <div className="mt-12 text-center">
           <Link
             href="/works"
             className="inline-flex items-center space-x-2 px-8 py-3.5 bg-[#1B2A49] text-[#E9ECEF] font-heading text-xs uppercase tracking-[0.16em] font-semibold rounded-sm hover:bg-[#1B2A49]/90 transition-all shadow-sm"
           >
-            <span>Explore Complete Works Archive</span>
+            <span>View All Works</span>
             <ArrowRight size={14} />
           </Link>
         </div>
       </section>
 
       {/* ======================================================== */}
-      {/* SECTION 3: ARTIST INTRODUCTION & PHILOSOPHY (ABOUT TEASER)*/}
+      {/* SECTION 3: SHORT ARTIST INTRODUCTION & PHILOSOPHY        */}
       {/* ======================================================== */}
-      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-28 border-b border-[#1B2A49]/10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-24 border-b border-[#1B2A49]/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Artist Portrait Photograph */}
           <div className="lg:col-span-5">
             <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm border border-[#1B2A49]/15 bg-[#1B2A49]/5 shadow-sm">
@@ -293,19 +243,19 @@ export default function HomePage() {
                 className="object-cover"
               />
             </div>
-            <p className="text-xs text-[#38435C]/70 font-mono mt-2 text-center sm:text-left">
-              Prakash Bal Joshi in his Mumbai artist studio &middot; Monograph archive
+            <p className="font-body text-xs text-[#38435C]/70 mt-2 text-center sm:text-left">
+              Prakash Bal Joshi in his studio &middot; Mumbai
             </p>
           </div>
 
           {/* Statement & Philosophy */}
           <div className="lg:col-span-7 space-y-6">
             <span className="eyebrow-label text-[#1B2A49]">
-              The Artist &amp; His Philosophy
+              Artist Practice &amp; Philosophy
             </span>
 
-            {/* Pull Quote */}
-            <blockquote className="font-heading text-2xl sm:text-3xl lg:text-4xl text-[#1B2A49] font-bold leading-tight">
+            {/* Verified Direct Quote */}
+            <blockquote className="font-heading text-2xl sm:text-3xl text-[#1B2A49] font-bold leading-tight border-l-2 border-[#1B2A49] pl-6 py-1">
               &ldquo;Painting is a spontaneous, meditative search. Water—and the memory of rivers—is my metaphor for the relentless flow of life, time, and inner consciousness.&rdquo;
             </blockquote>
 
@@ -313,33 +263,13 @@ export default function HomePage() {
               {artistData.extendedIntro}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-[#1B2A49]/10">
-              <div>
-                <h3 className="font-heading text-xs uppercase tracking-wider text-[#1B2A49] font-bold mb-1">
-                  Journalist &amp; Author
-                </h3>
-                <p className="text-sm font-body text-[#38435C] leading-normal">
-                  Decades with <em>The Times of India</em> inform his analytical perspective, complemented by award-winning published fiction translated into French, German, and English.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-heading text-xs uppercase tracking-wider text-[#1B2A49] font-bold mb-1">
-                  Global Collections
-                </h3>
-                <p className="text-sm font-body text-[#38435C] leading-normal">
-                  Permanently accessioned into museums and public galleries across Las Vegas, Lisbon, Russia, and Switzerland.
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-4">
+            <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center space-x-2 font-heading text-sm uppercase tracking-wider font-bold text-[#1B2A49] gallery-link"
+                className="inline-flex items-center space-x-2 font-heading text-xs uppercase tracking-wider font-bold text-[#1B2A49] gallery-link"
               >
-                <span>Read Comprehensive Biography &amp; Themes</span>
-                <ArrowRight size={15} />
+                <span>About the Artist</span>
+                <ArrowRight size={14} />
               </Link>
             </div>
           </div>
@@ -347,51 +277,47 @@ export default function HomePage() {
       </section>
 
       {/* ======================================================== */}
-      {/* SECTION 4: EXHIBITION HIGHLIGHTS (VERIFIED HISTORICAL RECORDS)*/}
+      {/* SECTION 4: CONCISE EXHIBITION PREVIEW (2-3 ENTRIES)       */}
       {/* ======================================================== */}
-      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24 border-b border-[#1B2A49]/10">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 pb-4 border-b border-[#1B2A49]/10 gap-4">
+      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-14 sm:py-20 border-b border-[#1B2A49]/10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#1B2A49]/10 gap-4">
           <div>
-            <span className="eyebrow-label text-[#1B2A49]">Selected Milestones</span>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[#1B2A49] mt-1">
-              Exhibitions &amp; Institutional Showcases
+            <span className="eyebrow-label text-[#1B2A49]">Exhibition Highlights</span>
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-[#1B2A49] mt-1">
+              Recent Exhibitions
             </h2>
           </div>
           <Link
             href="/exhibitions"
             className="font-heading text-xs uppercase tracking-wider font-semibold text-[#1B2A49] gallery-link"
           >
-            All Exhibitions &rarr;
+            Complete History &rarr;
           </Link>
         </div>
 
+        {/* Exactly 3 concise entries */}
         <div className="divide-y divide-[#1B2A49]/10">
-          {exhibitionsData.slice(0, 4).map((exh) => (
+          {exhibitionsData.slice(0, 3).map((exh) => (
             <div
               key={exh.id}
-              className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start group hover:bg-white/30 px-3 sm:px-4 -mx-3 sm:-mx-4 rounded transition-colors"
+              className="py-5 sm:py-6 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-baseline group hover:bg-white/30 px-3 sm:px-4 -mx-3 sm:-mx-4 rounded transition-colors"
             >
               <div className="md:col-span-2">
-                <span className="font-heading text-2xl sm:text-3xl font-bold text-[#1B2A49]">
+                <span className="font-heading text-xl sm:text-2xl font-bold text-[#1B2A49]">
                   {exh.year}
                 </span>
-                <span className="block text-xs uppercase tracking-wider text-[#38435C]/75 font-mono">
+                <span className="block text-xs uppercase tracking-wider text-[#38435C]/75 font-heading">
                   {exh.type}
                 </span>
               </div>
 
               <div className="md:col-span-5">
-                <h3 className="font-heading text-lg sm:text-xl font-bold text-[#1B2A49]">
+                <h3 className="font-heading text-base sm:text-lg font-bold text-[#1B2A49]">
                   {exh.title}
                 </h3>
-                <p className="font-serif text-sm text-[#38435C] italic mt-0.5">
+                <p className="font-body text-xs text-[#38435C] italic">
                   {exh.venue} &middot; {exh.city}, {exh.country}
                 </p>
-                {exh.dates && (
-                  <p className="text-xs text-[#38435C]/70 mt-1 font-mono">
-                    {exh.dates}
-                  </p>
-                )}
               </div>
 
               <div className="md:col-span-5 text-sm text-[#38435C] font-body leading-relaxed">
@@ -403,39 +329,35 @@ export default function HomePage() {
       </section>
 
       {/* ======================================================== */}
-      {/* SECTION 5: RESTRAINED STUDIO ENQUIRY & CONTACT BANNER    */}
+      {/* SECTION 5: CONCISE STUDIO INVITATION & CONTACT           */}
       {/* ======================================================== */}
-      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-20">
-        <div className="bg-white/40 border border-[#1B2A49]/15 rounded-sm p-8 sm:p-12 lg:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <div className="max-w-2xl space-y-3">
+      <section className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-14 sm:py-18">
+        <div className="bg-white/40 border border-[#1B2A49]/12 rounded-sm p-6 sm:p-10 lg:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="max-w-xl space-y-2">
             <span className="eyebrow-label text-[#1B2A49]">
-              Studio Inquiries &amp; Curatorial Loan
+              Studio Enquiries
             </span>
-            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-[#1B2A49]">
-              Acquisitions, Archival Research &amp; Studio Appointments
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-[#1B2A49]">
+              Acquisitions, Collaborations &amp; Studio Appointments
             </h2>
-            <p className="font-body text-base text-[#38435C] leading-relaxed">
-              For gallery representation inquiries, museum acquisitions, or to schedule a studio visit in Mumbai, please reach out directly to the studio archive.
+            <p className="font-body text-sm text-[#38435C] leading-relaxed">
+              For collectors, galleries, and institutions interested in original works or studio visits in Mumbai.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full md:w-auto">
-            <button
-              type="button"
-              onClick={() => {
-                setEnquiryArtwork(null);
-                setIsEnquiryOpen(true);
-              }}
-              className="px-6 py-3.5 bg-[#1B2A49] text-[#E9ECEF] font-heading text-xs uppercase tracking-[0.16em] font-semibold rounded-sm hover:bg-[#1B2A49]/90 transition-all text-center"
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+            <Link
+              href="/contact"
+              className="px-6 py-3 bg-[#1B2A49] text-[#E9ECEF] font-heading text-xs uppercase tracking-[0.14em] font-semibold rounded-sm hover:bg-[#1B2A49]/90 transition-all text-center"
             >
-              Initiate Studio Enquiry
-            </button>
+              Contact the Studio
+            </Link>
 
             <a
               href={`mailto:${artistData.contact.email}`}
-              className="px-6 py-3.5 bg-white/70 text-[#1B2A49] border border-[#1B2A49]/20 font-heading text-xs uppercase tracking-[0.16em] font-semibold rounded-sm hover:bg-white transition-all text-center"
+              className="px-6 py-3 bg-white/70 text-[#1B2A49] border border-[#1B2A49]/20 font-heading text-xs uppercase tracking-[0.14em] font-semibold rounded-sm hover:bg-white transition-all text-center"
             >
-              Email Studio Directly
+              {artistData.contact.email}
             </a>
           </div>
         </div>

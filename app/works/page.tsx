@@ -34,9 +34,9 @@ export default function WorksPage() {
   };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-12 lg:py-16">
+    <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-10 lg:py-16">
       {/* Editorial Header */}
-      <div className="mb-12 pb-8 border-b border-[#1B2A49]/10">
+      <div className="mb-10 pb-8 border-b border-[#1B2A49]/10">
         <Link
           href="/"
           className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-4"
@@ -49,41 +49,37 @@ export default function WorksPage() {
           Curated Portfolio &amp; Archive
         </span>
 
-        <div className="mt-2 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49]">
-              Selected Works
-            </h1>
-            <p className="font-body text-base sm:text-lg text-[#38435C] max-w-2xl mt-2 leading-relaxed">
-              Spontaneous abstract expressionism spanning monumental canvases, delicate mixed-media studies, and heavy impasto oils.
-            </p>
-          </div>
+        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-2">
+          Selected Works
+        </h1>
+        <p className="font-body text-base sm:text-lg text-[#38435C] max-w-2xl mt-2 leading-relaxed">
+          Spontaneous abstract expressionism spanning monumental canvases, delicate mixed-media studies, and heavy impasto oils.
+        </p>
 
-          {/* Category Filter Tabs */}
-          <div
-            className="flex flex-wrap gap-2"
-            role="tablist"
-            aria-label="Filter works by collection"
-          >
-            {artworkCategories.map((cat) => {
-              const isSelected = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  role="tab"
-                  aria-selected={isSelected}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3.5 py-1.5 text-xs font-heading uppercase tracking-wider rounded-sm transition-all border ${
-                    isSelected
-                      ? "bg-[#1B2A49] text-[#E9ECEF] border-[#1B2A49] font-bold"
-                      : "bg-white/40 text-[#38435C] border-[#1B2A49]/15 hover:bg-white/80 hover:text-[#1B2A49]"
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              );
-            })}
-          </div>
+        {/* Category Filter Tabs: Consistent row beneath the introduction */}
+        <div
+          className="mt-8 pt-6 border-t border-[#1B2A49]/10 flex flex-wrap items-center gap-2 sm:gap-2.5"
+          role="tablist"
+          aria-label="Filter works by collection"
+        >
+          {artworkCategories.map((cat) => {
+            const isSelected = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                role="tab"
+                aria-selected={isSelected}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`gallery-filter-btn ${
+                  isSelected
+                    ? "active !bg-[#1B2A49] !text-[#E9ECEF] !border-[#1B2A49]"
+                    : ""
+                }`}
+              >
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -95,7 +91,6 @@ export default function WorksPage() {
             artwork={artwork}
             priority={idx < 4}
             onOpenLightbox={(art) => setSelectedArtwork(art)}
-            showCuratorNote={true}
           />
         ))}
       </div>

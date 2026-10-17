@@ -36,7 +36,7 @@ export const artworksData: Artwork[] = [
     description:
       "A monumental exploration of flowing water, eddy currents, and ecological resonance. Swirling cobalt and lapis pigments collide with rich sediment ochres, embodying the perpetual motion and timeless memory of natural riverbeds.",
     curatorNote:
-      "Selected as the featured opening work for its dynamic chromatic equilibrium between deep river blues and raw earth pigments.",
+      "A dynamic chromatic dialogue between deep river blues and raw earth pigments.",
     image: "/artworks/hero-featured.jpg",
     aspectRatio: "landscape",
     featuredInHero: true,
@@ -53,7 +53,7 @@ export const artworksData: Artwork[] = [
     description:
       "A meditative vertical composition synthesizing structural ink hatchings with ethereal watercolor-like indigo washes. The work examines the inner architecture of human consciousness as it navigates temporal existence.",
     curatorNote:
-      "Features in the opening lower gallery row (left), offering a quiet contemplative vertical counterweight.",
+      "A quiet contemplative vertical study in line, wash, and spatial equilibrium.",
     image: "/artworks/mindscape-4.jpg",
     aspectRatio: "portrait",
     featuredInLowerRow: true,
@@ -71,7 +71,7 @@ export const artworksData: Artwork[] = [
     description:
       "Vigorous impasto palette knife applications create dramatic physical topography on square canvas. Rich Prussian blues fracture against raw terracotta and burnished ochres, capturing tension and sudden spiritual awakening.",
     curatorNote:
-      "Anchors the central position of the opening lower gallery row with tactile textural intensity.",
+      "Sculptural palette-knife impasto contrasting deep Prussian blues with raw terracotta.",
     image: "/artworks/close-encounter-193.jpg",
     aspectRatio: "square",
     featuredInLowerRow: true,
@@ -89,7 +89,7 @@ export const artworksData: Artwork[] = [
     description:
       "A panoramic horizontal field displaying spontaneous, sweeping strokes of marine blue and raw umber. The composition breathes with spaciousness, drawing the eye across waves of visual resonance akin to an expansive coastal estuary.",
     curatorNote:
-      "Occupies the wider right anchor of the asymmetric lower gallery row, balancing the homepage composition.",
+      "A sweeping panoramic field of marine blues and raw umber exploring spatial resonance.",
     image: "/artworks/abstraction-228.jpg",
     aspectRatio: "panoramic",
     featuredInLowerRow: true,

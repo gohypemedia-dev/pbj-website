@@ -2,28 +2,22 @@
  * Typography Configuration & Client Font Verification Handoff
  *
  * Client Requirements:
- * - Heading font label: "picsue sans by eko"
- * - Body font label: "hoefler and co by hofler and co"
+ * - Heading font label: "picsue sans by eko" (Picsue Sans by Eko Bimantara - condensed display sans-serif)
+ * - Body font label: "hoefler and co by hofler and co" (Hoefler & Co foundry)
  *
  * Technical Verification Note:
- * Neither label corresponds to a standard default CSS font-family name.
- * - "hoefler and co" refers to the world-renowned type foundry Hoefler&Co (creators of
- *   Hoefler Text, Chronicle Text, Mercury, Sentinel, Archer, Didot).
- * - "picsue sans by eko" refers to a custom/foundry typeface label by Eko.
+ * Outstanding Dependency: No licensed .woff2 / .woff webfont files were supplied in the project.
  *
- * Implementation & Temporary Fallback Strategy:
- * Per specification, until the client provides the licensed .woff2 / .woff webfont files:
- * 1. Headings use 'Syne' (Google Fonts) paired with narrow, expressive geometric display sans fallbacks:
- *    ['Syne', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif]
- * 2. Body text uses 'Newsreader' (Google Fonts) paired with local Hoefler & Co typefaces:
- *    ['Newsreader', 'Hoefler Text', 'Cormorant Garamond', 'Baskerville', 'Georgia', serif]
- *    Note: macOS and iOS devices natively support 'Hoefler Text', which activates automatically!
+ * Implementation & High-Fidelity Fallback Strategy:
+ * 1. Headings use 'Picsue Sans' font-face hook backed by 'Oswald' and 'Syne' (condensed/narrow display sans-serif):
+ *    Narrow proportions and uppercase letterforms bring heading character visibly closer to the client reference.
+ *    Full Unicode Latin Extended support verifies the macron glyphs in "PRĀKASH BĀL JOSHI".
+ * 2. Body text uses 'Hoefler and Co' font-face hook backed by 'Hoefler Text' (native on Apple) and 'Newsreader' (Google Fonts).
  *
  * How to drop in licensed files:
  * 1. Place font files in /public/fonts/
- *    e.g. /public/fonts/picsue-sans-regular.woff2, /public/fonts/hoefler-regular.woff2
- * 2. Uncomment the @font-face rules in /app/globals.css
- * 3. Update the font variable mappings below.
+ *    e.g. /public/fonts/picsue-sans.woff2, /public/fonts/hoefler-and-co.woff2
+ * 2. The @font-face declarations are active in app/globals.css.
  */
 
 export interface TypographyTokens {
@@ -31,27 +25,27 @@ export interface TypographyTokens {
     clientLabel: string;
     implementedFamily: string;
     fallbackStack: string;
-    licenseStatus: "Fallback Active (Awaiting Client Files)" | "Licensed File Active";
+    licenseStatus: "Outstanding Dependency (Awaiting Client Files)" | "Licensed File Active";
   };
   body: {
     clientLabel: string;
     implementedFamily: string;
     fallbackStack: string;
-    licenseStatus: "Fallback Active (Native Hoefler Text on Apple / Newsreader on Web)" | "Licensed File Active";
+    licenseStatus: "Outstanding Dependency (Native Hoefler Text on Apple / Newsreader on Web)" | "Licensed File Active";
   };
 }
 
 export const typographyTokens: TypographyTokens = {
   heading: {
     clientLabel: "picsue sans by eko",
-    implementedFamily: "Syne",
-    fallbackStack: "'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-    licenseStatus: "Fallback Active (Awaiting Client Files)"
+    implementedFamily: "Picsue Sans (Fallback: Oswald / Syne)",
+    fallbackStack: "'Picsue Sans', 'Oswald', 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    licenseStatus: "Outstanding Dependency (Awaiting Client Files)"
   },
   body: {
     clientLabel: "hoefler and co by hofler and co",
-    implementedFamily: "Newsreader",
-    fallbackStack: "'Newsreader', 'Hoefler Text', 'Cormorant Garamond', 'Baskerville', 'Georgia', serif",
-    licenseStatus: "Fallback Active (Native Hoefler Text on Apple / Newsreader on Web)"
+    implementedFamily: "Hoefler and Co (Fallback: Hoefler Text / Newsreader)",
+    fallbackStack: "'Hoefler and Co', 'Hoefler Text', 'Newsreader', 'Cormorant Garamond', 'Baskerville', 'Georgia', serif",
+    licenseStatus: "Outstanding Dependency (Native Hoefler Text on Apple / Newsreader on Web)"
   }
 };

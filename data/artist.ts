@@ -72,11 +72,11 @@ export const artistData: ArtistProfile = {
     ]
   },
   contact: {
-    studioLocation: "Kala Ghoda Arts District / Worli",
+    studioLocation: "Mumbai Studio",
     city: "Mumbai",
     country: "India",
     email: "studio@prakashbaljoshi.com",
-    representationNote: "Represented internationally by select partner galleries. Direct studio enquiries welcome for museum acquisitions and curatorial collaborations.",
+    representationNote: "Represented internationally by partner galleries. Direct studio enquiries welcome for acquisitions and curatorial collaborations.",
     visitingPolicy: "Studio visits in Mumbai are arranged by prior appointment for curators, collectors, and researchers."
   }
 };
