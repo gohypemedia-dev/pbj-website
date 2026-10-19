@@ -18,7 +18,29 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
+
+All application code lives in `app/`; there is no separate `src/` tree.
+
+```text
+app/
+  components/    Shared UI, including the header and opening animation
+  config/        Typography configuration
+  data/          Artist, artwork, and exhibition content
+  about/         About page
+  contact/       Contact page
+  exhibitions/   Exhibitions page
+  works/         Gallery and artwork detail pages
+  globals.css    Tailwind entrypoint
+  site.css       Site typography, layout, and opening animation styles
+  layout.tsx     Root layout
+  page.tsx       Homepage
+public/          Static artwork, fonts, and other assets
+```
+
+The `@/*` import alias resolves to `app/*`, so `@/components/Header` loads `app/components/Header.tsx`. Shared folders do not create routes unless they contain a `page.tsx` or `route.ts` file.
+
+The project uses `next/font/local` to load bundled Amatic SC display, Allura signature, and Manrope interface fonts from `public/fonts/`. Lenis provides smooth scrolling, with reduced-motion preferences respected.
 
 ## Learn More
 

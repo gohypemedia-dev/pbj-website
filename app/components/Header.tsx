@@ -46,25 +46,30 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#E9ECEF]/95 backdrop-blur-sm border-b border-[#1B2A49]/10 transition-colors">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+    <header className={`${pathname === "/" ? "home-header" : ""} sticky top-0 z-40 bg-[#E9ECEF]/95 backdrop-blur-sm border-b border-[#1B2A49]/10 transition-colors`}>
+      <div className="header-inner max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
         {/* Left: Artist Wordmark */}
         <Link
           href="/"
-          className="group inline-flex flex-col text-left focus-visible:ring-1 focus-visible:ring-[#1B2A49]"
+          className="header-brand group inline-flex items-center gap-3 sm:gap-4 text-left focus-visible:ring-1 focus-visible:ring-[#1B2A49]"
           aria-label={`${artistData.name} - Home`}
         >
-          <span className="font-heading font-bold text-lg sm:text-xl tracking-[0.14em] text-[#1B2A49] transition-opacity group-hover:opacity-80">
+          <span className="brand-monogram" aria-hidden="true">
+            {Array.from("PBJ").map((letter) => <span key={letter} data-brand-letter>{letter}</span>)}
+          </span>
+          <span className="header-brand-copy flex flex-col">
+          <span className="artist-wordmark text-[#1B2A49] transition-opacity group-hover:opacity-80">
             {artistData.diacriticName}
           </span>
-          <span className="text-[11px] sm:text-xs tracking-[0.18em] uppercase text-[#38435C]/80 font-sans">
+          <span className="text-[9px] sm:text-[10px] tracking-[0.12em] uppercase text-[#38435C]/80 font-sans">
             Mumbai &middot; Contemporary Abstraction
+          </span>
           </span>
         </Link>
 
         {/* Right: Desktop Navigation */}
         <nav
-          className="hidden md:flex items-center space-x-8 lg:space-x-12"
+          className="header-navigation hidden md:flex items-center space-x-8 lg:space-x-12"
           aria-label="Main Navigation"
         >
           {navLinks.map((link) => {

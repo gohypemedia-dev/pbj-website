@@ -1,6 +1,30 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./site.css";
+import "lenis/dist/lenis.css";
+import localFont from "next/font/local";
+
+const artistFont = localFont({
+  src: "../public/fonts/AmaticSC-Bold.ttf",
+  variable: "--font-artist",
+  weight: "700",
+  display: "swap",
+});
+const signatureFont = localFont({
+  src: "../public/fonts/Allura-Regular.ttf",
+  variable: "--font-signature",
+  weight: "400",
+  display: "swap",
+});
+const interfaceFont = localFont({
+  src: "../public/fonts/Manrope-Variable.ttf",
+  variable: "--font-interface",
+  weight: "200 800",
+  display: "swap",
+});
 import Header from "@/components/Header";
+import IntroProvider from "@/components/IntroProvider";
+import ScrollExperience from "@/components/ScrollExperience";
 import Footer from "@/components/Footer";
 import { artistData } from "@/data/artist";
 
@@ -34,8 +58,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full scroll-smooth">
-      <body className="min-h-full flex flex-col bg-[#E9ECEF] text-[#38435C] selection:bg-[#1B2A49] selection:text-[#E9ECEF]">
+    <html lang="en" className={`${artistFont.variable} ${signatureFont.variable} ${interfaceFont.variable} h-full`}>
+      <body id="page-top" className="min-h-full flex flex-col bg-[#E9ECEF] text-[#38435C] selection:bg-[#1B2A49] selection:text-[#E9ECEF]">
+        <IntroProvider>
+        <ScrollExperience />
         {/* Skip to Main Content Link for accessibility */}
         <a
           href="#main-content"
@@ -54,6 +80,7 @@ export default function RootLayout({
 
         {/* Global Editorial Footer */}
         <Footer />
+        </IntroProvider>
       </body>
     </html>
   );
