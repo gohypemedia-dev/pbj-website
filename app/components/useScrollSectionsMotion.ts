@@ -10,6 +10,32 @@ export function useScrollSectionsMotion() {
       dispose();
       if (reduced.matches) return;
       const animations = new Map<Element, Animation>();
+      const aboutAnimations: Animation[] = [];
+      const paragraphAnimations = new Map<Element, Animation[]>();
+      const about = document.querySelector(".story-about");
+      const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            paragraphAnimations.get(entry.target)?.forEach((animation) => animation.play());
+            aboutObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .25, rootMargin: "0px 0px -12% 0px" });
+      about?.querySelectorAll("p").forEach((paragraph) => {
+        const sequence: Animation[] = [];
+        paragraph.querySelectorAll("[data-about-letter]").forEach((letter, index) => {
+          const animation = letter.animate([{ visibility: "hidden" }, { visibility: "visible" }], {
+            duration: 1, delay: 100 + index * 18, easing: "steps(1, end)", fill: "both",
+          });
+          animation.pause();
+          sequence.push(animation);
+          aboutAnimations.push(animation);
+        });
+        if (sequence.length) {
+          paragraphAnimations.set(paragraph, sequence);
+          aboutObserver.observe(paragraph);
+        }
+      });
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -20,11 +46,15 @@ export function useScrollSectionsMotion() {
       }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
       document.querySelectorAll<HTMLElement>("[data-scroll-reveal]").forEach((element) => {
         const fromRight = element.dataset.scrollReveal === "right";
-        if (!fromRight && element.getBoundingClientRect().top < innerHeight * .92) return;
-        const animation = element.animate([
+        const writing = element.dataset.scrollReveal === "write";
+        if (!fromRight && !writing && element.getBoundingClientRect().top < innerHeight * .92) return;
+        const animation = element.animate(writing ? [
+          { clipPath: "inset(-15% 100% -20% -5%)" },
+          { clipPath: "inset(-15% -5% -20% -5%)" },
+        ] : [
           { opacity: 0, transform: fromRight ? "translate3d(80px, 0, 0)" : "translate3d(0, 64px, 0)" },
           { opacity: 1, transform: "translate3d(0, 0, 0)" },
-        ], { duration: fromRight ? 1300 : 1100, delay: Number(element.dataset.revealDelay || 0), easing: "cubic-bezier(.22,1,.36,1)", fill: "both" });
+        ], { duration: writing ? 2200 : fromRight ? 1300 : 1100, delay: writing ? 300 : Number(element.dataset.revealDelay || 0), easing: writing ? "cubic-bezier(.4,0,.2,1)" : "cubic-bezier(.22,1,.36,1)", fill: "both" });
         animation.pause();
         animations.set(element, animation);
         observer.observe(element);
@@ -45,7 +75,9 @@ export function useScrollSectionsMotion() {
         frame = 0;
         if (gallery) {
           const rect = gallery.getBoundingClientRect();
-          const progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight)));
+          // Hold the opening title while the first artwork rises into view.
+          const titleIntro = innerHeight * .65;
+          const progress = Math.max(0, Math.min(1, (-rect.top - titleIntro) / Math.max(1, rect.height - innerHeight - titleIntro)));
           const index = Math.min(2, Math.floor(progress * 3));
           if (index !== activeGalleryWord) {
             galleryWords.forEach((word, position) => word.classList.toggle("is-active", position === index));
@@ -69,6 +101,8 @@ export function useScrollSectionsMotion() {
       update();
       dispose = () => {
         observer.disconnect();
+        aboutObserver.disconnect();
+        aboutAnimations.forEach((animation) => animation.cancel());
         document.removeEventListener("focusin", revealFocused);
         animations.forEach((animation) => animation.cancel());
         cancelAnimationFrame(frame);

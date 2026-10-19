@@ -54,12 +54,9 @@ export default function Header() {
           className="header-brand group inline-flex items-center gap-3 sm:gap-4 text-left focus-visible:ring-1 focus-visible:ring-[#1B2A49]"
           aria-label={`${artistData.name} - Home`}
         >
-          <span className="brand-monogram" aria-hidden="true">
-            {Array.from("PBJ").map((letter) => <span key={letter} data-brand-letter>{letter}</span>)}
-          </span>
           <span className="header-brand-copy flex flex-col">
           <span className="artist-wordmark text-[#1B2A49] transition-opacity group-hover:opacity-80">
-            {artistData.diacriticName}
+            {artistData.diacriticName.split(" ").map((word, index) => <React.Fragment key={index}>{index > 0 ? " " : ""}<span data-brand-letter>{word[0]}</span>{word.slice(1)}</React.Fragment>)}
           </span>
           <span className="text-[9px] sm:text-[10px] tracking-[0.12em] uppercase text-[#38435C]/80 font-sans">
             Mumbai &middot; Contemporary Abstraction

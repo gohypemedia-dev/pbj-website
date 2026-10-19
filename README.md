@@ -40,7 +40,7 @@ public/          Static artwork, fonts, and other assets
 
 The `@/*` import alias resolves to `app/*`, so `@/components/Header` loads `app/components/Header.tsx`. Shared folders do not create routes unless they contain a `page.tsx` or `route.ts` file.
 
-The project uses `next/font/local` to load bundled Amatic SC display, Allura signature, and Manrope interface fonts from `public/fonts/`. Lenis provides smooth scrolling, with reduced-motion preferences respected.
+The project uses `next/font/local` to load the bundled Amatic SC display font, paired with system serif body and interface fonts from `public/fonts/`. Lenis provides smooth scrolling, with reduced-motion preferences respected.
 
 ## Learn More
 
