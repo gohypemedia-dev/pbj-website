@@ -81,9 +81,9 @@ export default function ArtistHero() {
         ))}
       </div>
       <div className="hero-signature hero-rise">
-        <h1 id="hero-title">Prakash Bal Joshi</h1>
+        <h1 id="hero-title"><span className="hero-signature-ink">Prakash Bal Joshi</span></h1>
         <svg viewBox="0 0 1200 70" fill="none" aria-hidden="true" preserveAspectRatio="none">
-          <path d="M12 52 C360 60 880 0 1188 24" stroke="currentColor" strokeWidth="1.5" />
+          <path pathLength="1" d="M12 52 C360 60 880 0 1188 24" stroke="currentColor" strokeWidth="1.5" />
         </svg>
       </div>
       <div className="hero-footer hero-rise">
@@ -91,7 +91,7 @@ export default function ArtistHero() {
         <Link href="/works" className="hero-explore">Explore the works <ArrowUpRight size={18} /></Link>
         <a href="#selected-works" className="hero-scroll" aria-label="Scroll to selected works"><ArrowDown size={20} /></a>
       </div>
-      <noscript><style>{".artist-hero .hero-rise { animation: none !important; opacity: 1 !important; transform: none !important; }"}</style></noscript>
+      <noscript><style>{".artist-hero .hero-rise { animation: none !important; opacity: 1 !important; transform: none !important; } .hero-signature-ink { clip-path: none !important; } .hero-signature path { stroke-dashoffset: 0 !important; }"}</style></noscript>
     </section>
   );
 }

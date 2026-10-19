@@ -325,22 +325,29 @@ html.lenis { scroll-behavior: auto !important; }
 .statement-line span { display: inline; }
 .statement-line .statement-script { font-family: var(--font-signature); font-size: 1.45em; line-height: .85; letter-spacing: -.03em; }
 .statement-note { font-size: 17px; line-height: 1.5; }
-.scroll-gallery { position: relative; padding: 10vh 3vw 14vh; }
+.scroll-gallery { position: relative; padding: 8vh 1.6vw 10vh; }
 .gallery-title-layer { position: absolute; inset: 0; pointer-events: none; text-align: center; }
-.gallery-title-layer h2 { position: sticky; top: 32vh; margin: 0; padding-top: 5vh; font: 800 clamp(5rem, 16vw, 16rem)/.85 var(--font-heading); letter-spacing: -.075em; text-transform: uppercase; }
+.gallery-title-layer h2 { position: sticky; top: 32vh; margin: 0; padding-top: 5vh; font: 800 clamp(3.5rem, 11vw, 11rem)/.95 var(--font-heading); letter-spacing: -.055em; text-transform: uppercase; }
 .gallery-title-layer h2 span { display: block; font-family: var(--font-signature); font-weight: 400; font-size: .48em; line-height: 1.15; letter-spacing: -.025em; text-transform: none; }
-.scroll-gallery-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 3vw; row-gap: 12vh; align-items: start; padding-block: 12vh; }
+.gallery-changing-title { display: grid; }
+.gallery-changing-title b { grid-area: 1 / 1; font-weight: inherit; opacity: 0; transform: translateY(24px); transition: opacity 450ms ease, transform 650ms cubic-bezier(.22,1,.36,1); }
+.gallery-changing-title b.is-active { opacity: 1; transform: translateY(0); }
+.gallery-changing-title b:not(:first-child) { font-size: .78em; align-self: center; }
+@media (prefers-reduced-motion: reduce) { .gallery-changing-title b { transition: none; transform: none; } }
+.scroll-gallery-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px 10px; align-items: start; padding-block: 6vh; }
 .scroll-art { margin: 0; min-width: 0; }
 .scroll-art-0 { grid-area: 1 / 1; }
-.scroll-art-1 { grid-area: 1 / 4; margin-top: 26vh; }
-.scroll-art-2 { grid-area: 2 / 2; }
-.scroll-art-3 { grid-area: 2 / 4; margin-top: 20vh; }
-.scroll-art-4 { grid-area: 3 / 1; }
-.scroll-art-5 { grid-area: 3 / 3; margin-top: 28vh; }
-.scroll-art-6 { grid-area: 4 / 2; }
-.scroll-art-button { width: 100%; display: block; padding: 0; border: 0; background: transparent; cursor: pointer; }
-.scroll-art img { width: 100%; height: auto; display: block; }
-.scroll-art figcaption { display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; background: transparent; font: 11px/1.4 var(--font-heading); }
+.scroll-art-1 { grid-area: 1 / 4; }
+.scroll-art-2 { grid-area: 1 / 5; }
+.scroll-art-3 { grid-area: 2 / 2; }
+.scroll-art-4 { grid-area: 2 / 3; }
+.scroll-art-5 { grid-area: 3 / 1; }
+.scroll-art-6 { grid-area: 3 / 5; }
+.scroll-art-button { width: 100%; aspect-ratio:  .69; display: grid; place-items: center; padding: 0; border: 1px solid var(--border-strong); background: transparent; cursor: pointer; }
+.scroll-art img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.scroll-art figcaption { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; padding: 0; background: transparent; font: 12px/1.4 var(--font-heading); }
+.scroll-art figcaption > span:first-child { padding: 4px 6px; border: 1px solid var(--border-strong); border-top: 0; }
+.scroll-art figcaption > span:last-child { padding: 5px 2px; font-size: 10px; }
 .gallery-archive-footer { position: relative; display: flex; justify-content: center; padding: 32px 24px 96px; }
 .gallery-archive { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 52px; padding: 16px 28px; background: var(--text-heading); color: var(--bg-main); border: 1px solid var(--text-heading); border-radius: 2px; font: 14px/1.4 var(--font-heading); text-decoration: none; }
 .gallery-archive:focus-visible { outline: 2px solid var(--text-heading); outline-offset: 5px; }
@@ -365,15 +372,15 @@ html.lenis { scroll-behavior: auto !important; }
   .statement-line { font-size: 12vw; }
   .statement-note { font-size: 15px; }
   .scroll-gallery { padding-inline: 6vw; }
-  .gallery-title-layer h2 { top: 36vh; font-size: 20vw; }
-  .scroll-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9vh 5vw; }
+  .gallery-title-layer h2 { top: 36vh; font-size: 15vw; }
+  .scroll-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 12px; }
   .scroll-art-0 { grid-area: 1 / 1; }
-  .scroll-art-1 { grid-area: 2 / 2; margin-top: 0; }
-  .scroll-art-2 { grid-area: 3 / 1; }
-  .scroll-art-3 { grid-area: 4 / 2; margin-top: 0; }
-  .scroll-art-4 { grid-area: 5 / 1; }
-  .scroll-art-5 { grid-area: 6 / 2; margin-top: 0; }
-  .scroll-art-6 { grid-area: 7 / 1; }
+  .scroll-art-1 { grid-area: 1 / 2; margin-top: 70px; }
+  .scroll-art-2 { grid-area: 2 / 1; }
+  .scroll-art-3 { grid-area: 2 / 2; margin-top: 70px; }
+  .scroll-art-4 { grid-area: 3 / 1; }
+  .scroll-art-5 { grid-area: 3 / 2; margin-top: 70px; }
+  .scroll-art-6 { grid-area: 4 / 1; }
   .scroll-art figcaption { font-size: 10px; }
   .story-exhibitions { grid-template-columns: 1fr; gap: 70px; padding-block: 90px; margin-inline: 6vw; }
   .exhibitions-heading { position: static; }
@@ -402,8 +409,8 @@ html.lenis { scroll-behavior: auto !important; }
 }
 
 /* Framed changing themes and oversized sign-off, adapted from the live reference. */
-.story-themes { position: relative; height: 105svh; padding: 12vh 2.2vw 8vh; }
-.theme-frame { position: sticky; top: 24vh; height: clamp(160px, 24vw, 310px); border-block: 1px solid var(--border-strong); }
+.story-themes { position: relative; padding: 8vh 2.2vw; }
+.theme-frame { position: relative; height: clamp(160px, 24vw, 310px); border-block: 1px solid var(--border-strong); }
 .theme-word { position: absolute; inset: 0; display: flex; gap: .2em; align-items: center; justify-content: center; margin: 0; opacity: 0; font: 500 clamp(3rem, 8vw, 8rem)/1 var(--font-heading); letter-spacing: -.065em; }
 .theme-word-first { opacity: 1; }
 .theme-word span { font: 400 1.3em/1 var(--font-signature); letter-spacing: -.02em; }
@@ -422,10 +429,10 @@ html.lenis { scroll-behavior: auto !important; }
 .footer-signoff span { font: 400 1.1em/1 var(--font-signature); text-transform: none; letter-spacing: -.05em; }
 .footer-rights { margin: 25px 0 0; padding-top: 16px; border-top: 1px solid var(--border-subtle); font: 10px/1.5 var(--font-heading); text-align: right; }
 @media (max-width: 767px) {
-  .story-themes { height: 80svh; padding-inline: 6vw; }
-  .theme-frame { top: 25vh; }
+  .story-themes { padding-inline: 6vw; }
+  
   .theme-word { font-size: 12vw; }
-  .gallery-title-layer h2 { font-size: 20vw; }
+  .gallery-title-layer h2 { font-size: 15vw; }
   .artist-footer { padding: 30px 6vw 24px; }
   .footer-topline { grid-template-columns: 1fr 1fr; gap: 36px 20px; padding-bottom: 50px; font-size: 12px; }
   .footer-studio { grid-column: 1 / -1; text-align: left; }
@@ -435,4 +442,30 @@ html.lenis { scroll-behavior: auto !important; }
 @media (prefers-reduced-motion: reduce) {
   .story-themes { height: auto; padding-block: 70px; }
   .theme-frame { position: relative; top: auto; }
+}
+
+/* A single signing reveal after the opening artwork is ready. */
+.hero-signature-ink { display: inline-block; clip-path: inset(-35% 100% -35% -10%); }
+.hero-signature path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.artist-hero.is-ready .hero-signature-ink { animation: signature-write 1900ms cubic-bezier(.4,0,.2,1) 450ms both; }
+.artist-hero.is-ready .hero-signature path { animation: signature-underline 950ms cubic-bezier(.22,1,.36,1) 2100ms both; }
+@keyframes signature-write { from { clip-path: inset(-35% 100% -35% -10%); } to { clip-path: inset(-35% -10% -35% -10%); } }
+@keyframes signature-underline { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .artist-hero .hero-signature-ink { animation: none; clip-path: none; }
+  .artist-hero .hero-signature path { animation: none; stroke-dashoffset: 0; }
+}
+
+.theme-phrase { display: flex; align-items: center; justify-content: center; gap: .18em; height: 100%; margin: 0; font: 500 clamp(3rem, 8vw, 8rem)/1 var(--font-heading); letter-spacing: -.065em; }
+.theme-prefix { font: 400 1.3em/1 var(--font-signature); letter-spacing: -.02em; }
+.theme-rotator { display: grid; overflow: hidden; padding: .2em .08em; }
+.theme-changing-word { grid-area: 1 / 1; animation: theme-arrive 650ms cubic-bezier(.22,1,.36,1) both; }
+@keyframes theme-arrive {
+  0% { opacity: 0; transform: translateX(65%); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@media (max-width: 767px) { .theme-phrase { font-size: 11.5vw; } }
+@media (prefers-reduced-motion: reduce) {
+  .theme-changing-word { animation: none; opacity: 0; }
+  .theme-changing-word:first-child { opacity: 1; }
 }

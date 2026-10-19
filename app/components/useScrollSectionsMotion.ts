@@ -37,10 +37,21 @@ export function useScrollSectionsMotion() {
       document.addEventListener("focusin", revealFocused);
 
       const statements = [...document.querySelectorAll<HTMLElement>("[data-scroll-statement]")];
-      const themes = [...document.querySelectorAll<HTMLElement>("[data-scroll-themes]")];
+      const gallery = document.querySelector<HTMLElement>(".scroll-gallery");
+      const galleryWords = [...document.querySelectorAll<HTMLElement>("[data-gallery-word]")];
+      let activeGalleryWord = -1;
       let frame = 0;
       const update = () => {
         frame = 0;
+        if (gallery) {
+          const rect = gallery.getBoundingClientRect();
+          const progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - innerHeight)));
+          const index = Math.min(2, Math.floor(progress * 3));
+          if (index !== activeGalleryWord) {
+            galleryWords.forEach((word, position) => word.classList.toggle("is-active", position === index));
+            activeGalleryWord = index;
+          }
+        }
         statements.forEach((section) => {
           const rect = section.getBoundingClientRect();
           const progress = Math.max(0, Math.min(1, (innerHeight * .85 - rect.top) / (rect.height * .7)));
@@ -50,15 +61,7 @@ export function useScrollSectionsMotion() {
             word.style.opacity = String(.16 + amount * .84);
           });
         });
-        themes.forEach((section) => {
-          const rect = section.getBoundingClientRect();
-          const progress = Math.max(0, Math.min(1, (innerHeight * .45 - rect.top) / (rect.height * .8)));
-          section.querySelectorAll<HTMLElement>("[data-theme-word]").forEach((word, index) => {
-            const distance = progress * 2 - index;
-            word.style.opacity = String(Math.max(0, 1 - Math.abs(distance) * 2));
-            word.style.transform = `translate3d(0, ${-distance * 80}px, 0)`;
-          });
-        });
+
       };
       const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
       window.addEventListener("scroll", schedule, { passive: true });
@@ -71,8 +74,8 @@ export function useScrollSectionsMotion() {
         cancelAnimationFrame(frame);
         window.removeEventListener("scroll", schedule);
         window.removeEventListener("resize", schedule);
+        galleryWords.forEach((word, index) => word.classList.toggle("is-active", index === 0));
         statements.forEach((section) => section.querySelectorAll<HTMLElement>("[data-scroll-word]").forEach((word) => word.style.removeProperty("opacity")));
-        themes.forEach((section) => section.querySelectorAll<HTMLElement>("[data-theme-word]").forEach((word) => { word.style.removeProperty("opacity"); word.style.removeProperty("transform"); }));
       };
     };
     setup();

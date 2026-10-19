@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import ThemePhrase from "./ThemePhrase";
 import { useScrollSectionsMotion } from "./useScrollSectionsMotion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -24,12 +25,12 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
         </div>
       </section>
 
-      <section className="story-themes" data-scroll-themes aria-labelledby="themes-title">
+      <section className="story-themes" aria-labelledby="themes-title">
         <h2 id="themes-title" className="sr-only">Rivers, memory, and life: themes in the artist’s work</h2>
         <div className="theme-frame" aria-hidden="true">
           <span className="theme-corner theme-corner-start" />
           <span className="theme-corner theme-corner-end" />
-          {["Rivers", "Memory", "Life"].map((theme, index) => <p key={theme} data-theme-word className={index === 0 ? "theme-word theme-word-first" : "theme-word"}><span>On</span> {theme.toLowerCase()}.</p>)}
+          <ThemePhrase />
         </div>
       </section>
 
@@ -44,13 +45,13 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
       </section>
 
       <section id="selected-works" className="scroll-gallery" aria-labelledby="scroll-gallery-title">
-        <div className="gallery-title-layer"><h2 id="scroll-gallery-title"><span>Selected</span>WORKS</h2></div>
+        <div className="gallery-title-layer"><h2 id="scroll-gallery-title" aria-label="Selected works"><span aria-hidden="true">Selected</span><div className="gallery-changing-title" aria-hidden="true">{["WORKS", "COLOUR", "STORIES"].map((word, index) => <b key={word} data-gallery-word className={index === 0 ? "is-active" : ""}>{word}</b>)}</div></h2></div>
         <div className="scroll-gallery-grid">
           {artworksData.map((artwork, index) => (
             <figure className={`scroll-art scroll-art-${index}`} key={artwork.id}>
               <div data-scroll-reveal>
                 <button className="scroll-art-button" onClick={() => onOpenArtwork(artwork)} aria-label={`View ${artwork.title}`}>
-                  <Image src={artwork.image} alt={artwork.title} width={700} height={850} style={{ width: "100%", height: "auto" }} sizes="(max-width: 767px) 44vw, 24vw" />
+                  <Image src={artwork.image} alt={artwork.title} width={700} height={850} style={{ width: "100%", height: "100%" }} sizes="(max-width: 767px) 44vw, 20vw" />
                 </button>
                 <figcaption><span>{artwork.title}</span><span>{artwork.year}</span></figcaption>
               </div>
