@@ -6,13 +6,13 @@ import { artistData } from "@/data/artist";
 export default function NotFound() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-24 sm:py-32 text-center">
-      <span className="eyebrow-label text-[#1B2A49] block mb-3">
+      <span className="eyebrow-label text-[#1B2A49] block mb-1.5">
         404 &middot; Page Not Found
       </span>
-      <h1 className="font-heading text-4xl sm:text-6xl font-bold text-[#1B2A49] mb-4">
+      <h1 className="font-heading text-4xl sm:text-6xl font-bold text-[#1B2A49] mb-2">
         Archive Entry Not Found
       </h1>
-      <p className="font-body text-lg text-[#38435C] max-w-lg mx-auto mb-8 leading-relaxed">
+      <p className="font-body text-lg text-[#38435C] max-w-lg mx-auto mb-6 leading-relaxed">
         The requested artwork or archival document does not exist or may have been relocated in the digital catalogue raisonné.
       </p>
       <div className="flex flex-wrap justify-center gap-4 font-heading text-xs uppercase tracking-wider">

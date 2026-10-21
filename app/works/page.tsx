@@ -34,12 +34,12 @@ export default function WorksPage() {
   };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-10 lg:py-16">
+    <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Editorial Header */}
-      <div className="mb-10 pb-8 border-b border-[#1B2A49]/10">
+      <div className="mb-8 pb-5 border-b border-[#1B2A49]/10">
         <Link
           href="/"
-          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-4"
+          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3"
         >
           <ArrowLeft size={14} />
           <span>Home</span>
@@ -49,16 +49,16 @@ export default function WorksPage() {
           Curated Portfolio &amp; Archive
         </span>
 
-        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-2">
+        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5">
           Selected Works
         </h1>
-        <p className="font-body text-base sm:text-lg text-[#38435C] max-w-2xl mt-2 leading-relaxed">
+        <p className="font-body text-base sm:text-lg text-[#38435C] max-w-2xl mt-1.5 leading-relaxed">
           Spontaneous abstract expressionism spanning monumental canvases, delicate mixed-media studies, and heavy impasto oils.
         </p>
 
         {/* Category Filter Tabs: Consistent row beneath the introduction */}
         <div
-          className="mt-8 pt-6 border-t border-[#1B2A49]/10 flex flex-wrap items-center gap-2 sm:gap-2.5"
+          className="mt-5 pt-4 border-t border-[#1B2A49]/10 flex flex-wrap items-center gap-2 sm:gap-2.5"
           role="tablist"
           aria-label="Filter works by collection"
         >
@@ -84,7 +84,7 @@ export default function WorksPage() {
       </div>
 
       {/* Artworks Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
         {filteredArtworks.map((artwork, idx) => (
           <ArtworkCard
             key={artwork.id}

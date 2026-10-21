@@ -24,7 +24,9 @@ export default function Footer() {
           <p>&copy; {year} {artistData.name}</p>
         </div>
       </div>
-      <Link href="/" className="footer-signoff" aria-label="Prakash Bal Joshi home"><span>Prakash</span> Bal Joshi</Link>
+      <Link href="/" className="footer-signoff" aria-label={`${artistData.name} home`}>
+        {artistData.diacriticName}
+      </Link>
       <p className="footer-rights">All artwork copyrights reserved by the artist.</p>
     </footer>
   );

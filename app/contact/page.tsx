@@ -41,12 +41,12 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-10 lg:py-16">
+    <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Header */}
-      <div className="mb-10 pb-8 border-b border-[#1B2A49]/10">
+      <div className="mb-8 pb-5 border-b border-[#1B2A49]/10">
         <Link
           href="/"
-          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-4"
+          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3"
         >
           <ArrowLeft size={14} />
           <span>Home</span>
@@ -54,19 +54,19 @@ export default function ContactPage() {
         <span className="eyebrow-label text-[#1B2A49] block">
           Studio Communications
         </span>
-        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-2">
+        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5">
           Contact the Studio
         </h1>
-        <p className="font-body text-base sm:text-lg text-[#38435C] mt-2 max-w-2xl leading-relaxed">
+        <p className="font-body text-base sm:text-lg text-[#38435C] mt-1.5 max-w-2xl leading-relaxed">
           Enquiries for artwork acquisitions, exhibitions, press, and studio visits may be directed to the studio in Mumbai.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Studio Information (5 cols) */}
-        <div className="lg:col-span-5 space-y-8">
+        <div className="lg:col-span-5 space-y-5">
           <div>
-            <span className="eyebrow-label text-[#1B2A49] block mb-2">
+            <span className="eyebrow-label text-[#1B2A49] block mb-1">
               Direct Correspondence
             </span>
             <a
@@ -75,12 +75,12 @@ export default function ContactPage() {
             >
               {artistData.contact.email}
             </a>
-            <p className="font-body text-sm text-[#38435C]/80 mt-2 leading-relaxed max-w-[45ch]">
+            <p className="font-body text-sm text-[#38435C]/80 mt-1 leading-relaxed max-w-[45ch]">
               Direct communication for curatorial inquiries, museum exhibitions, and collectors.
             </p>
           </div>
 
-          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-1.5">
+          <div className="pt-4 border-t border-[#1B2A49]/15 space-y-1.5">
             <span className="eyebrow-label text-[#1B2A49] block">
               Studio Location
             </span>
@@ -89,7 +89,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-1.5">
+          <div className="pt-4 border-t border-[#1B2A49]/15 space-y-1.5">
             <span className="eyebrow-label text-[#1B2A49] block">
               Studio Visits
             </span>
@@ -98,7 +98,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-1.5">
+          <div className="pt-4 border-t border-[#1B2A49]/15 space-y-1.5">
             <span className="eyebrow-label text-[#1B2A49] block">
               Representation &amp; Archives
             </span>
@@ -109,7 +109,7 @@ export default function ContactPage() {
         </div>
 
         {/* Right Column: Studio Correspondence Form (7 cols) */}
-        <div className="lg:col-span-7 bg-white/40 border border-[#1B2A49]/10 rounded-sm p-8 sm:p-10 space-y-6 shadow-[0_4px_24px_rgba(27,42,73,0.04)]">
+        <div className="lg:col-span-7 bg-white/40 border border-[#1B2A49]/10 rounded-sm p-6 sm:p-8 space-y-5 shadow-[0_4px_24px_rgba(27,42,73,0.04)]">
           <div>
             <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#1B2A49]">
               Send an Enquiry
@@ -124,7 +124,7 @@ export default function ContactPage() {
               e.preventDefault();
               window.location.href = mailtoLink;
             }}
-            className="space-y-5"
+            className="space-y-4"
           >
             <div>
               <label

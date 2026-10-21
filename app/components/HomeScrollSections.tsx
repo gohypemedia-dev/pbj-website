@@ -9,7 +9,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { artistData } from "@/data/artist";
 import { artworksData, type Artwork } from "@/data/artworks";
-import { exhibitionsData } from "@/data/exhibitions";
 
 function RevealWords({ text }: { text: string }) {
   return <span aria-label={text}><span aria-hidden="true">{text.split(" ").map((word, index) => <span key={index}><span style={{ whiteSpace: "nowrap" }}>{Array.from(word).map((letter, letterIndex) => <span key={letterIndex} data-about-letter>{letter}</span>)}</span>{" "}</span>)}</span></span>;
@@ -74,36 +73,14 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
 
       <ImageArchive />
 
-      <section className="story-exhibitions" aria-labelledby="story-exhibitions-title">
-        <div className="exhibitions-heading" data-scroll-reveal>
-          <p className="story-label">Curatorial History</p>
-          <h2 id="story-exhibitions-title">Selected<br /><span>Exhibitions.</span></h2>
-          <Link href="/exhibitions" className="story-link">Complete exhibition archive <ArrowUpRight size={18} /></Link>
-        </div>
-        <div className="exhibitions-list">
-          {exhibitionsData.slice(0, 3).map((exhibition) => (
-            <article key={exhibition.id} data-scroll-reveal>
-              <span className="story-label">{exhibition.year} &middot; {exhibition.type}</span>
-              <h3>{exhibition.title}</h3>
-              <p className="exhibition-venue">{exhibition.venue}<br />{exhibition.city}, {exhibition.country}</p>
-              <p className="exhibition-desc">{exhibition.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="story-contact" aria-labelledby="story-contact-title">
         <div className="story-contact-inner" data-scroll-reveal>
-          <p className="story-label">Studio &amp; Inquiries</p>
           <h2 id="story-contact-title">Connecting with<br /><span>the studio.</span></h2>
-          <p className="story-contact-note">Direct correspondence for curators, collectors, and researchers.</p>
           <div>
             <a href={`mailto:${artistData.contact.email}`} className="story-email">
               <span>{artistData.contact.email}</span>
               <ArrowUpRight size={18} />
             </a>
-            <p className="story-contact-location">Mumbai, India &middot; Studio visits by prior appointment.</p>
-            <Link href="/contact" className="story-link">Contact form &amp; details <ArrowUpRight size={16} /></Link>
           </div>
         </div>
       </section>

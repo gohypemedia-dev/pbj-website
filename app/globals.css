@@ -1,2 +1,6 @@
 /* Tailwind utilities are compiled separately from the site styles. */
 @import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-display);
+}

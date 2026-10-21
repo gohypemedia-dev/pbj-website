@@ -29,9 +29,9 @@ export default function ArtworkDetailClient({
   const { prev, next } = getAdjacentArtworks(artwork.id);
 
   return (
-    <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-10 lg:py-14">
+    <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Breadcrumb & Navigation */}
-      <div className="flex items-center justify-between pb-6 mb-8 border-b border-[#1B2A49]/10">
+      <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#1B2A49]/10">
         <Link
           href="/works"
           className="inline-flex items-center space-x-2 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] transition-colors"
@@ -65,7 +65,7 @@ export default function ArtworkDetailClient({
       </div>
 
       {/* Main Grid: Artwork Presentation & Editorial Dossier */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Large Artwork Presentation (7 cols) */}
         <div className="lg:col-span-7 flex flex-col space-y-4">
           <div
@@ -104,8 +104,8 @@ export default function ArtworkDetailClient({
         </div>
 
         {/* Artwork Metadata & Curatorial Notes (5 cols) */}
-        <div className="lg:col-span-5 flex flex-col space-y-8">
-          <div className="space-y-3">
+        <div className="lg:col-span-5 flex flex-col space-y-5">
+          <div className="space-y-1.5">
             <span className="eyebrow-label text-[#1B2A49] block">
               {artwork.series}
             </span>
@@ -120,7 +120,7 @@ export default function ArtworkDetailClient({
           </div>
 
           {/* Key Specifications Table */}
-          <div className="border-t border-b border-[#1B2A49]/15 py-5 space-y-3 font-serif text-sm text-[#38435C]">
+          <div className="border-t border-b border-[#1B2A49]/15 py-3.5 space-y-2 font-serif text-sm text-[#38435C]">
             <div className="flex justify-between">
               <span className="text-[#38435C]/70">Dimensions:</span>
               <span className="font-medium text-[#1B2A49]">{artwork.dimensions}</span>
@@ -147,7 +147,7 @@ export default function ArtworkDetailClient({
           </div>
 
           {/* Curatorial Description */}
-          <div className="space-y-3">
+          <div className="space-y-1.5">
             <h2 className="eyebrow-label text-[#1B2A49]">
               Curatorial Commentary
             </h2>

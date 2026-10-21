@@ -76,25 +76,14 @@ export default function Header() {
         } sticky top-0 z-40 bg-[#E9ECEF]/95 backdrop-blur-sm border-b border-[#1B2A49]/10 transition-colors`}
       >
         <div className="header-inner max-w-[1440px] mx-auto px-4 sm:px-5 lg:px-12 h-16 sm:h-18 lg:h-20 flex items-center justify-between flex-nowrap">
-          {/* Left: Artist Wordmark & Subtitle */}
+          {/* Left: Artist Wordmark */}
           <Link
             href="/"
-            className="header-brand group inline-flex items-center gap-2 sm:gap-3 text-left focus-visible:ring-2 focus-visible:ring-[#1B2A49] focus-visible:outline-none rounded-xs flex-shrink min-w-0"
+            className="header-brand group inline-flex items-center text-left focus-visible:ring-2 focus-visible:ring-[#1B2A49] focus-visible:outline-none rounded-xs flex-shrink min-w-0"
             aria-label={`${artistData.name} - Home`}
           >
-            <span className="header-brand-copy flex flex-col justify-center min-w-0">
-              <span className="artist-wordmark text-[#1B2A49] transition-opacity group-hover:opacity-80 truncate font-display font-bold">
-                {artistData.diacriticName.split(" ").map((word, index) => (
-                  <React.Fragment key={index}>
-                    {index > 0 ? " " : ""}
-                    <span data-brand-letter>{word[0]}</span>
-                    {word.slice(1)}
-                  </React.Fragment>
-                ))}
-              </span>
-              <span className="header-subtitle text-[8.5px] sm:text-[9.5px] tracking-[0.14em] uppercase text-[#38435C]/80 font-sans truncate">
-                Mumbai &middot; Contemporary Abstraction
-              </span>
+            <span className="artist-wordmark text-[#1B2A49] transition-opacity group-hover:opacity-80 truncate font-display font-bold">
+              {artistData.diacriticName}
             </span>
           </Link>
 
