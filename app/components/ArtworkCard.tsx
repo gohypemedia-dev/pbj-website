@@ -33,10 +33,10 @@ export default function ArtworkCard({
   };
 
   return (
-    <article className="group flex flex-col space-y-3 focus-within:ring-2 focus-within:ring-[#1B2A49] rounded-sm p-1">
+    <article className="group flex flex-col space-y-3 focus-within:ring-2 focus-within:ring-[#1B2A49] rounded-sm">
       {/* Artwork Image Frame */}
       <div
-        className={`artwork-frame w-full ${getAspectClass()} relative overflow-hidden bg-[#1B2A49]/5 border border-[#1B2A49]/12 rounded-sm`}
+        className={`artwork-frame w-full ${getAspectClass()} relative overflow-hidden bg-[#1B2A49]/[0.03] rounded-sm transition-all duration-500 ease-out shadow-[0_2px_12px_rgba(27,42,73,0.04)] group-hover:shadow-[0_12px_28px_rgba(27,42,73,0.09)] group-hover:-translate-y-1`}
       >
         <Link
           href={`/works/${artwork.id}`}
@@ -49,7 +49,7 @@ export default function ArtworkCard({
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             priority={priority}
-            className="artwork-img-hover object-cover w-full h-full transition-transform duration-500 ease-out"
+            className="artwork-img-hover object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           />
         </Link>
 
@@ -61,7 +61,7 @@ export default function ArtworkCard({
               e.preventDefault();
               onOpenLightbox(artwork);
             }}
-            className="absolute top-2.5 right-2.5 p-1.5 bg-[#E9ECEF]/95 text-[#1B2A49] rounded-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity border border-[#1B2A49]/20 shadow-sm text-xs font-heading tracking-wider flex items-center space-x-1"
+            className="absolute top-2.5 right-2.5 p-1.5 bg-[#E9ECEF]/95 text-[#1B2A49] rounded-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity shadow-sm text-xs font-heading tracking-wider flex items-center space-x-1"
             title={`Enlarge ${artwork.title}`}
             aria-label={`Enlarge image for ${artwork.title}`}
           >
@@ -72,11 +72,11 @@ export default function ArtworkCard({
       </div>
 
       {/* Artwork Metadata & Caption (Title, Year, Medium, Dimensions) */}
-      <div className="flex flex-col space-y-1 text-left">
+      <div className="flex flex-col space-y-1 text-left pt-1">
         <div className="flex items-baseline justify-between gap-2">
           <Link
             href={`/works/${artwork.id}`}
-            className="font-heading text-base font-bold text-[#1B2A49] group-hover:underline inline-flex items-center space-x-1"
+            className="font-serif text-lg font-medium text-[#1B2A49] group-hover:underline inline-flex items-center space-x-1"
           >
             <span>{artwork.title}</span>
             <ArrowUpRight
@@ -85,12 +85,12 @@ export default function ArtworkCard({
               aria-hidden="true"
             />
           </Link>
-          <span className="font-heading text-xs text-[#38435C]/80 font-medium shrink-0">
+          <span className="font-display text-base text-[#38435C]/80 font-normal shrink-0">
             {artwork.year}
           </span>
         </div>
 
-        <p className="font-body text-xs text-[#38435C] italic">
+        <p className="font-body text-sm text-[#38435C]/90 italic">
           {artwork.medium}
         </p>
 

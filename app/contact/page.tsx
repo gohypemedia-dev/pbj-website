@@ -62,62 +62,60 @@ export default function ContactPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         {/* Left Column: Studio Information (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white/40 border border-[#1B2A49]/12 rounded-sm p-6 sm:p-8 space-y-6">
-            <div>
-              <span className="eyebrow-label text-[#1B2A49] block mb-1">
-                Studio Email
-              </span>
-              <a
-                href={`mailto:${artistData.contact.email}`}
-                className="font-heading text-lg sm:text-xl font-bold text-[#1B2A49] hover:underline break-all"
-              >
-                {artistData.contact.email}
-              </a>
-              <p className="font-body text-xs text-[#38435C]/80 mt-1">
-                Direct correspondence with the artist&rsquo;s studio.
-              </p>
-            </div>
+        <div className="lg:col-span-5 space-y-8">
+          <div>
+            <span className="eyebrow-label text-[#1B2A49] block mb-2">
+              Direct Correspondence
+            </span>
+            <a
+              href={`mailto:${artistData.contact.email}`}
+              className="font-serif text-xl sm:text-2xl font-medium text-[#1B2A49] hover:underline break-all"
+            >
+              {artistData.contact.email}
+            </a>
+            <p className="font-body text-sm text-[#38435C]/80 mt-2 leading-relaxed max-w-[45ch]">
+              Direct communication for curatorial inquiries, museum exhibitions, and collectors.
+            </p>
+          </div>
 
-            <div className="pt-4 border-t border-[#1B2A49]/10 space-y-1">
-              <span className="eyebrow-label text-[#1B2A49] block">
-                Location
-              </span>
-              <p className="font-heading text-sm font-semibold text-[#1B2A49]">
-                {artistData.contact.city}, {artistData.contact.country}
-              </p>
-            </div>
+          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-1.5">
+            <span className="eyebrow-label text-[#1B2A49] block">
+              Studio Location
+            </span>
+            <p className="font-serif text-base font-medium text-[#1B2A49]">
+              {artistData.contact.city}, {artistData.contact.country}
+            </p>
+          </div>
 
-            <div className="pt-4 border-t border-[#1B2A49]/10 space-y-1">
-              <span className="eyebrow-label text-[#1B2A49] block">
-                Studio Visits
-              </span>
-              <p className="font-body text-sm text-[#38435C] leading-relaxed">
-                {artistData.contact.visitingPolicy}
-              </p>
-            </div>
+          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-1.5">
+            <span className="eyebrow-label text-[#1B2A49] block">
+              Studio Visits
+            </span>
+            <p className="font-body text-sm text-[#38435C] leading-relaxed max-w-[45ch]">
+              {artistData.contact.visitingPolicy}
+            </p>
+          </div>
 
-            <div className="pt-4 border-t border-[#1B2A49]/10 space-y-1">
-              <span className="eyebrow-label text-[#1B2A49] block">
-                Gallery Representation
-              </span>
-              <p className="font-body text-sm text-[#38435C] leading-relaxed">
-                {artistData.contact.representationNote}
-              </p>
-            </div>
+          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-1.5">
+            <span className="eyebrow-label text-[#1B2A49] block">
+              Representation &amp; Archives
+            </span>
+            <p className="font-body text-sm text-[#38435C] leading-relaxed max-w-[45ch]">
+              {artistData.contact.representationNote}
+            </p>
           </div>
         </div>
 
-        {/* Right Column: Clean Studio Contact Form (7 cols) */}
-        <div className="lg:col-span-7 bg-white/50 border border-[#1B2A49]/12 rounded-sm p-6 sm:p-10 space-y-6">
+        {/* Right Column: Studio Correspondence Form (7 cols) */}
+        <div className="lg:col-span-7 bg-white/40 border border-[#1B2A49]/10 rounded-sm p-8 sm:p-10 space-y-6 shadow-[0_4px_24px_rgba(27,42,73,0.04)]">
           <div>
-            <h2 className="font-heading text-xl sm:text-2xl font-bold text-[#1B2A49]">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#1B2A49]">
               Send an Enquiry
             </h2>
-            <p className="font-body text-sm text-[#38435C] mt-1">
-              Fill in your details below. Clicking &ldquo;Open Email App&rdquo; prepares your message directly in your mail application.
+            <p className="font-body text-base text-[#38435C] mt-1.5 max-w-[55ch]">
+              Please share the nature of your interest. Clicking &ldquo;Open Email App&rdquo; formats your message directly for the studio.
             </p>
           </div>
 
@@ -126,7 +124,7 @@ export default function ContactPage() {
               e.preventDefault();
               window.location.href = mailtoLink;
             }}
-            className="space-y-4"
+            className="space-y-5"
           >
             <div>
               <label

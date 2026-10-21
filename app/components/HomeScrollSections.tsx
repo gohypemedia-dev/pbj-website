@@ -31,24 +31,16 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
         </div>
       </section>
 
-      <section className="story-themes" aria-labelledby="themes-title">
-        <h2 id="themes-title" className="sr-only">Rivers, memory, and life: themes in the artist’s work</h2>
-        <div className="theme-frame" aria-hidden="true">
-          <span className="theme-corner theme-corner-start" />
-          <span className="theme-corner theme-corner-end" />
-          <ThemePhrase />
+      <section className="story-philosophy" aria-labelledby="philosophy-title">
+        <div className="philosophy-inner" data-scroll-reveal>
+          <p className="story-label">Artistic Philosophy</p>
+          <blockquote className="philosophy-quote">
+            &ldquo;Water carries human memory, ecological fragility, and the quiet rhythm of time. Each canvas begins without preconception—a mark that finds its own course.&rdquo;
+          </blockquote>
+          <p className="philosophy-byline">
+            Prakash Bal Joshi &middot; Mumbai Studio
+          </p>
         </div>
-      </section>
-
-      <section className="iconic-statement" aria-labelledby="iconic-title">
-        <p className="iconic-copy">
-          <span data-scroll-reveal>Colour becomes memory.</span>
-          <span data-scroll-reveal data-reveal-delay="100">Memory becomes a world of its own.</span>
-          <span data-scroll-reveal data-reveal-delay="200">An ordinary moment, made</span>
-        </p>
-        <h2 id="iconic-title" className="iconic-title">
-          <span data-scroll-reveal="write">iconic.</span>
-        </h2>
       </section>
 
       <section id="selected-works" className="scroll-gallery" aria-labelledby="scroll-gallery-title">
@@ -84,27 +76,35 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
 
       <section className="story-exhibitions" aria-labelledby="story-exhibitions-title">
         <div className="exhibitions-heading" data-scroll-reveal>
-          <p className="story-label">Across places &amp; perspectives</p>
-          <h2 id="story-exhibitions-title">In good<br /><span>company.</span></h2>
-          <Link href="/exhibitions" className="story-link">Exhibition history <ArrowUpRight size={18} /></Link>
+          <p className="story-label">Curatorial History</p>
+          <h2 id="story-exhibitions-title">Selected<br /><span>Exhibitions.</span></h2>
+          <Link href="/exhibitions" className="story-link">Complete exhibition archive <ArrowUpRight size={18} /></Link>
         </div>
         <div className="exhibitions-list">
-          {exhibitionsData.slice(0, 3).map((exhibition) => <article key={exhibition.id} data-scroll-reveal>
-            <span className="story-label">{exhibition.year} / {exhibition.type}</span>
-            <h3>{exhibition.title}</h3>
-            <p>{exhibition.venue}<br />{exhibition.city}, {exhibition.country}</p>
-            <p>{exhibition.description}</p>
-          </article>)}
+          {exhibitionsData.slice(0, 3).map((exhibition) => (
+            <article key={exhibition.id} data-scroll-reveal>
+              <span className="story-label">{exhibition.year} &middot; {exhibition.type}</span>
+              <h3>{exhibition.title}</h3>
+              <p className="exhibition-venue">{exhibition.venue}<br />{exhibition.city}, {exhibition.country}</p>
+              <p className="exhibition-desc">{exhibition.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className="story-contact" aria-labelledby="story-contact-title">
-        <p className="story-label" data-scroll-reveal>Acquisitions · Collaborations · Studio visits</p>
-        <h2 id="story-contact-title" data-scroll-reveal><span>Let’s</span> start<br />a conversation.</h2>
-        <div data-scroll-reveal>
-          <a href={`mailto:${artistData.contact.email}`} className="story-email">{artistData.contact.email}<ArrowUpRight /></a>
-          <p>Mumbai, India. Studio visits by appointment.</p>
-          <Link href="/contact" className="story-link">Contact the studio <ArrowUpRight size={18} /></Link>
+        <div className="story-contact-inner" data-scroll-reveal>
+          <p className="story-label">Studio &amp; Inquiries</p>
+          <h2 id="story-contact-title">Connecting with<br /><span>the studio.</span></h2>
+          <p className="story-contact-note">Direct correspondence for curators, collectors, and researchers.</p>
+          <div>
+            <a href={`mailto:${artistData.contact.email}`} className="story-email">
+              <span>{artistData.contact.email}</span>
+              <ArrowUpRight size={18} />
+            </a>
+            <p className="story-contact-location">Mumbai, India &middot; Studio visits by prior appointment.</p>
+            <Link href="/contact" className="story-link">Contact form &amp; details <ArrowUpRight size={16} /></Link>
+          </div>
         </div>
       </section>
     </div>

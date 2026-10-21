@@ -69,7 +69,7 @@ export default function ArtworkDetailClient({
         {/* Large Artwork Presentation (7 cols) */}
         <div className="lg:col-span-7 flex flex-col space-y-4">
           <div
-            className="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-[#1B2A49]/5 border border-[#1B2A49]/15 rounded-sm overflow-hidden cursor-zoom-in group shadow-sm"
+            className="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-[#1B2A49]/[0.03] rounded-sm overflow-hidden cursor-zoom-in group shadow-[0_4px_24px_rgba(27,42,73,0.06)]"
             onClick={() => setIsLightboxOpen(true)}
             role="button"
             tabIndex={0}
@@ -87,7 +87,7 @@ export default function ArtworkDetailClient({
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 58vw"
-              className="object-contain p-2 sm:p-4 group-hover:scale-[1.01] transition-transform duration-500 ease-out"
+              className="object-contain p-2 sm:p-4 group-hover:scale-[1.015] transition-transform duration-700 ease-out"
             />
 
             {/* Click to Enlarge Overlay Pill */}
@@ -97,7 +97,7 @@ export default function ArtworkDetailClient({
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-[#38435C]/75 font-mono pt-1">
+          <div className="flex items-center justify-between text-xs text-[#38435C]/75 font-serif pt-1">
             <span>Click canvas to open accessible full-resolution lightbox</span>
             <span>Uncropped Original Aspect</span>
           </div>
@@ -110,7 +110,7 @@ export default function ArtworkDetailClient({
               {artwork.series}
             </span>
 
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1B2A49] leading-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1B2A49] leading-tight">
               {artwork.title}
             </h1>
 
@@ -120,27 +120,27 @@ export default function ArtworkDetailClient({
           </div>
 
           {/* Key Specifications Table */}
-          <div className="border-t border-b border-[#1B2A49]/15 py-5 space-y-3 font-mono text-xs text-[#38435C]">
+          <div className="border-t border-b border-[#1B2A49]/15 py-5 space-y-3 font-serif text-sm text-[#38435C]">
             <div className="flex justify-between">
               <span className="text-[#38435C]/70">Dimensions:</span>
-              <span className="font-semibold text-[#1B2A49]">{artwork.dimensions}</span>
+              <span className="font-medium text-[#1B2A49]">{artwork.dimensions}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#38435C]/70">Medium:</span>
-              <span className="font-semibold text-[#1B2A49]">{artwork.medium}</span>
+              <span className="font-medium text-[#1B2A49]">{artwork.medium}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#38435C]/70">Year of Execution:</span>
-              <span className="font-semibold text-[#1B2A49]">{artwork.year}</span>
+              <span className="font-medium text-[#1B2A49]">{artwork.year}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#38435C]/70">Curatorial Series:</span>
-              <span className="font-semibold text-[#1B2A49]">{artwork.series}</span>
+              <span className="font-medium text-[#1B2A49]">{artwork.series}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[#38435C]/70">Acquisition Status:</span>
-              <span className="inline-flex items-center space-x-1 font-semibold text-[#1B2A49]">
-                <ShieldCheck size={13} className="text-emerald-700" />
+              <span className="inline-flex items-center space-x-1 font-medium text-[#1B2A49]">
+                <ShieldCheck size={14} className="text-emerald-700" />
                 <span>{artwork.status}</span>
               </span>
             </div>
@@ -151,19 +151,14 @@ export default function ArtworkDetailClient({
             <h2 className="eyebrow-label text-[#1B2A49]">
               Curatorial Commentary
             </h2>
-            <p className="font-body text-base lg:text-lg leading-relaxed text-[#38435C]">
+            <p className="font-body text-base lg:text-lg leading-relaxed text-[#38435C] max-w-[60ch]">
               {artwork.description}
             </p>
           </div>
 
           {artwork.curatorNote && (
-            <div className="p-4 bg-white/50 border-l-2 border-[#1B2A49] rounded-r text-sm text-[#38435C] font-body">
-              <p>
-                <strong className="font-heading uppercase text-xs tracking-wider text-[#1B2A49] block mb-1">
-                  Exhibition Archive Note
-                </strong>
-                {artwork.curatorNote}
-              </p>
+            <div className="p-4 bg-white/40 border-l-2 border-[#1B2A49] rounded-r text-sm text-[#38435C] font-serif italic">
+              {artwork.curatorNote}
             </div>
           )}
 

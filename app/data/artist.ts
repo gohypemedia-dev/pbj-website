@@ -29,23 +29,23 @@ export const artistData: ArtistProfile = {
   diacriticName: "PRĀKASH BĀL JOSHI",
   tagline: "Contemporary Indian Abstract Artist & Writer",
   conciseIntro:
-    "Exploring the transient layers of human consciousness, memory, and nature through spontaneous abstract expressionism and the fluid metaphor of rivers.",
+    "Abstract paintings shaped by memory, ecological fragility, and the quiet, persistent movement of water.",
   extendedIntro:
-    "Prakash Bal Joshi translates the ephemeral currents of time, ecological memory, and spiritual contemplation into spontaneous oil and acrylic abstractions. Based in Mumbai, his practice reflects decades of keen observation as both a master painter and veteran journalist.",
+    "Prakash Bal Joshi translates the currents of time, ecological memory, and contemplation into intuitive oil and acrylic abstractions. Based in his Mumbai studio, his practice reflects decades of keen observation as both a painter and journalist.",
   biography: {
     lead:
-      "Prakash Bal Joshi is an acclaimed contemporary Indian artist, abstract painter, and veteran journalist whose work bridges literature, media observation, and visual expression.",
+      "Prakash Bal Joshi is a contemporary Indian abstract painter and writer whose work bridges literary depth, keen social observation, and spontaneous visual expression.",
     paragraphs: [
-      "Born in Achalpur, Maharashtra, Joshi felt an early affinity for visual expression and light, complementing his painting with formal studies in photography. As a largely self-taught master in abstract expressionism, he developed an intuitive painterly language defined by energetic impasto, fluid glazes, and bold brushwork.",
-      "Alongside his decades-long art career, Joshi served as a senior journalist with The Times of India, observing the social, political, and cultural currents of Mumbai. This analytical eye and socio-critical sensibility subtly underpin his ink drawings and complex spatial compositions.",
-      "A defining motif across his oeuvre is water—specifically the living metaphor of rivers. Following a childhood incident near Mumbai where he narrowly escaped drowning, water became for Joshi a profound existential conduit. He perceives rivers not merely as geographical arteries, but as eternal currents carrying human memory, ecological fragility, and spiritual renewal.",
-      "His paintings have been exhibited in major cultural institutions across Europe, the United States, and Asia, holding permanent places in international museum and university collections."
+      "Born in Achalpur, Maharashtra, Joshi felt an early affinity for visual expression and light, complementing his painting with formal studies in photography. Through an intuitive practice in abstract expressionism, he developed a painterly language defined by energetic impasto, fluid glazes, and bold brushwork.",
+      "Alongside his decades-long art career, Joshi served as a senior journalist with The Times of India, observing the social, political, and cultural currents of Mumbai. This analytical eye and quiet sensibility subtly underpin his ink drawings and complex spatial compositions.",
+      "A defining motif across his oeuvre is water—specifically the living metaphor of rivers. Following a childhood incident near Mumbai where he narrowly escaped drowning, water became for Joshi an enduring conduit. He perceives rivers not merely as geographical arteries, but as currents carrying human memory, ecological fragility, and renewal.",
+      "His paintings have been exhibited in cultural institutions across Europe, the United States, and Asia, holding places in international museum and university collections."
     ],
     themes: [
       {
         title: "The Metaphor of Rivers",
         description:
-          "Rivers serve as visual and philosophical conduits for the passage of time, human memory, and contemplative contemplation of ancient watercourses such as the mythical Saraswati."
+          "Rivers serve as visual and philosophical conduits for the passage of time, human memory, and the quiet remembrance of ancient watercourses such as the mythical Saraswati."
       },
       {
         title: "Urban Realities & Climate",

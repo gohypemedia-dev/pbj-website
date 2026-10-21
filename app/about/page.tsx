@@ -38,7 +38,7 @@ export default function AboutPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         {/* Left Column: Portrait & Key Archival Records (5 cols) */}
         <div className="lg:col-span-5 space-y-8">
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm border border-[#1B2A49]/15 bg-[#1B2A49]/5 shadow-sm">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[#1B2A49]/5 shadow-[0_4px_24px_rgba(27,42,73,0.06)]">
             <Image
               src="/artworks/artist-portrait.jpg"
               alt="Prakash Bal Joshi seated in his Mumbai artist studio"
@@ -53,16 +53,16 @@ export default function AboutPage() {
           </p>
 
           {/* Permanent Museum Collections */}
-          <div className="bg-white/50 border border-[#1B2A49]/10 rounded-sm p-6 space-y-4">
+          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-3">
             <div className="flex items-center space-x-2 text-[#1B2A49]">
-              <Landmark size={18} />
-              <h3 className="font-heading text-sm uppercase tracking-wider font-bold">
+              <Landmark size={16} />
+              <h3 className="font-heading text-xs uppercase tracking-[0.16em] font-bold text-[#1B2A49]">
                 Permanent Museum Collections
               </h3>
             </div>
-            <ul className="space-y-2.5 font-body text-sm text-[#38435C] divide-y divide-[#1B2A49]/10">
+            <ul className="space-y-2.5 font-serif text-sm text-[#38435C] leading-relaxed">
               {artistData.biography.collections.map((col, idx) => (
-                <li key={idx} className="pt-2 first:pt-0">
+                <li key={idx} className="pb-2.5 border-b border-[#1B2A49]/8 last:border-b-0">
                   {col}
                 </li>
               ))}
@@ -70,16 +70,16 @@ export default function AboutPage() {
           </div>
 
           {/* Literary Publications */}
-          <div className="bg-white/50 border border-[#1B2A49]/10 rounded-sm p-6 space-y-4">
+          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-3">
             <div className="flex items-center space-x-2 text-[#1B2A49]">
-              <BookOpen size={18} />
-              <h3 className="font-heading text-sm uppercase tracking-wider font-bold">
+              <BookOpen size={16} />
+              <h3 className="font-heading text-xs uppercase tracking-[0.16em] font-bold text-[#1B2A49]">
                 Published Literary Works
               </h3>
             </div>
-            <ul className="space-y-2.5 font-body text-sm text-[#38435C] divide-y divide-[#1B2A49]/10">
+            <ul className="space-y-2.5 font-serif text-sm text-[#38435C] leading-relaxed">
               {artistData.biography.literaryWorks.map((work, idx) => (
-                <li key={idx} className="pt-2 first:pt-0">
+                <li key={idx} className="pb-2.5 border-b border-[#1B2A49]/8 last:border-b-0">
                   {work}
                 </li>
               ))}
@@ -91,23 +91,23 @@ export default function AboutPage() {
         <div className="lg:col-span-7 space-y-8">
           {/* Lead Statement */}
           <div className="space-y-4">
-            <blockquote className="font-heading text-2xl sm:text-3xl text-[#1B2A49] font-bold leading-snug border-l-2 border-[#1B2A49] pl-6 py-1">
+            <blockquote className="font-serif italic text-2xl sm:text-3xl text-[#1B2A49] font-normal leading-snug border-l-2 border-[#1B2A49]/40 pl-6 py-1 my-4">
               &ldquo;Painting is an existential contemplation. In spontaneous brushwork, I seek answers to eternal questions: Who am I, why am I here, and where am I going?&rdquo;
             </blockquote>
-            <p className="font-body text-lg text-[#38435C] leading-relaxed">
+            <p className="font-body text-lg text-[#38435C] leading-relaxed max-w-[65ch]">
               {artistData.biography.lead}
             </p>
           </div>
 
           {/* Paragraphs of Approved Biography */}
-          <div className="space-y-5 font-body text-base lg:text-lg leading-relaxed text-[#38435C]">
+          <div className="space-y-5 font-body text-base lg:text-lg leading-relaxed text-[#38435C] max-w-[65ch]">
             {artistData.biography.paragraphs.map((p, idx) => (
               <p key={idx}>{p}</p>
             ))}
           </div>
 
           {/* Artistic Themes Section */}
-          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-6">
+          <div className="pt-8 border-t border-[#1B2A49]/15 space-y-6">
             <div className="flex items-center space-x-2 text-[#1B2A49]">
               <Waves size={20} />
               <h2 className="font-heading text-xl font-bold uppercase tracking-wide">
@@ -115,16 +115,16 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-6">
               {artistData.biography.themes.map((theme, idx) => (
                 <div
                   key={idx}
-                  className="p-5 bg-white/40 border border-[#1B2A49]/10 rounded-sm"
+                  className="pb-6 border-b border-[#1B2A49]/10 last:border-b-0"
                 >
-                  <h3 className="font-heading text-base font-bold text-[#1B2A49] mb-1.5">
+                  <h3 className="font-serif text-lg font-medium text-[#1B2A49] mb-1.5">
                     {theme.title}
                   </h3>
-                  <p className="font-body text-base text-[#38435C] leading-relaxed">
+                  <p className="font-body text-base text-[#38435C] leading-relaxed max-w-[65ch]">
                     {theme.description}
                   </p>
                 </div>

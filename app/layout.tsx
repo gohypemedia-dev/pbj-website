@@ -53,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${artistFont.variable} ${iconicFont.variable} h-full`}>
+    <html lang="en" className={`${artistFont.variable} ${iconicFont.variable} h-full`} suppressHydrationWarning>
       <body id="page-top" className="min-h-full flex flex-col bg-[#E9ECEF] text-[#38435C] selection:bg-[#1B2A49] selection:text-[#E9ECEF]">
         <IntroProvider>
         <ScrollExperience />
