@@ -15,21 +15,21 @@ export default function AboutPage() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Breadcrumb */}
-      <div className="mb-8 pb-5">
+      <div className="mb-8 pb-5 flex flex-col items-center sm:items-start text-center sm:text-left">
         <Link
           href="/"
-          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-2.5"
+          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-2.5 mx-auto sm:mx-0"
         >
           <ArrowLeft size={14} />
           <span>Home</span>
         </Link>
-        <span className="eyebrow-label text-[#1B2A49] block">
+        <span className="eyebrow-label text-[#1B2A49] block text-center sm:text-left">
           Curatorial Biography &amp; Practice
         </span>
-        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5">
+        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5 text-center sm:text-left">
           About Prakash Bal Joshi
         </h1>
-        <p className="font-serif italic text-lg text-[#38435C] mt-1.5">
+        <p className="font-serif italic text-lg text-[#38435C] mt-1.5 text-center sm:text-left mx-auto sm:mx-0">
           Contemporary Indian Abstract Artist, Veteran Journalist &amp; Acclaimed Writer
         </p>
       </div>
@@ -53,16 +53,16 @@ export default function AboutPage() {
           </p>
 
           {/* Permanent Museum Collections */}
-          <div className="pt-4 space-y-2">
-            <div className="flex items-center space-x-2 text-[#1B2A49]">
+          <div className="pt-4 space-y-2 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start space-x-2 text-[#1B2A49]">
               <Landmark size={16} />
               <h3 className="font-heading text-xs uppercase tracking-[0.16em] font-bold text-[#1B2A49]">
                 Permanent Museum Collections
               </h3>
             </div>
-            <ul className="space-y-1.5 font-serif text-sm text-[#38435C] leading-relaxed">
+            <ul className="space-y-1.5 font-serif text-sm text-[#38435C] leading-relaxed text-center lg:text-left w-full">
               {artistData.biography.collections.map((col, idx) => (
-                <li key={idx} className="pb-1.5 border-b border-[#1B2A49]/8 last:border-b-0">
+                <li key={idx} className="pb-1.5 border-b border-[#1B2A49]/8 last:border-b-0 text-center lg:text-left">
                   {col}
                 </li>
               ))}
@@ -70,16 +70,16 @@ export default function AboutPage() {
           </div>
 
           {/* Literary Publications */}
-          <div className="pt-4 space-y-2">
-            <div className="flex items-center space-x-2 text-[#1B2A49]">
+          <div className="pt-4 space-y-2 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start space-x-2 text-[#1B2A49]">
               <BookOpen size={16} />
               <h3 className="font-heading text-xs uppercase tracking-[0.16em] font-bold text-[#1B2A49]">
                 Published Literary Works
               </h3>
             </div>
-            <ul className="space-y-1.5 font-serif text-sm text-[#38435C] leading-relaxed">
+            <ul className="space-y-1.5 font-serif text-sm text-[#38435C] leading-relaxed text-center lg:text-left w-full">
               {artistData.biography.literaryWorks.map((work, idx) => (
-                <li key={idx} className="pb-1.5 border-b border-[#1B2A49]/8 last:border-b-0">
+                <li key={idx} className="pb-1.5 border-b border-[#1B2A49]/8 last:border-b-0 text-center lg:text-left">
                   {work}
                 </li>
               ))}
@@ -88,19 +88,19 @@ export default function AboutPage() {
         </div>
 
         {/* Right Column: Approved Biography & Themes (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
           {/* Lead Statement */}
           <div className="space-y-2.5">
-            <blockquote className="font-serif italic text-2xl sm:text-3xl text-[#1B2A49] font-normal leading-snug border-l-2 border-[#1B2A49]/40 pl-4 py-1 my-2.5">
+            <blockquote className="font-serif italic text-2xl sm:text-3xl text-[#1B2A49] font-normal leading-snug border-t-2 border-b-2 lg:border-t-0 lg:border-b-0 lg:border-l-2 border-[#1B2A49]/40 py-3 lg:py-1 lg:pl-4 my-2.5 text-center lg:text-left">
               &ldquo;Painting is an existential contemplation. In spontaneous brushwork, I seek answers to eternal questions: Who am I, why am I here, and where am I going?&rdquo;
             </blockquote>
-            <p className="font-body text-lg text-[#38435C] leading-relaxed max-w-[65ch]">
+            <p className="font-body text-lg text-[#38435C] leading-relaxed max-w-[65ch] mx-auto lg:mx-0 text-center lg:text-left">
               {artistData.biography.lead}
             </p>
           </div>
 
           {/* Paragraphs of Approved Biography */}
-          <div className="space-y-3 font-body text-base lg:text-lg leading-relaxed text-[#38435C] max-w-[65ch]">
+          <div className="space-y-3 font-body text-base lg:text-lg leading-relaxed text-[#38435C] max-w-[65ch] mx-auto lg:mx-0 text-center lg:text-left">
             {artistData.biography.paragraphs.map((p, idx) => (
               <p key={idx}>{p}</p>
             ))}
@@ -108,7 +108,7 @@ export default function AboutPage() {
 
           {/* Artistic Themes Section */}
           <div className="pt-6 space-y-4">
-            <div className="flex items-center space-x-2 text-[#1B2A49]">
+            <div className="flex items-center justify-center lg:justify-start space-x-2 text-[#1B2A49]">
               <Waves size={20} />
               <h2 className="font-heading text-xl font-bold uppercase tracking-wide">
                 Key Conceptual Themes
@@ -119,12 +119,12 @@ export default function AboutPage() {
               {artistData.biography.themes.map((theme, idx) => (
                 <div
                   key={idx}
-                  className="pb-4 border-b border-[#1B2A49]/10 last:border-b-0"
+                  className="pb-4 border-b border-[#1B2A49]/10 last:border-b-0 text-center lg:text-left"
                 >
                   <h3 className="font-serif text-lg font-medium text-[#1B2A49] mb-1">
                     {theme.title}
                   </h3>
-                  <p className="font-body text-base text-[#38435C] leading-relaxed max-w-[65ch]">
+                  <p className="font-body text-base text-[#38435C] leading-relaxed max-w-[65ch] mx-auto lg:mx-0">
                     {theme.description}
                   </p>
                 </div>
@@ -133,7 +133,7 @@ export default function AboutPage() {
           </div>
 
           {/* Studio Visit & Link to Contact */}
-          <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
               <p className="font-heading text-xs uppercase tracking-wider text-[#1B2A49] font-bold">
                 Studio Archive &amp; Appointments
@@ -145,7 +145,7 @@ export default function AboutPage() {
 
             <Link
               href="/contact"
-              className="px-6 py-3 bg-[#1B2A49] text-[#E9ECEF] font-heading text-xs uppercase tracking-[0.16em] font-semibold rounded-sm hover:bg-[#1B2A49]/90 transition-all text-center shrink-0"
+              className="px-6 py-3 bg-[#1B2A49] text-[#E9ECEF] font-heading text-xs uppercase tracking-[0.16em] font-semibold rounded-sm hover:bg-[#1B2A49]/90 transition-all text-center shrink-0 mx-auto sm:mx-0"
             >
               Contact Studio
             </Link>

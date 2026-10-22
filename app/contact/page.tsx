@@ -43,29 +43,29 @@ export default function ContactPage() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Header */}
-      <div className="mb-8 pb-5">
+      <div className="mb-8 pb-5 flex flex-col items-center sm:items-start text-center sm:text-left">
         <Link
           href="/"
-          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3"
+          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3 mx-auto sm:mx-0"
         >
           <ArrowLeft size={14} />
           <span>Home</span>
         </Link>
-        <span className="eyebrow-label text-[#1B2A49] block">
+        <span className="eyebrow-label text-[#1B2A49] block text-center sm:text-left">
           Studio Communications
         </span>
-        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5">
+        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5 text-center sm:text-left">
           Contact the Studio
         </h1>
-        <p className="font-body text-base sm:text-lg text-[#38435C] mt-1.5 max-w-2xl leading-relaxed">
+        <p className="font-body text-base sm:text-lg text-[#38435C] mt-1.5 max-w-2xl leading-relaxed mx-auto sm:mx-0 text-center sm:text-left">
           Enquiries for artwork acquisitions, exhibitions, press, and studio visits may be directed to the studio in Mumbai.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Studio Information (5 cols) */}
-        <div className="lg:col-span-5 space-y-5">
-          <div>
+        <div className="lg:col-span-5 space-y-5 flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left w-full">
             <span className="eyebrow-label text-[#1B2A49] block mb-1">
               Direct Correspondence
             </span>
@@ -75,12 +75,12 @@ export default function ContactPage() {
             >
               {artistData.contact.email}
             </a>
-            <p className="font-body text-sm text-[#38435C]/80 mt-1 leading-relaxed max-w-[45ch]">
+            <p className="font-body text-sm text-[#38435C]/80 mt-1 leading-relaxed max-w-[45ch] mx-auto lg:mx-0">
               Direct communication for curatorial inquiries, museum exhibitions, and collectors.
             </p>
           </div>
 
-          <div className="pt-4 space-y-1.5">
+          <div className="pt-4 space-y-1.5 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
             <span className="eyebrow-label text-[#1B2A49] block">
               Studio Location
             </span>
@@ -89,20 +89,20 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="pt-4 space-y-1.5">
+          <div className="pt-4 space-y-1.5 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
             <span className="eyebrow-label text-[#1B2A49] block">
               Studio Visits
             </span>
-            <p className="font-body text-sm text-[#38435C] leading-relaxed max-w-[45ch]">
+            <p className="font-body text-sm text-[#38435C] leading-relaxed max-w-[45ch] mx-auto lg:mx-0">
               {artistData.contact.visitingPolicy}
             </p>
           </div>
 
-          <div className="pt-4 space-y-1.5">
+          <div className="pt-4 space-y-1.5 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
             <span className="eyebrow-label text-[#1B2A49] block">
               Representation &amp; Archives
             </span>
-            <p className="font-body text-sm text-[#38435C] leading-relaxed max-w-[45ch]">
+            <p className="font-body text-sm text-[#38435C] leading-relaxed max-w-[45ch] mx-auto lg:mx-0">
               {artistData.contact.representationNote}
             </p>
           </div>
@@ -110,11 +110,11 @@ export default function ContactPage() {
 
         {/* Right Column: Studio Correspondence Form (7 cols) */}
         <div className="lg:col-span-7 bg-white/40 border border-[#1B2A49]/10 rounded-sm p-6 sm:p-8 space-y-5 shadow-[0_4px_24px_rgba(27,42,73,0.04)]">
-          <div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#1B2A49]">
+          <div className="text-center sm:text-left flex flex-col items-center sm:items-start">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-wide text-[#1B2A49] text-center sm:text-left">
               Send an Enquiry
             </h2>
-            <p className="font-body text-base text-[#38435C] mt-1.5 max-w-[55ch]">
+            <p className="font-body text-base text-[#38435C] mt-1.5 max-w-[55ch] text-center sm:text-left">
               Please share the nature of your interest. Clicking &ldquo;Open Email App&rdquo; formats your message directly for the studio.
             </p>
           </div>
@@ -129,7 +129,7 @@ export default function ContactPage() {
             <div>
               <label
                 htmlFor="contact-name"
-                className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold"
+                className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold text-center sm:text-left"
               >
                 Name *
               </label>
@@ -140,7 +140,7 @@ export default function ContactPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your name"
-                className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm"
+                className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm text-center sm:text-left"
               />
             </div>
 
@@ -148,7 +148,7 @@ export default function ContactPage() {
               <div>
                 <label
                   htmlFor="contact-email"
-                  className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold"
+                  className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold text-center sm:text-left"
                 >
                   Email *
                 </label>
@@ -159,14 +159,14 @@ export default function ContactPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your.email@example.com"
-                  className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm"
+                  className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm text-center sm:text-left"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="contact-org"
-                  className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold"
+                  className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold text-center sm:text-left"
                 >
                   Organisation — optional
                 </label>
@@ -176,7 +176,7 @@ export default function ContactPage() {
                   value={organization}
                   onChange={(e) => setOrganization(e.target.value)}
                   placeholder="Gallery, institution, or private collector"
-                  className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm"
+                  className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm text-center sm:text-left"
                 />
               </div>
             </div>
@@ -184,7 +184,7 @@ export default function ContactPage() {
             <div>
               <label
                 htmlFor="contact-type"
-                className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold"
+                className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold text-center sm:text-left"
               >
                 Enquiry type
               </label>
@@ -192,7 +192,7 @@ export default function ContactPage() {
                 id="contact-type"
                 value={inquiryType}
                 onChange={(e) => setInquiryType(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm"
+                className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm text-center sm:text-left"
               >
                 <option value="Collector / Acquisition Enquiry">Collector / Artwork Acquisition</option>
                 <option value="Curatorial & Institutional Loan">Curatorial &amp; Institutional Loan</option>
@@ -205,7 +205,7 @@ export default function ContactPage() {
             <div>
               <label
                 htmlFor="contact-message"
-                className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold"
+                className="block font-heading text-xs uppercase tracking-wider text-[#1B2A49] mb-1 font-semibold text-center sm:text-left"
               >
                 Message *
               </label>
@@ -216,7 +216,7 @@ export default function ContactPage() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Please share details about your enquiry, specific artworks of interest, or proposed timelines..."
-                className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm"
+                className="w-full px-4 py-2.5 bg-white/80 border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:bg-white focus:border-[#1B2A49] transition-all font-body text-sm text-center sm:text-left"
               />
             </div>
 
@@ -243,7 +243,7 @@ export default function ContactPage() {
               </button>
             </div>
 
-            <p className="text-xs text-[#38435C]/75 pt-2 border-t border-[#1B2A49]/10">
+            <p className="text-xs text-[#38435C]/75 pt-2 border-t border-[#1B2A49]/10 text-center sm:text-left">
               Opens your email app with your enquiry filled in. If your email app does not open automatically, click &ldquo;Copy Message&rdquo; and email <code>{artistData.contact.email}</code> directly.
             </p>
           </form>

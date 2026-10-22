@@ -31,17 +31,17 @@ export default function ArtworkDetailClient({
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Breadcrumb & Navigation */}
-      <div className="flex items-center justify-between pb-4 mb-6">
+      <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 pb-4 mb-6 text-center sm:text-left">
         <Link
           href="/works"
-          className="inline-flex items-center space-x-2 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] transition-colors"
+          className="inline-flex items-center space-x-2 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] transition-colors mx-auto sm:mx-0"
         >
           <ArrowLeft size={14} />
           <span>Back to All Works</span>
         </Link>
 
         {/* Prev / Next Artwork Links */}
-        <div className="flex items-center space-x-6 text-xs font-heading uppercase tracking-wider text-[#38435C]">
+        <div className="flex items-center justify-center space-x-6 text-xs font-heading uppercase tracking-wider text-[#38435C]">
           <Link
             href={`/works/${prev.id}`}
             className="hover:text-[#1B2A49] inline-flex items-center space-x-1"
@@ -97,30 +97,30 @@ export default function ArtworkDetailClient({
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-[#38435C]/75 font-serif pt-1">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between text-xs text-[#38435C]/75 font-serif pt-1 text-center sm:text-left gap-1 sm:gap-0">
             <span>Click canvas to open accessible full-resolution lightbox</span>
             <span>Uncropped Original Aspect</span>
           </div>
         </div>
 
         {/* Artwork Metadata & Curatorial Notes (5 cols) */}
-        <div className="lg:col-span-5 flex flex-col space-y-5">
-          <div className="space-y-1.5">
-            <span className="eyebrow-label text-[#1B2A49] block">
+        <div className="lg:col-span-5 flex flex-col space-y-5 text-center lg:text-left items-center lg:items-start">
+          <div className="space-y-1.5 w-full text-center lg:text-left">
+            <span className="eyebrow-label text-[#1B2A49] block text-center lg:text-left">
               {artwork.series}
             </span>
 
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1B2A49] leading-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1B2A49] leading-tight text-center lg:text-left">
               {artwork.title}
             </h1>
 
-            <p className="font-serif italic text-lg text-[#38435C]">
+            <p className="font-serif italic text-lg text-[#38435C] text-center lg:text-left">
               {artwork.medium}, {artwork.year}
             </p>
           </div>
 
           {/* Key Specifications Table */}
-          <div className="border-t border-b border-[#1B2A49]/15 py-3.5 space-y-2 font-serif text-sm text-[#38435C]">
+          <div className="border-t border-b border-[#1B2A49]/15 py-3.5 space-y-2 font-serif text-sm text-[#38435C] w-full">
             <div className="flex justify-between">
               <span className="text-[#38435C]/70">Dimensions:</span>
               <span className="font-medium text-[#1B2A49]">{artwork.dimensions}</span>
@@ -147,23 +147,23 @@ export default function ArtworkDetailClient({
           </div>
 
           {/* Curatorial Description */}
-          <div className="space-y-1.5">
-            <h2 className="eyebrow-label text-[#1B2A49]">
+          <div className="space-y-1.5 w-full text-center lg:text-left">
+            <h2 className="eyebrow-label text-[#1B2A49] block text-center lg:text-left">
               Curatorial Commentary
             </h2>
-            <p className="font-body text-base lg:text-lg leading-relaxed text-[#38435C] max-w-[60ch]">
+            <p className="font-body text-base lg:text-lg leading-relaxed text-[#38435C] max-w-[60ch] mx-auto lg:mx-0 text-center lg:text-left">
               {artwork.description}
             </p>
           </div>
 
           {artwork.curatorNote && (
-            <div className="p-4 bg-white/40 border-l-2 border-[#1B2A49] rounded-r text-sm text-[#38435C] font-serif italic">
+            <div className="p-4 bg-white/40 border-l-0 lg:border-l-2 border-t-2 lg:border-t-0 border-[#1B2A49] rounded text-sm text-[#38435C] font-serif italic text-center lg:text-left w-full">
               {artwork.curatorNote}
             </div>
           )}
 
           {/* Action Button: Inquire About This Work */}
-          <div className="pt-4 flex flex-col sm:flex-row gap-4">
+          <div className="pt-4 flex flex-col sm:flex-row gap-4 w-full">
             <button
               type="button"
               onClick={() => setIsEnquiryOpen(true)}

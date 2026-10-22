@@ -72,8 +72,8 @@ export default function ArtworkCard({
       </div>
 
       {/* Artwork Metadata & Caption (Title, Year, Medium, Dimensions) */}
-      <div className="flex flex-col space-y-1 text-left pt-1">
-        <div className="flex items-baseline justify-between gap-2">
+      <div className="flex flex-col space-y-1 text-center sm:text-left items-center sm:items-start pt-1">
+        <div className="flex flex-wrap items-baseline justify-center sm:justify-between gap-1.5 sm:gap-2 w-full">
           <Link
             href={`/works/${artwork.id}`}
             className="font-serif text-lg font-medium text-[#1B2A49] group-hover:underline inline-flex items-center space-x-1"
@@ -90,11 +90,11 @@ export default function ArtworkCard({
           </span>
         </div>
 
-        <p className="font-body text-sm text-[#38435C]/90 italic">
+        <p className="font-body text-sm text-[#38435C]/90 italic text-center sm:text-left">
           {artwork.medium}
         </p>
 
-        <p className="font-body text-xs text-[#38435C]/75">
+        <p className="font-body text-xs text-[#38435C]/75 text-center sm:text-left">
           {artwork.dimensions}
         </p>
       </div>

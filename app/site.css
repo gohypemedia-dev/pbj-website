@@ -34,6 +34,7 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Headings: color applied only to heading tags, NOT .font-heading utility */
@@ -253,7 +254,7 @@ blockquote.font-heading { font-family: var(--font-body); font-weight: 400; line-
 }
 
 /* Header demarcation above the banner */
-.home-header { border-bottom: 1px solid var(--border-subtle); }
+.home-header { border-bottom: none; }
 .header-inner {
   display: flex;
   align-items: center;
@@ -326,8 +327,52 @@ blockquote.font-heading { font-family: var(--font-body); font-weight: 400; line-
   }
 }
 /* ==========================================================================
-   Homepage Banner: Single static unframed painting in full coverage (edge-to-edge)
+   Homepage Sticky Parallax Hero & Curtain Overlay
    ========================================================================== */
+.hero-sticky-container {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 68px;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-main);
+  will-change: transform;
+}
+
+@media (min-width: 1024px) {
+  .hero-sticky-container {
+    top: 100px;
+  }
+}
+
+/* Next Section: slides up and over the sticky hero section */
+.next-section-overlay {
+  position: relative;
+  z-index: 20;
+  background-color: var(--bg-main);
+  box-shadow: none;
+  border-top: none;
+}
+
+.hero-parallax-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.hero-parallax-veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(27, 42, 73, 0.04) 0%, rgba(27, 42, 73, 0.42) 100%);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.12s ease-out;
+}
+
 .artist-hero {
   position: relative;
   width: 100%;
@@ -491,13 +536,44 @@ html.lenis { scroll-behavior: auto !important; }
 .story-email:hover { opacity: 0.75; }
 .story-contact-location { font-family: var(--font-body); font-size: 0.95rem; color: var(--text-body); opacity: 0.85; margin: 12px 0; }
 @media (max-width: 767px) {
-  .story-about { grid-template-columns: 1fr; padding: 36px 6vw; gap: 0.85rem; }
-  .story-about .story-label { margin-bottom: 0; }
-  .story-about > div { font-size: 1.15rem; gap: 0.85rem; }
-  .story-about .story-intro { font-size: 1.85rem; margin: 0; }
-  .story-philosophy { padding: 40px 6vw; }
-  .philosophy-quote { font-size: 1.35rem; margin: 0.75rem auto 0.65rem; }
-  .scroll-gallery { padding-inline: 6vw; }
+  .story-about {
+    grid-template-columns: 1fr;
+    padding: 36px clamp(16px, 5vw, 24px);
+    gap: 1.25rem;
+    text-align: center;
+  }
+  .story-about .story-label {
+    margin-bottom: 0;
+    text-align: center;
+  }
+  .story-about > div {
+    font-size: 1.15rem;
+    gap: 0.85rem;
+    align-items: center;
+    text-align: center;
+  }
+  .story-about .story-intro {
+    font-size: 1.85rem;
+    margin: 0;
+    text-align: center;
+  }
+  .story-philosophy {
+    padding: 40px clamp(16px, 5vw, 24px);
+    text-align: center;
+  }
+  .philosophy-inner {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .philosophy-quote {
+    font-size: 1.35rem;
+    margin: 0.75rem auto 0.65rem;
+    text-align: center;
+  }
+  .philosophy-byline {
+    text-align: center;
+  }
+  .scroll-gallery { padding-inline: clamp(16px, 5vw, 24px); }
   .gallery-title-layer h2 { top: 34vh; font-size: 15vw; }
   .scroll-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 14px; }
   .scroll-art-0 { grid-area: 1 / 1; }
@@ -507,11 +583,12 @@ html.lenis { scroll-behavior: auto !important; }
   .scroll-art-4 { grid-area: 3 / 1; }
   .scroll-art-5 { grid-area: 3 / 2; margin-top: 50px; }
   .scroll-art-6 { grid-area: 4 / 1; }
-  .scroll-art figcaption { font-size: 0.85rem; }
-  .story-exhibitions { grid-template-columns: 1fr; gap: 36px; padding-block: 52px; margin-inline: 6vw; }
-  .exhibitions-heading { position: static; }
-  .story-contact { padding: 52px 6vw; }
-  .story-contact h2 { font-size: 13vw; margin: 0 0 1.25rem; }
+  .scroll-art figcaption { font-size: 0.85rem; text-align: center; }
+  .story-exhibitions { grid-template-columns: 1fr; gap: 36px; padding-block: 52px; margin-inline: clamp(16px, 5vw, 24px); text-align: center; }
+  .exhibitions-heading { position: static; text-align: center; }
+  .story-contact { padding: 52px clamp(16px, 5vw, 24px); text-align: center; }
+  .story-contact h2 { font-size: 13vw; margin: 0 0 1.25rem; text-align: center; }
+  .story-email { justify-content: center; margin-inline: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
@@ -535,25 +612,33 @@ html.lenis { scroll-behavior: auto !important; }
   width: 100%;
   padding: 6vh 0 32px;
   color: var(--text-heading);
+  text-align: center;
 }
 .footer-inner {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 clamp(24px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .footer-topline {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 30px;
   padding-bottom: 5vh;
   font: 13px/1.6 var(--font-heading);
   letter-spacing: -.02em;
+  text-align: center;
 }
 .footer-topline nav {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 6px;
 }
 .footer-topline nav a {
@@ -565,10 +650,10 @@ html.lenis { scroll-behavior: auto !important; }
   opacity: 0.65;
 }
 .footer-studio {
-  text-align: right;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 4px;
 }
 .footer-studio a {
@@ -584,29 +669,41 @@ html.lenis { scroll-behavior: auto !important; }
 }
 .footer-studio p {
   margin: 0;
+  text-align: center;
 }
 .footer-bottom {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
+  text-align: center;
+  gap: 6px;
   font: 11px/1.5 var(--font-heading);
   color: var(--text-heading);
   opacity: 0.8;
+  margin: 0 auto;
+  width: 100%;
 }
 .footer-bottom p {
   margin: 0;
+  text-align: center;
+}
+.footer-rights,
+.footer-copyright {
+  text-align: center;
 }
 @media (max-width: 767px) {
-  .story-themes { padding-inline: 6vw; }
+  .story-themes { padding-inline: clamp(16px, 5vw, 24px); text-align: center; }
   
-  .theme-word { font-size: 12vw; }
+  .theme-word { font-size: 12vw; text-align: center; }
   .gallery-title-layer h2 { font-size: 15vw; }
-  .artist-footer { padding: 36px 0 24px; }
-  .footer-inner { padding: 0 6vw; }
-  .footer-topline { flex-direction: column; gap: 28px; padding-bottom: 32px; font-size: 12px; }
-  .footer-studio { text-align: left; align-items: flex-start; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 11px; }
+  .artist-footer { padding: 36px 0 24px; text-align: center; }
+  .footer-inner { padding: 0 clamp(16px, 5vw, 24px); text-align: center; }
+  .footer-topline { flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 28px; padding-bottom: 32px; font-size: 12px; }
+  .footer-topline nav { align-items: center; text-align: center; }
+  .footer-studio { text-align: center; align-items: center; justify-content: center; }
+  .footer-bottom { flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; font-size: 11px; }
+  .footer-rights, .footer-copyright { text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .story-themes { height: auto; padding-block: 70px; }
@@ -713,5 +810,33 @@ input, textarea, select, button { font-family: inherit; }
 
 .mobile-drawer-panel {
   animation: drawer-slide-in 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Mobile View Center-Alignment Guarantee (< 768px)
+   Aligns headings, paragraphs, section labels, buttons, icons, and containers
+   horizontally centered while keeping tablet (>= 768px) and desktop (>= 1024px) unchanged. */
+@media (max-width: 767px) {
+  html, body {
+    overflow-x: hidden !important;
+    overflow-x: clip !important;
+    max-width: 100vw;
+  }
+
+  .mobile-center-container {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .mobile-center-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .eyebrow-label {
+    text-align: center;
+  }
 }
 

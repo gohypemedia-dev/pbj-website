@@ -57,37 +57,37 @@ export default function MediaPage() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Header */}
-      <div className="mb-8 pb-5">
+      <div className="mb-8 pb-5 flex flex-col items-center sm:items-start text-center sm:text-left">
         <Link
           href="/"
-          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3"
+          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3 mx-auto sm:mx-0"
         >
           <ArrowLeft size={14} />
           <span>Home</span>
         </Link>
-        <span className="eyebrow-label text-[#1B2A49] block">
+        <span className="eyebrow-label text-[#1B2A49] block text-center sm:text-left">
           Press &amp; Critical Reception
         </span>
-        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5">
+        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5 text-center sm:text-left">
           Media
         </h1>
-        <p className="font-serif italic text-lg text-[#38435C] mt-1.5 max-w-2xl leading-relaxed">
+        <p className="font-serif italic text-lg text-[#38435C] mt-1.5 max-w-2xl leading-relaxed mx-auto sm:mx-0 text-center sm:text-left">
           Documented reviews, critical features, and international coverage of Prakash Bal Joshi&rsquo;s exhibitions and literary work.
         </p>
       </div>
 
       {/* Press Folio Articles */}
       <div className="space-y-6 mb-14">
-        <h2 className="font-heading text-xs uppercase tracking-[0.2em] text-[#1B2A49]/80 font-semibold mb-6">
+        <h2 className="font-heading text-xs uppercase tracking-[0.2em] text-[#1B2A49]/80 font-semibold mb-6 text-center sm:text-left">
           Selected Press &amp; Reviews
         </h2>
         <div className="divide-y divide-[#1B2A49]/15">
           {pressArticles.map((article) => (
             <article
               key={article.title}
-              className="py-6 lg:py-8 grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start hover:bg-white/20 px-4 -mx-4 rounded-sm transition-colors"
+              className="py-6 lg:py-8 grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-8 items-start hover:bg-white/20 px-4 -mx-4 rounded-sm transition-colors text-center md:text-left"
             >
-              <div className="md:col-span-3 space-y-1">
+              <div className="md:col-span-3 space-y-1 flex flex-col items-center md:items-start text-center md:text-left">
                 <span className="font-heading text-xs uppercase tracking-widest text-[#1B2A49]/70 font-semibold block">
                   {article.publication}
                 </span>
@@ -95,11 +95,11 @@ export default function MediaPage() {
                   {article.year}
                 </span>
               </div>
-              <div className="md:col-span-9 space-y-2.5">
+              <div className="md:col-span-9 space-y-2.5 flex flex-col items-center md:items-start text-center md:text-left">
                 <h3 className="font-serif text-2xl font-bold text-[#1B2A49] leading-snug">
                   {article.title}
                 </h3>
-                <blockquote className="font-body text-base text-[#38435C] italic leading-relaxed border-l-2 border-[#1B2A49]/30 pl-4 py-0.5">
+                <blockquote className="font-body text-base text-[#38435C] italic leading-relaxed border-t-2 border-b-2 md:border-t-0 md:border-b-0 md:border-l-2 border-[#1B2A49]/30 py-2 md:py-0.5 md:pl-4 text-center md:text-left">
                   {article.quote}
                 </blockquote>
                 <p className="text-xs font-heading uppercase tracking-wider text-[#38435C]/70">
@@ -113,8 +113,8 @@ export default function MediaPage() {
 
       {/* Press Kit & Curatorial Inquiries */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-6 sm:p-8 bg-white/40 border border-[#1B2A49]/10 rounded-sm space-y-3">
-          <div className="flex items-center gap-2 text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
+        <div className="p-6 sm:p-8 bg-white/40 border border-[#1B2A49]/10 rounded-sm space-y-3 flex flex-col items-center sm:items-start text-center sm:text-left">
+          <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
             <FileText size={15} />
             <span>Media Resources</span>
           </div>
@@ -124,7 +124,7 @@ export default function MediaPage() {
           <p className="font-body text-sm text-[#38435C] leading-relaxed">
             High-resolution artist portraits, selected artwork transparency files for publications, and an authoritative artist curriculum vitae are available upon verified request.
           </p>
-          <div className="pt-2">
+          <div className="pt-2 flex justify-center sm:justify-start w-full">
             <a
               href={`mailto:${artistData.contact.email}?subject=Press%20Kit%20Request%20-%20Prakash%20Bal%20Joshi`}
               className="inline-flex items-center gap-2 font-heading text-xs uppercase tracking-widest text-[#1B2A49] hover:opacity-75 transition-opacity font-semibold"
@@ -135,8 +135,8 @@ export default function MediaPage() {
           </div>
         </div>
 
-        <div className="p-6 sm:p-8 bg-white/40 border border-[#1B2A49]/10 rounded-sm space-y-3">
-          <div className="flex items-center gap-2 text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
+        <div className="p-6 sm:p-8 bg-white/40 border border-[#1B2A49]/10 rounded-sm space-y-3 flex flex-col items-center sm:items-start text-center sm:text-left">
+          <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
             <Newspaper size={15} />
             <span>Journalist &amp; Critic Inquiries</span>
           </div>
@@ -146,7 +146,7 @@ export default function MediaPage() {
           <p className="font-body text-sm text-[#38435C] leading-relaxed">
             For press interviews, feature rights, studio photo sessions, or exhibition catalog reproduction permissions, please contact studio communications.
           </p>
-          <div className="pt-2">
+          <div className="pt-2 flex justify-center sm:justify-start w-full">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 font-heading text-xs uppercase tracking-widest text-[#1B2A49] hover:opacity-75 transition-opacity font-semibold"

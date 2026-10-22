@@ -36,29 +36,29 @@ export default function WorksPage() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Editorial Header */}
-      <div className="mb-8 pb-5">
+      <div className="mb-8 pb-5 flex flex-col items-center sm:items-start text-center sm:text-left">
         <Link
           href="/"
-          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3"
+          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3 mx-auto sm:mx-0"
         >
           <ArrowLeft size={14} />
           <span>Home</span>
         </Link>
 
-        <span className="eyebrow-label text-[#1B2A49] block">
+        <span className="eyebrow-label text-[#1B2A49] block text-center sm:text-left">
           Curated Portfolio &amp; Archive
         </span>
 
-        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5">
+        <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] mt-1.5 text-center sm:text-left">
           Selected Works
         </h1>
-        <p className="font-body text-base sm:text-lg text-[#38435C] max-w-2xl mt-1.5 leading-relaxed">
+        <p className="font-body text-base sm:text-lg text-[#38435C] max-w-2xl mt-1.5 leading-relaxed text-center sm:text-left mx-auto sm:mx-0">
           Spontaneous abstract expressionism spanning monumental canvases, delicate mixed-media studies, and heavy impasto oils.
         </p>
 
         {/* Category Filter Tabs: Consistent row beneath the introduction */}
         <div
-          className="mt-5 pt-4 flex flex-wrap items-center gap-2 sm:gap-2.5"
+          className="mt-5 pt-4 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5 w-full"
           role="tablist"
           aria-label="Filter works by collection"
         >

@@ -98,8 +98,8 @@ export default function Header() {
     <>
       <header
         className={`${
-          pathname === "/" ? "home-header" : ""
-        } sticky top-0 z-40 bg-[#E9ECEF]/95 backdrop-blur-sm border-b border-[#1B2A49]/10 transition-colors`}
+          pathname === "/" ? "home-header border-b-0" : "border-b border-[#1B2A49]/10"
+        } sticky top-0 z-40 bg-[#E9ECEF]/95 backdrop-blur-sm transition-colors`}
       >
         <div className="header-inner max-w-[1440px] mx-auto px-4 sm:px-5 lg:px-12 h-16 sm:h-18 lg:h-20 flex items-center justify-between flex-nowrap">
           {/* Left: Artist Wordmark */}
@@ -198,7 +198,7 @@ export default function Header() {
             {/* Scrollable Drawer Body */}
             <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col justify-between space-y-10">
               {/* Natural editorial navigation links */}
-              <nav className="flex flex-col space-y-2 sm:space-y-2.5" aria-label="Mobile Navigation Links">
+              <nav className="flex flex-col space-y-2 sm:space-y-2.5 items-center text-center" aria-label="Mobile Navigation Links">
                 {navLinks.map((link) => {
                   const isActive = isLinkActive(link.href);
                   return (
@@ -206,37 +206,32 @@ export default function Header() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`group flex items-center justify-between py-1.5 sm:py-2 transition-all ${
+                      className={`group flex items-center justify-center gap-2 py-1.5 sm:py-2 transition-all w-full text-center ${
                         isActive
                           ? "text-[#1B2A49] font-medium"
                           : "text-[#38435C]/85 hover:text-[#1B2A49]"
                       }`}
                     >
-                      <span className="font-serif text-xl sm:text-2xl tracking-[0.02em] flex items-center gap-3">
+                      <span className="font-serif text-xl sm:text-2xl tracking-[0.02em] flex items-center justify-center gap-2.5">
                         {isActive && (
                           <span className="w-1.5 h-1.5 rounded-full bg-[#1B2A49]" aria-hidden="true" />
                         )}
                         <span>{link.label}</span>
                       </span>
-                      {isActive && (
-                        <span className="text-[11px] font-heading uppercase tracking-widest text-[#1B2A49]">
-                          Current
-                        </span>
-                      )}
                     </Link>
                   );
                 })}
               </nav>
 
               {/* Studio Colophon Details */}
-              <div className="pt-8 border-t border-[#1B2A49]/10 space-y-2">
+              <div className="pt-8 border-t border-[#1B2A49]/10 space-y-2 text-center flex flex-col items-center">
                 <a
                   href={`mailto:${artistData.contact.email}`}
-                  className="font-serif text-base text-[#1B2A49] hover:underline block truncate"
+                  className="font-serif text-base text-[#1B2A49] hover:underline block truncate text-center"
                 >
                   {artistData.contact.email}
                 </a>
-                <p className="text-xs text-[#38435C]/75 font-serif leading-relaxed">
+                <p className="text-xs text-[#38435C]/75 font-serif leading-relaxed text-center">
                   Mumbai, India &middot; Studio visits by prior appointment
                 </p>
               </div>
