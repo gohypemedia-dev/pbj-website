@@ -15,7 +15,7 @@ export default function AboutPage() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Breadcrumb */}
-      <div className="mb-8 pb-5 border-b border-[#1B2A49]/10">
+      <div className="mb-8 pb-5">
         <Link
           href="/"
           className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-2.5"
@@ -53,7 +53,7 @@ export default function AboutPage() {
           </p>
 
           {/* Permanent Museum Collections */}
-          <div className="pt-4 border-t border-[#1B2A49]/15 space-y-2">
+          <div className="pt-4 space-y-2">
             <div className="flex items-center space-x-2 text-[#1B2A49]">
               <Landmark size={16} />
               <h3 className="font-heading text-xs uppercase tracking-[0.16em] font-bold text-[#1B2A49]">
@@ -70,7 +70,7 @@ export default function AboutPage() {
           </div>
 
           {/* Literary Publications */}
-          <div className="pt-4 border-t border-[#1B2A49]/15 space-y-2">
+          <div className="pt-4 space-y-2">
             <div className="flex items-center space-x-2 text-[#1B2A49]">
               <BookOpen size={16} />
               <h3 className="font-heading text-xs uppercase tracking-[0.16em] font-bold text-[#1B2A49]">
@@ -107,7 +107,7 @@ export default function AboutPage() {
           </div>
 
           {/* Artistic Themes Section */}
-          <div className="pt-6 border-t border-[#1B2A49]/15 space-y-4">
+          <div className="pt-6 space-y-4">
             <div className="flex items-center space-x-2 text-[#1B2A49]">
               <Waves size={20} />
               <h2 className="font-heading text-xl font-bold uppercase tracking-wide">
@@ -133,7 +133,7 @@ export default function AboutPage() {
           </div>
 
           {/* Studio Visit & Link to Contact */}
-          <div className="pt-6 border-t border-[#1B2A49]/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <p className="font-heading text-xs uppercase tracking-wider text-[#1B2A49] font-bold">
                 Studio Archive &amp; Appointments

@@ -43,7 +43,7 @@ export default function ContactPage() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Header */}
-      <div className="mb-8 pb-5 border-b border-[#1B2A49]/10">
+      <div className="mb-8 pb-5">
         <Link
           href="/"
           className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3"
@@ -80,7 +80,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="pt-4 border-t border-[#1B2A49]/15 space-y-1.5">
+          <div className="pt-4 space-y-1.5">
             <span className="eyebrow-label text-[#1B2A49] block">
               Studio Location
             </span>
@@ -89,7 +89,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="pt-4 border-t border-[#1B2A49]/15 space-y-1.5">
+          <div className="pt-4 space-y-1.5">
             <span className="eyebrow-label text-[#1B2A49] block">
               Studio Visits
             </span>
@@ -98,7 +98,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="pt-4 border-t border-[#1B2A49]/15 space-y-1.5">
+          <div className="pt-4 space-y-1.5">
             <span className="eyebrow-label text-[#1B2A49] block">
               Representation &amp; Archives
             </span>

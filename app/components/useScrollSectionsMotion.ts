@@ -10,32 +10,7 @@ export function useScrollSectionsMotion() {
       dispose();
       if (reduced.matches) return;
       const animations = new Map<Element, Animation>();
-      const aboutAnimations: Animation[] = [];
-      const paragraphAnimations = new Map<Element, Animation[]>();
-      const about = document.querySelector(".story-about");
-      const aboutObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            paragraphAnimations.get(entry.target)?.forEach((animation) => animation.play());
-            aboutObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: .25, rootMargin: "0px 0px -12% 0px" });
-      about?.querySelectorAll("p").forEach((paragraph) => {
-        const sequence: Animation[] = [];
-        paragraph.querySelectorAll("[data-about-letter]").forEach((letter, index) => {
-          const animation = letter.animate([{ visibility: "hidden" }, { visibility: "visible" }], {
-            duration: 1, delay: 100 + index * 18, easing: "steps(1, end)", fill: "both",
-          });
-          animation.pause();
-          sequence.push(animation);
-          aboutAnimations.push(animation);
-        });
-        if (sequence.length) {
-          paragraphAnimations.set(paragraph, sequence);
-          aboutObserver.observe(paragraph);
-        }
-      });
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -101,8 +76,6 @@ export function useScrollSectionsMotion() {
       update();
       dispose = () => {
         observer.disconnect();
-        aboutObserver.disconnect();
-        aboutAnimations.forEach((animation) => animation.cancel());
         document.removeEventListener("focusin", revealFocused);
         animations.forEach((animation) => animation.cancel());
         cancelAnimationFrame(frame);

@@ -36,7 +36,7 @@ export default function WorksPage() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Editorial Header */}
-      <div className="mb-8 pb-5 border-b border-[#1B2A49]/10">
+      <div className="mb-8 pb-5">
         <Link
           href="/"
           className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3"
@@ -58,7 +58,7 @@ export default function WorksPage() {
 
         {/* Category Filter Tabs: Consistent row beneath the introduction */}
         <div
-          className="mt-5 pt-4 border-t border-[#1B2A49]/10 flex flex-wrap items-center gap-2 sm:gap-2.5"
+          className="mt-5 pt-4 flex flex-wrap items-center gap-2 sm:gap-2.5"
           role="tablist"
           aria-label="Filter works by collection"
         >

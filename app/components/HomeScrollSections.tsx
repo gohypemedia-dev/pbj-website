@@ -2,17 +2,11 @@
 
 import Image from "next/image";
 import ThemePhrase from "./ThemePhrase";
-import ImageArchive from "./ImageArchive";
 import { imageArchive } from "@/data/imageArchive";
 import { useScrollSectionsMotion } from "./useScrollSectionsMotion";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { artistData } from "@/data/artist";
 import { artworksData, type Artwork } from "@/data/artworks";
-
-function RevealWords({ text }: { text: string }) {
-  return <span aria-label={text}><span aria-hidden="true">{text.split(" ").map((word, index) => <span key={index}><span style={{ whiteSpace: "nowrap" }}>{Array.from(word).map((letter, letterIndex) => <span key={letterIndex} data-about-letter>{letter}</span>)}</span>{" "}</span>)}</span></span>;
-}
 
 export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (artwork: Artwork) => void }) {
   useScrollSectionsMotion();
@@ -21,11 +15,17 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
       <section className="story-about" aria-labelledby="story-about-title">
         <h2 id="story-about-title" className="story-label">About the artist</h2>
         <div>
-          <p className="story-intro"><RevealWords text="An artist, a writer." /><br /><RevealWords text="A lifetime of looking closer." /></p>
-          <p><RevealWords text="Abstract paintings shaped by memory, nature, and the quiet movement of water." /></p>
+          <p className="story-intro">
+            An artist, a writer.<br />A lifetime of looking closer.
+          </p>
+          <p>
+            Abstract paintings shaped by memory, nature, and the quiet movement of water.
+          </p>
         </div>
         <div>
-          <p><RevealWords text="From his Mumbai studio, Prakash Bal Joshi follows an intuitive practice in oil and acrylic. Each painting begins with a mark, and finds its own course." /></p>
+          <p>
+            Prakash Bal Joshi follows an intuitive practice in oil and acrylic. Each painting begins with a mark, and finds its own course.
+          </p>
         </div>
       </section>
 
@@ -71,20 +71,6 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
         <Link href="/works" className="gallery-archive">Explore all works <ArrowUpRight size={20} /></Link>
       </div>
       */}
-
-      <ImageArchive />
-
-      <section className="story-contact" aria-labelledby="story-contact-title">
-        <div className="story-contact-inner" data-scroll-reveal>
-          <h2 id="story-contact-title">Connecting with<br /><span>the studio.</span></h2>
-          <div>
-            <a href={`mailto:${artistData.contact.email}`} className="story-email">
-              <span>{artistData.contact.email}</span>
-              <ArrowUpRight size={18} />
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

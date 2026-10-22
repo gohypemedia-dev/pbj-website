@@ -414,7 +414,6 @@ html.lenis { scroll-behavior: auto !important; }
 /* Editorial Artistic Philosophy section */
 .story-philosophy {
   padding: clamp(52px, 8vh, 88px) 6vw;
-  border-block: 1px solid var(--border-subtle);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -437,12 +436,13 @@ html.lenis { scroll-behavior: auto !important; }
 }
 .philosophy-byline {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-body);
-  opacity: 0.8;
-  margin: 0 auto;
+  color: var(--text-heading);
+  opacity: 0.85;
+  margin: 0.5rem auto 0;
 }
 
 .scroll-gallery { position: relative; padding: 8vh 2.5vw 12vh; }
@@ -473,7 +473,7 @@ html.lenis { scroll-behavior: auto !important; }
 .gallery-archive { display: inline-flex; align-items: center; justify-content: center; gap: 20px; min-height: 52px; padding: 16px 32px; background: var(--text-heading); color: var(--bg-main); border: 1px solid var(--text-heading); border-radius: 2px; font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 .gallery-archive:hover { opacity: 0.9; transform: translateY(-1px); }
 .gallery-archive:focus-visible { outline: 2px solid var(--text-heading); outline-offset: 5px; }
-.story-exhibitions { display: grid; grid-template-columns: 1fr 1.35fr; gap: 8vw; margin: 0 4vw; padding: 10vh 0; border-top: 1px solid var(--border-subtle); align-items: start; }
+.story-exhibitions { display: grid; grid-template-columns: 1fr 1.35fr; gap: 8vw; margin: 0 4vw; padding: 10vh 0; align-items: start; }
 .exhibitions-heading { position: sticky; top: 160px; }
 .exhibitions-heading h2 { font: 700 clamp(3.2rem, 5.5vw, 6.5rem)/1 var(--font-display); letter-spacing: .02em; margin: 1.5rem 0 1.5rem; text-transform: uppercase; }
 .exhibitions-heading h2 span { font-family: var(--font-signature); font-style: italic; font-weight: 400; text-transform: none; }
@@ -482,7 +482,7 @@ html.lenis { scroll-behavior: auto !important; }
 .exhibitions-list h3 { font: 500 clamp(1.5rem, 2.2vw, 2.3rem)/1.2 var(--font-body); letter-spacing: -.02em; margin: 8px 0 6px; color: var(--text-heading); }
 .exhibitions-list .exhibition-venue { font-family: var(--font-body); font-style: italic; font-size: 1rem; margin-bottom: 8px; color: var(--text-body); }
 .exhibitions-list .exhibition-desc { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; max-width: 42rem; color: var(--text-body); margin: 0; }
-.story-contact { padding: clamp(52px, 8vh, 88px) 4vw; text-align: center; border-top: 1px solid var(--border-subtle); }
+.story-contact { padding: clamp(52px, 8vh, 88px) 4vw; text-align: center; }
 .story-contact-inner { max-width: 780px; margin: 0 auto; }
 .story-contact h2 { font: 700 clamp(2.6rem, 5.5vw, 5.5rem)/.98 var(--font-display); letter-spacing: .02em; margin: 0 0 clamp(1.25rem, 2.5vw, 2.25rem); text-transform: uppercase; }
 .story-contact h2 span { font: 400 1.1em/.9 var(--font-signature); font-style: italic; text-transform: none; }
@@ -523,7 +523,7 @@ html.lenis { scroll-behavior: auto !important; }
 
 /* Framed changing themes and oversized sign-off, adapted from the live reference. */
 .story-themes { position: relative; padding: 8vh 2.2vw; }
-.theme-frame { position: relative; height: clamp(160px, 24vw, 310px); border-block: 1px solid var(--border-strong); }
+.theme-frame { position: relative; height: clamp(160px, 24vw, 310px); }
 .theme-word { position: absolute; inset: 0; display: flex; gap: .2em; align-items: center; justify-content: center; margin: 0; opacity: 0; font: 500 clamp(3rem, 8vw, 8rem)/1 var(--font-heading); letter-spacing: -.065em; }
 .theme-word-first { opacity: 1; }
 .theme-word span { font: 400 1.3em/1 var(--font-signature); letter-spacing: -.02em; }
@@ -543,7 +543,7 @@ html.lenis { scroll-behavior: auto !important; }
 }
 .footer-topline {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-start;
   gap: 30px;
   padding-bottom: 5vh;
@@ -642,7 +642,7 @@ input, textarea, select, button { font-family: inherit; }
 .opening-name { transform-origin: top left; white-space: nowrap; }
 
 .image-archive { padding: 0 4vw 6vh; }
-.archive-group { border-top: 1px solid var(--border-subtle); padding: 48px 0 24px; }
+.archive-group { padding: 48px 0 24px; }
 .image-archive .archive-group:first-child { border-top: none; }
 .archive-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
 .archive-heading h2 { font: 700 clamp(2.4rem, 4.8vw, 4.5rem)/1.1 var(--font-display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; }

@@ -15,7 +15,7 @@ export default function ExhibitionsPage() {
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Header */}
-      <div className="mb-8 pb-5 border-b border-[#1B2A49]/10">
+      <div className="mb-8 pb-5">
         <Link
           href="/"
           className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3"

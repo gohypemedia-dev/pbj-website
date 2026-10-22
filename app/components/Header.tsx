@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { artistData } from "@/data/artist";
 
 export default function Header() {
@@ -62,11 +62,37 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { href: "/works", label: "Works", description: "Selected Paintings & Series" },
+    { href: "/", label: "Home", description: "Studio & Selected Overview" },
     { href: "/about", label: "About", description: "Biography & Philosophy" },
-    { href: "/exhibitions", label: "Exhibitions", description: "Venice, Basel, Mumbai" },
-    { href: "/contact", label: "Contact", description: "Studio Visits & Inquiries" }
+    { href: "/works", label: "Works", description: "Selected Paintings & Series" },
+    { href: "/events", label: "Events", description: "Exhibitions & Presentations" },
+    { href: "/writings", label: "Writings", description: "Books, Short Stories & Essays" },
+    { href: "/media", label: "Media", description: "Press, Reviews & Features" },
+    { href: "/contact", label: "Contacts", description: "Studio Visits & Enquiries" }
   ];
+
+  const isLinkActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    if (href === "/events") {
+      return (
+        pathname === "/events" ||
+        pathname.startsWith("/events/") ||
+        pathname === "/exhibitions" ||
+        pathname.startsWith("/exhibitions/")
+      );
+    }
+    if (href === "/contact") {
+      return (
+        pathname === "/contact" ||
+        pathname.startsWith("/contact/") ||
+        pathname === "/contacts" ||
+        pathname.startsWith("/contacts/")
+      );
+    }
+    return pathname === href || pathname.startsWith(href + "/");
+  };
 
   return (
     <>
@@ -89,18 +115,16 @@ export default function Header() {
 
           {/* Right: Desktop Navigation (hidden below 1024px) */}
           <nav
-            className="header-navigation hidden lg:flex items-center space-x-7 xl:space-x-10"
+            className="header-navigation hidden lg:flex items-center space-x-4 xl:space-x-7"
             aria-label="Main Navigation"
           >
             {navLinks.map((link) => {
-              const isActive =
-                pathname === link.href ||
-                (link.href !== "/" && pathname.startsWith(link.href));
+              const isActive = isLinkActive(link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`font-heading text-sm uppercase tracking-[0.15em] transition-colors py-1 relative ${
+                  className={`font-heading text-xs xl:text-sm uppercase tracking-[0.14em] transition-colors py-1 relative ${
                     isActive
                       ? "text-[#1B2A49] font-bold"
                       : "text-[#38435C] hover:text-[#1B2A49]"
@@ -156,10 +180,7 @@ export default function Header() {
             className="mobile-drawer-panel fixed top-0 right-0 bottom-0 w-full max-w-[340px] sm:max-w-[380px] bg-[#E9ECEF] shadow-xl flex flex-col justify-between border-l border-[#1B2A49]/10 overflow-hidden"
           >
             {/* Drawer Top Bar */}
-            <div className="h-16 px-6 flex items-center justify-between border-b border-[#1B2A49]/10 flex-shrink-0 bg-[#E9ECEF]">
-              <span className="font-heading text-xs uppercase tracking-[0.2em] text-[#1B2A49]/80 font-semibold">
-                Menu
-              </span>
+            <div className="h-16 px-6 flex items-center justify-end border-b border-[#1B2A49]/10 flex-shrink-0 bg-[#E9ECEF]">
               <button
                 ref={closeButtonRef}
                 type="button"
@@ -177,23 +198,21 @@ export default function Header() {
             {/* Scrollable Drawer Body */}
             <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col justify-between space-y-10">
               {/* Natural editorial navigation links */}
-              <nav className="flex flex-col space-y-3" aria-label="Mobile Navigation Links">
+              <nav className="flex flex-col space-y-2 sm:space-y-2.5" aria-label="Mobile Navigation Links">
                 {navLinks.map((link) => {
-                  const isActive =
-                    pathname === link.href ||
-                    (link.href !== "/" && pathname.startsWith(link.href));
+                  const isActive = isLinkActive(link.href);
                   return (
                     <Link
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`group flex items-center justify-between py-2 transition-all ${
+                      className={`group flex items-center justify-between py-1.5 sm:py-2 transition-all ${
                         isActive
                           ? "text-[#1B2A49] font-medium"
                           : "text-[#38435C]/85 hover:text-[#1B2A49]"
                       }`}
                     >
-                      <span className="font-serif text-2xl sm:text-3xl tracking-[0.02em] flex items-center gap-3">
+                      <span className="font-serif text-xl sm:text-2xl tracking-[0.02em] flex items-center gap-3">
                         {isActive && (
                           <span className="w-1.5 h-1.5 rounded-full bg-[#1B2A49]" aria-hidden="true" />
                         )}
@@ -207,24 +226,10 @@ export default function Header() {
                     </Link>
                   );
                 })}
-
-                <div className="pt-4">
-                  <Link
-                    href="/works"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="inline-flex items-center gap-2 font-heading text-xs uppercase tracking-[0.18em] text-[#1B2A49] hover:opacity-70 transition-opacity py-2 border-b border-[#1B2A49]/30"
-                  >
-                    <span>View all paintings</span>
-                    <ArrowUpRight size={14} />
-                  </Link>
-                </div>
               </nav>
 
               {/* Studio Colophon Details */}
               <div className="pt-8 border-t border-[#1B2A49]/10 space-y-2">
-                <p className="font-heading text-[10px] tracking-[0.18em] uppercase text-[#1B2A49]/70 font-semibold">
-                  Studio &amp; Archive
-                </p>
                 <a
                   href={`mailto:${artistData.contact.email}`}
                   className="font-serif text-base text-[#1B2A49] hover:underline block truncate"

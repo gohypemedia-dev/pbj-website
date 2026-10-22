@@ -31,7 +31,7 @@ export default function ArtworkDetailClient({
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Breadcrumb & Navigation */}
-      <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#1B2A49]/10">
+      <div className="flex items-center justify-between pb-4 mb-6">
         <Link
           href="/works"
           className="inline-flex items-center space-x-2 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] transition-colors"
