@@ -531,41 +531,82 @@ html.lenis { scroll-behavior: auto !important; }
 .theme-corner-start { left: 0; }
 .theme-corner-end { right: 0; }
 .theme-corner::after { content: ''; position: absolute; top: clamp(160px, 24vw, 310px); width: 5px; height: 5px; border-radius: 50%; background: var(--text-heading); }
-.artist-footer { padding: 5vh 2.2vw 20px; color: var(--text-heading); }
-.footer-topline { display: grid; grid-template-columns: 1.2fr 1fr 1.4fr; gap: 30px; padding: 0 0 8vh; font: 13px/1.6 var(--font-heading); letter-spacing: -.02em; }
-.footer-back { display: inline-flex; align-items: baseline; gap: 8px; width: max-content; }
-.footer-topline nav { display: flex; flex-direction: column; align-items: start; }
-.footer-studio { text-align: right; }
-.footer-studio a { display: inline-flex; align-items: center; gap: 8px; }
-.footer-studio p { margin: 8px 0 0; }
-.footer-signoff {
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 11.5vw, 13rem);
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  text-align: center;
-  white-space: nowrap;
+.artist-footer {
+  width: 100%;
+  padding: 6vh 0 32px;
   color: var(--text-heading);
+}
+.footer-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 48px);
+}
+.footer-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  padding-bottom: 5vh;
+  font: 13px/1.6 var(--font-heading);
+  letter-spacing: -.02em;
+}
+.footer-topline nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.footer-topline nav a {
   text-decoration: none;
+  color: var(--text-heading);
   transition: opacity 0.2s ease;
 }
-.footer-signoff:hover {
-  opacity: 0.82;
+.footer-topline nav a:hover {
+  opacity: 0.65;
 }
-.footer-rights { margin: 25px 0 0; padding-top: 16px; border-top: 1px solid var(--border-subtle); font: 10px/1.5 var(--font-heading); text-align: right; }
+.footer-studio {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.footer-studio a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-heading);
+  transition: opacity 0.2s ease;
+}
+.footer-studio a:hover {
+  opacity: 0.65;
+}
+.footer-studio p {
+  margin: 0;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font: 11px/1.5 var(--font-heading);
+  color: var(--text-heading);
+  opacity: 0.8;
+}
+.footer-bottom p {
+  margin: 0;
+}
 @media (max-width: 767px) {
   .story-themes { padding-inline: 6vw; }
   
   .theme-word { font-size: 12vw; }
   .gallery-title-layer h2 { font-size: 15vw; }
-  .artist-footer { padding: 30px 6vw 24px; }
-  .footer-topline { grid-template-columns: 1fr 1fr; gap: 36px 20px; padding-bottom: 50px; font-size: 12px; }
-  .footer-studio { grid-column: 1 / -1; text-align: left; }
-  .footer-signoff { font-size: 10.5vw; }
-  .footer-rights { text-align: left; }
+  .artist-footer { padding: 36px 0 24px; }
+  .footer-inner { padding: 0 6vw; }
+  .footer-topline { flex-direction: column; gap: 28px; padding-bottom: 32px; font-size: 12px; }
+  .footer-studio { text-align: left; align-items: flex-start; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .story-themes { height: auto; padding-block: 70px; }
@@ -602,6 +643,7 @@ input, textarea, select, button { font-family: inherit; }
 
 .image-archive { padding: 0 4vw 6vh; }
 .archive-group { border-top: 1px solid var(--border-subtle); padding: 48px 0 24px; }
+.image-archive .archive-group:first-child { border-top: none; }
 .archive-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
 .archive-heading h2 { font: 700 clamp(2.4rem, 4.8vw, 4.5rem)/1.1 var(--font-display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; }
 .archive-heading p { max-width: 28rem; margin: 0; font: 1rem/1.5 var(--font-body); color: var(--text-body); }

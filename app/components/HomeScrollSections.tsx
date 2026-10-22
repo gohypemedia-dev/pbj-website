@@ -26,22 +26,22 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
         </div>
         <div>
           <p><RevealWords text="From his Mumbai studio, Prakash Bal Joshi follows an intuitive practice in oil and acrylic. Each painting begins with a mark, and finds its own course." /></p>
-          <Link className="story-link" href="/about">Discover the artist <ArrowUpRight size={18} /></Link>
         </div>
       </section>
 
-      <section className="story-philosophy" aria-labelledby="philosophy-title">
+      <section className="story-philosophy" aria-label="Artistic quote">
         <div className="philosophy-inner" data-scroll-reveal>
-          <p className="story-label">Artistic Philosophy</p>
           <blockquote className="philosophy-quote">
             &ldquo;Water carries human memory, ecological fragility, and the quiet rhythm of time. Each canvas begins without preconception—a mark that finds its own course.&rdquo;
           </blockquote>
           <p className="philosophy-byline">
-            Prakash Bal Joshi &middot; Mumbai Studio
+            {artistData.diacriticName}
           </p>
         </div>
       </section>
 
+      {/* Selected Works and scrolling gallery section hidden per user request */}
+      {/*
       <section id="selected-works" className="scroll-gallery" aria-labelledby="scroll-gallery-title">
         <div className="gallery-title-layer"><h2 id="scroll-gallery-title" aria-label="Selected works"><span aria-hidden="true">Selected</span><div className="gallery-changing-title" aria-hidden="true">{["WORKS", "COLOUR", "STORIES"].map((word, index) => <b key={word} data-gallery-word className={index === 0 ? "is-active" : ""}>{word}</b>)}</div></h2></div>
         <div className="scroll-gallery-grid">
@@ -70,6 +70,7 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
       <div className="gallery-archive-footer">
         <Link href="/works" className="gallery-archive">Explore all works <ArrowUpRight size={20} /></Link>
       </div>
+      */}
 
       <ImageArchive />
 
