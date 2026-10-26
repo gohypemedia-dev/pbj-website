@@ -5,9 +5,6 @@ import Link from "next/link";
 import { artistData } from "@/data/artist";
 import {
   ArrowLeft,
-  Mail,
-  MapPin,
-  Calendar,
   Send,
   Copy,
   Check

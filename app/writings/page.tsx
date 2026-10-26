@@ -4,7 +4,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { artistData } from "@/data/artist";
 import { imageArchive } from "@/data/imageArchive";
-import { ArrowLeft, BookOpen, Feather, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: `Writings | ${artistData.diacriticName}`,
@@ -77,10 +77,7 @@ export default function WritingsPage() {
             >
               <div className="space-y-3 w-full">
                 <div className="flex items-center justify-center sm:justify-between text-xs font-heading uppercase tracking-widest text-[#1B2A49]/70">
-                  <span className="inline-flex items-center gap-1.5">
-                    <BookOpen size={13} />
-                    {work.genre}
-                  </span>
+                  <span>{work.genre}</span>
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-[#1B2A49] leading-snug text-center sm:text-left">
                   {work.title}
@@ -105,8 +102,7 @@ export default function WritingsPage() {
       {/* Journalism & Essays Overview */}
       <section className="mb-14 p-8 sm:p-10 bg-white/30 border border-[#1B2A49]/10 rounded-sm text-center sm:text-left">
         <div className="max-w-3xl space-y-4 mx-auto sm:mx-0 flex flex-col items-center sm:items-start text-center sm:text-left">
-          <div className="inline-flex items-center justify-center sm:justify-start gap-2 text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
-            <Feather size={14} />
+          <div className="inline-flex items-center justify-center sm:justify-start text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
             <span>Journalistic Perspective</span>
           </div>
           <h2 className="font-serif text-3xl font-medium text-[#1B2A49] text-center sm:text-left">

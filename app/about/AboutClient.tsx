@@ -3,14 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import {
-  Landmark,
-  Award,
-  Calendar,
-  Sparkles,
-  HeartHandshake,
-  Tent
-} from "lucide-react";
-import {
   aboutBiography,
   soloExhibitions,
   groupExhibitions,
@@ -25,22 +17,19 @@ import {
 interface ArchiveSectionProps {
   idPrefix: string;
   title: string;
-  icon?: React.ReactNode;
   yearGroups: YearGroup[];
 }
 
 function ArchiveSection({
   idPrefix,
   title,
-  icon,
   yearGroups
 }: ArchiveSectionProps) {
   return (
     <section aria-labelledby={`${idPrefix}-heading`} className="w-full pt-10 sm:pt-14">
-      {/* Section Header without count */}
-      <div className="flex items-center space-x-2.5 text-[#1B2A49] mb-8">
-        {icon}
-        <h2 id={`${idPrefix}-heading`} className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-wide text-left">
+      {/* Section Header as plain text */}
+      <div className="mb-8">
+        <h2 id={`${idPrefix}-heading`} className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-wide text-left text-[#1B2A49]">
           {title}
         </h2>
       </div>
@@ -49,7 +38,7 @@ function ArchiveSection({
       <div className="space-y-8 w-full">
         {yearGroups.map((group) => (
           <div key={group.year} className="w-full pb-6">
-            {/* Simple Year Heading without count badge */}
+            {/* Simple Year Heading */}
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#1B2A49] mb-4 text-left">
               {group.year > 0 ? group.year : "Undated"}
             </h3>
@@ -123,7 +112,6 @@ export default function AboutClient() {
       <ArchiveSection
         idPrefix="solo-exhibitions"
         title="Solo Exhibitions"
-        icon={<Sparkles size={20} />}
         yearGroups={soloGroups}
       />
 
@@ -131,7 +119,6 @@ export default function AboutClient() {
       <ArchiveSection
         idPrefix="group-exhibitions"
         title="Group Exhibitions"
-        icon={<Calendar size={20} />}
         yearGroups={groupGroups}
       />
 
@@ -139,7 +126,6 @@ export default function AboutClient() {
       <ArchiveSection
         idPrefix="charity-auctions"
         title="Charity Events &amp; Auctions"
-        icon={<HeartHandshake size={20} />}
         yearGroups={charityGroups}
       />
 
@@ -147,15 +133,13 @@ export default function AboutClient() {
       <ArchiveSection
         idPrefix="awards-recognitions"
         title="Awards &amp; Recognitions"
-        icon={<Award size={20} />}
         yearGroups={awardGroups}
       />
 
       {/* 8. COLLECTIONS */}
       <section aria-labelledby="collections-heading" className="w-full pt-10 sm:pt-14">
-        <div className="flex items-center space-x-2.5 text-[#1B2A49] mb-8">
-          <Landmark size={20} />
-          <h2 id="collections-heading" className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-wide text-left">
+        <div className="mb-8">
+          <h2 id="collections-heading" className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-wide text-left text-[#1B2A49]">
             Collections
           </h2>
         </div>
@@ -179,7 +163,6 @@ export default function AboutClient() {
       <ArchiveSection
         idPrefix="art-camps"
         title="Art Camps &amp; Workshops"
-        icon={<Tent size={20} />}
         yearGroups={campGroups}
       />
 

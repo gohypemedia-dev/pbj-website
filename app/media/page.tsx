@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { artistData } from "@/data/artist";
-import { ArrowLeft, Newspaper, FileText, Download, Mail } from "lucide-react";
+import { ArrowLeft, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
   title: `Media & Press | ${artistData.diacriticName}`,
@@ -114,8 +114,7 @@ export default function MediaPage() {
       {/* Press Kit & Curatorial Inquiries */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-6 sm:p-8 bg-white/40 border border-[#1B2A49]/10 rounded-sm space-y-3 flex flex-col items-center sm:items-start text-center sm:text-left">
-          <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
-            <FileText size={15} />
+          <div className="text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
             <span>Media Resources</span>
           </div>
           <h3 className="font-serif text-xl font-bold text-[#1B2A49]">
@@ -136,8 +135,7 @@ export default function MediaPage() {
         </div>
 
         <div className="p-6 sm:p-8 bg-white/40 border border-[#1B2A49]/10 rounded-sm space-y-3 flex flex-col items-center sm:items-start text-center sm:text-left">
-          <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
-            <Newspaper size={15} />
+          <div className="text-xs font-heading uppercase tracking-widest text-[#1B2A49]">
             <span>Journalist &amp; Critic Inquiries</span>
           </div>
           <h3 className="font-serif text-xl font-bold text-[#1B2A49]">

@@ -12,8 +12,7 @@ import {
   ChevronRight,
   Maximize2,
   Mail,
-  ShieldCheck,
-  Sparkles
+  ShieldCheck
 } from "lucide-react";
 
 interface ArtworkDetailClientProps {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { exhibitionsData } from "@/data/exhibitions";
 import { artistData } from "@/data/artist";
-import { ArrowLeft, Calendar, MapPin, ExternalLink } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
   title: `Exhibitions | ${artistData.diacriticName}`,
