@@ -382,8 +382,7 @@ blockquote.font-heading { font-family: var(--font-body); font-weight: 400; line-
   line-height: 0;
   font-size: 0;
   background-color: var(--bg-main);
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
+  opacity: 1;
 }
 
 .artist-hero.is-ready {

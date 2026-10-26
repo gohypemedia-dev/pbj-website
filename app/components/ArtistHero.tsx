@@ -57,7 +57,7 @@ export default function ArtistHero() {
           invalidateOnRefresh: true,
         },
       });
-    }, hero);
+    });
 
     return () => ctx.revert();
   }, []);
@@ -81,7 +81,7 @@ export default function ArtistHero() {
             alt="River Returns 186 (2024), Acrylic on canvas by Prakash Bal Joshi"
             fill
             priority
-            quality={95}
+            unoptimized
             sizes="100vw"
             className="hero-banner-image"
           />
