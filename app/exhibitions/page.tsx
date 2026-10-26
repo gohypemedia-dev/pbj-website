@@ -35,7 +35,7 @@ export default function ExhibitionsPage() {
       </div>
 
       {/* Chronological Exhibition Records */}
-      <div className="divide-y divide-[#1B2A49]/15">
+      <div>
         {exhibitionsData.map((exh) => (
           <article
             key={exh.id}
@@ -77,7 +77,7 @@ export default function ExhibitionsPage() {
             <div className="md:col-span-5 space-y-2 font-body text-base text-[#38435C] leading-relaxed max-w-[65ch] mx-auto md:mx-0 text-center md:text-left">
               <p>{exh.description}</p>
               {exh.curatorialHighlight && (
-                <p className="text-xs font-serif text-[#1B2A49] italic border-l-0 md:border-l-2 border-t md:border-t-0 border-[#1B2A49]/30 pt-2 md:pt-0 pl-0 md:pl-3 text-center md:text-left">
+                <p className="text-xs font-serif text-[#1B2A49] italic border-l-0 md:border-l-2 border-[#1B2A49]/30 pt-2 md:pt-0 pl-0 md:pl-3 text-center md:text-left">
                   {exh.curatorialHighlight}
                 </p>
               )}

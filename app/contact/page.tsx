@@ -243,7 +243,7 @@ export default function ContactPage() {
               </button>
             </div>
 
-            <p className="text-xs text-[#38435C]/75 pt-2 border-t border-[#1B2A49]/10 text-center sm:text-left">
+            <p className="text-xs text-[#38435C]/75 pt-2 text-center sm:text-left">
               Opens your email app with your enquiry filled in. If your email app does not open automatically, click &ldquo;Copy Message&rdquo; and email <code>{artistData.contact.email}</code> directly.
             </p>
           </form>

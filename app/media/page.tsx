@@ -81,7 +81,7 @@ export default function MediaPage() {
         <h2 className="font-heading text-xs uppercase tracking-[0.2em] text-[#1B2A49]/80 font-semibold mb-6 text-center sm:text-left">
           Selected Press &amp; Reviews
         </h2>
-        <div className="divide-y divide-[#1B2A49]/15">
+        <div>
           {pressArticles.map((article) => (
             <article
               key={article.title}
@@ -99,7 +99,7 @@ export default function MediaPage() {
                 <h3 className="font-serif text-2xl font-bold text-[#1B2A49] leading-snug">
                   {article.title}
                 </h3>
-                <blockquote className="font-body text-base text-[#38435C] italic leading-relaxed border-t-2 border-b-2 md:border-t-0 md:border-b-0 md:border-l-2 border-[#1B2A49]/30 py-2 md:py-0.5 md:pl-4 text-center md:text-left">
+                <blockquote className="font-body text-base text-[#38435C] italic leading-relaxed md:border-l-2 border-[#1B2A49]/30 py-2 md:py-0.5 md:pl-4 text-center md:text-left">
                   {article.quote}
                 </blockquote>
                 <p className="text-xs font-heading uppercase tracking-wider text-[#38435C]/70">

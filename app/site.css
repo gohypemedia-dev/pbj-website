@@ -521,7 +521,7 @@ html.lenis { scroll-behavior: auto !important; }
 .exhibitions-heading { position: sticky; top: 160px; }
 .exhibitions-heading h2 { font: 700 clamp(3.2rem, 5.5vw, 6.5rem)/1 var(--font-display); letter-spacing: .02em; margin: 1.5rem 0 1.5rem; text-transform: uppercase; }
 .exhibitions-heading h2 span { font-family: var(--font-signature); font-style: italic; font-weight: 400; text-transform: none; }
-.exhibitions-list article { padding: 0 0 4vh; margin-bottom: 4vh; border-bottom: 1px solid var(--border-subtle); }
+.exhibitions-list article { padding: 0 0 4vh; margin-bottom: 4vh; border-bottom: none; }
 .exhibitions-list article:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 .exhibitions-list h3 { font: 500 clamp(1.5rem, 2.2vw, 2.3rem)/1.2 var(--font-body); letter-spacing: -.02em; margin: 8px 0 6px; color: var(--text-heading); }
 .exhibitions-list .exhibition-venue { font-family: var(--font-body); font-style: italic; font-size: 1rem; margin-bottom: 8px; color: var(--text-body); }

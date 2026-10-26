@@ -82,7 +82,7 @@ export default function EnquiryModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="flex items-start justify-between border-b border-[#1B2A49]/15 pb-4 mb-5">
+        <div className="flex items-start justify-between pb-4 mb-5">
           <div>
             <span className="eyebrow-label text-[#1B2A49]">Contact the Studio</span>
             <h2
@@ -220,7 +220,7 @@ export default function EnquiryModal({
             </button>
           </div>
 
-          <p className="text-xs text-[#38435C]/75 pt-2 border-t border-[#1B2A49]/10">
+          <p className="text-xs text-[#38435C]/75 pt-2">
             Opens your email app with your enquiry filled in. Message addresses <code>{artistData.contact.email}</code> directly.
           </p>
         </div>

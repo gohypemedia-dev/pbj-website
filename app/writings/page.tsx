@@ -92,7 +92,7 @@ export default function WritingsPage() {
                   {work.summary}
                 </p>
               </div>
-              <div className="pt-4 mt-4 border-t border-[#1B2A49]/10 w-full text-center sm:text-left">
+              <div className="pt-4 mt-4 w-full text-center sm:text-left">
                 <span className="inline-block text-xs font-serif italic text-[#1B2A49]">
                   {work.recognition}
                 </span>

@@ -120,7 +120,7 @@ export default function ArtworkDetailClient({
           </div>
 
           {/* Key Specifications Table */}
-          <div className="border-t border-b border-[#1B2A49]/15 py-3.5 space-y-2 font-serif text-sm text-[#38435C] w-full">
+          <div className="py-3.5 space-y-2 font-serif text-sm text-[#38435C] w-full">
             <div className="flex justify-between">
               <span className="text-[#38435C]/70">Dimensions:</span>
               <span className="font-medium text-[#1B2A49]">{artwork.dimensions}</span>
@@ -157,7 +157,7 @@ export default function ArtworkDetailClient({
           </div>
 
           {artwork.curatorNote && (
-            <div className="p-4 bg-white/40 border-l-0 lg:border-l-2 border-t-2 lg:border-t-0 border-[#1B2A49] rounded text-sm text-[#38435C] font-serif italic text-center lg:text-left w-full">
+            <div className="p-4 bg-white/40 lg:border-l-2 border-[#1B2A49] rounded text-sm text-[#38435C] font-serif italic text-center lg:text-left w-full">
               {artwork.curatorNote}
             </div>
           )}

@@ -139,7 +139,7 @@ export default function LightboxModal({
         </div>
 
         {/* Bottom Metadata & Links Bar */}
-        <div className="w-full pt-4 flex flex-col sm:flex-row items-center justify-between text-[#E9ECEF]/80 text-xs sm:text-sm border-t border-[#E9ECEF]/15 mt-2 gap-2">
+        <div className="w-full pt-4 flex flex-col sm:flex-row items-center justify-between text-[#E9ECEF]/80 text-xs sm:text-sm mt-2 gap-2">
           <p className="font-body italic text-center sm:text-left">
             {artwork.medium} &middot; {artwork.dimensions} &middot; {artwork.year}
           </p>

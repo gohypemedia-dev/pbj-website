@@ -98,7 +98,7 @@ export default function Header() {
     <>
       <header
         className={`${
-          pathname === "/" ? "home-header border-b-0" : "border-b border-[#1B2A49]/10"
+          pathname === "/" ? "home-header" : ""
         } sticky top-0 z-40 bg-[#E9ECEF]/95 backdrop-blur-sm transition-colors`}
       >
         <div className="header-inner max-w-[1440px] mx-auto px-4 sm:px-5 lg:px-12 h-16 sm:h-18 lg:h-20 flex items-center justify-between flex-nowrap">
@@ -180,7 +180,7 @@ export default function Header() {
             className="mobile-drawer-panel fixed top-0 right-0 bottom-0 w-full max-w-[340px] sm:max-w-[380px] bg-[#E9ECEF] shadow-xl flex flex-col justify-between border-l border-[#1B2A49]/10 overflow-hidden"
           >
             {/* Drawer Top Bar */}
-            <div className="h-16 px-6 flex items-center justify-end border-b border-[#1B2A49]/10 flex-shrink-0 bg-[#E9ECEF]">
+            <div className="h-16 px-6 flex items-center justify-end flex-shrink-0 bg-[#E9ECEF]">
               <button
                 ref={closeButtonRef}
                 type="button"
@@ -224,7 +224,7 @@ export default function Header() {
               </nav>
 
               {/* Studio Colophon Details */}
-              <div className="pt-8 border-t border-[#1B2A49]/10 space-y-2 text-center flex flex-col items-center">
+              <div className="pt-8 space-y-2 text-center flex flex-col items-center">
                 <a
                   href={`mailto:${artistData.contact.email}`}
                   className="font-serif text-base text-[#1B2A49] hover:underline block truncate text-center"
