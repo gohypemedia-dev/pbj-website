@@ -11,7 +11,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Maximize2,
-  Mail,
   ShieldCheck
 } from "lucide-react";
 
@@ -166,9 +165,9 @@ export default function ArtworkDetailClient({
             <button
               type="button"
               onClick={() => setIsEnquiryOpen(true)}
-              className="flex-1 py-4 px-6 bg-[#1B2A49] text-[#E9ECEF] font-heading text-xs uppercase tracking-[0.16em] font-semibold rounded-sm hover:bg-[#1B2A49]/90 transition-all text-center flex items-center justify-center space-x-2 shadow-sm"
+              className="flex-1 py-4 px-6 bg-[#1B2A49] text-[#E9ECEF] font-heading text-xs uppercase tracking-[0.16em] font-semibold rounded-sm hover:bg-[#1B2A49]/90 transition-all text-center flex items-center justify-center shadow-sm"
             >
-              <Mail size={15} />
+
               <span>Inquire About This Work</span>
             </button>
 

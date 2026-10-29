@@ -3,17 +3,12 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowDown, ArrowRight } from "lucide-react";
-import {
-  worksArtworksData,
-  WORKS_SERIES_DESCRIPTIONS,
-  WORKS_FILTER_TABS
-} from "./worksData";
+import { worksArtworksData } from "./worksData";
 import WorksCard from "./WorksCard";
 import WorksLightbox from "./WorksLightbox";
 import WorksEnquiryModal from "./WorksEnquiryModal";
 
 export default function WorksGallery() {
-  const [activeCategory, setActiveCategory] = useState("all");
   const [selectedArtwork, setSelectedArtwork] = useState(null);
   const [lightboxTrigger, setLightboxTrigger] = useState(null);
   const [enquiryArtwork, setEnquiryArtwork] = useState(null);
@@ -22,24 +17,18 @@ export default function WorksGallery() {
 
   const galleryRef = useRef(null);
 
-  // Filter artworks by series (unassigned works remain visible in All Works)
-  const filteredArtworks =
-    activeCategory === "all"
-      ? worksArtworksData
-      : worksArtworksData.filter((a) => a.series === activeCategory);
-
   const handleNextLightbox = () => {
     if (!selectedArtwork) return;
-    const currentIndex = filteredArtworks.findIndex((a) => a.id === selectedArtwork.id);
-    const nextIndex = currentIndex >= filteredArtworks.length - 1 ? 0 : currentIndex + 1;
-    setSelectedArtwork(filteredArtworks[nextIndex]);
+    const currentIndex = worksArtworksData.findIndex((a) => a.id === selectedArtwork.id);
+    const nextIndex = currentIndex >= worksArtworksData.length - 1 ? 0 : currentIndex + 1;
+    setSelectedArtwork(worksArtworksData[nextIndex]);
   };
 
   const handlePrevLightbox = () => {
     if (!selectedArtwork) return;
-    const currentIndex = filteredArtworks.findIndex((a) => a.id === selectedArtwork.id);
-    const prevIndex = currentIndex <= 0 ? filteredArtworks.length - 1 : currentIndex - 1;
-    setSelectedArtwork(filteredArtworks[prevIndex]);
+    const currentIndex = worksArtworksData.findIndex((a) => a.id === selectedArtwork.id);
+    const prevIndex = currentIndex <= 0 ? worksArtworksData.length - 1 : currentIndex - 1;
+    setSelectedArtwork(worksArtworksData[prevIndex]);
   };
 
   const handleOpenLightbox = (artwork, triggerEl) => {
@@ -56,10 +45,6 @@ export default function WorksGallery() {
   const handleScrollToGallery = () => {
     galleryRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  // Determine series description display
-  const currentSeriesDescription =
-    activeCategory !== "all" ? WORKS_SERIES_DESCRIPTIONS[activeCategory] : null;
 
   return (
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
@@ -108,51 +93,6 @@ export default function WorksGallery() {
             <ArrowRight size={13} />
           </button>
         </div>
-
-        {/* Category Filter Tabs */}
-        <div
-          className="mt-6 pt-4 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5 w-full border-t border-[#1B2A49]/10"
-          role="tablist"
-          aria-label="Filter works by series"
-        >
-          {WORKS_FILTER_TABS.map((tab) => {
-            const isSelected = activeCategory === tab.id;
-            const count =
-              tab.id === "all"
-                ? worksArtworksData.length
-                : worksArtworksData.filter((a) => a.series === tab.id).length;
-
-            return (
-              <button
-                key={tab.id}
-                role="tab"
-                aria-selected={isSelected}
-                aria-controls="works-gallery-panel"
-                onClick={() => setActiveCategory(tab.id)}
-                className={`gallery-filter-btn ${
-                  isSelected
-                    ? "active !bg-[#1B2A49] !text-[#E9ECEF] !border-[#1B2A49]"
-                    : ""
-                }`}
-              >
-                <span>{tab.label}</span>
-                <span className="ml-1.5 opacity-70 text-[11px]">({count})</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Series Description Callout Above Gallery */}
-        {currentSeriesDescription && (
-          <div className="mt-4 p-3.5 bg-white/50 border-l-2 border-[#1B2A49] rounded-sm max-w-2xl text-left">
-            <span className="font-heading text-xs font-bold uppercase tracking-wider text-[#1B2A49] block mb-0.5">
-              {activeCategory} Series
-            </span>
-            <p className="font-body text-sm text-[#38435C] italic m-0">
-              {currentSeriesDescription}
-            </p>
-          </div>
-        )}
       </header>
 
       {/* Artworks Grid */}
@@ -163,13 +103,12 @@ export default function WorksGallery() {
         aria-label="Paintings Catalogue"
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 items-start"
       >
-        {filteredArtworks.map((artwork, idx) => (
+        {worksArtworksData.map((artwork, idx) => (
           <WorksCard
             key={artwork.id}
             artwork={artwork}
             priority={idx < 3}
             onOpenLightbox={handleOpenLightbox}
-            onInquire={handleOpenEnquiry}
           />
         ))}
       </section>
@@ -179,8 +118,8 @@ export default function WorksGallery() {
         artwork={selectedArtwork}
         triggerElement={lightboxTrigger}
         onClose={() => setSelectedArtwork(null)}
-        onPrev={filteredArtworks.length > 1 ? handlePrevLightbox : undefined}
-        onNext={filteredArtworks.length > 1 ? handleNextLightbox : undefined}
+        onPrev={worksArtworksData.length > 1 ? handlePrevLightbox : undefined}
+        onNext={worksArtworksData.length > 1 ? handleNextLightbox : undefined}
         onInquire={(art) => {
           setSelectedArtwork(null);
           handleOpenEnquiry(art, lightboxTrigger);
@@ -197,4 +136,3 @@ export default function WorksGallery() {
     </div>
   );
 }
-

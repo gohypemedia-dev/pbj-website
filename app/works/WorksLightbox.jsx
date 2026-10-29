@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight, Mail } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function WorksLightbox({
   artwork,
@@ -112,10 +112,9 @@ export default function WorksLightbox({
               <button
                 type="button"
                 onClick={() => onInquire(artwork)}
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 sm:px-4 sm:py-2 bg-[#E9ECEF] text-[#1B2A49] font-heading text-xs font-semibold uppercase tracking-wider rounded-sm hover:bg-white transition-colors"
+                className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-[#E9ECEF] text-[#1B2A49] font-heading text-xs font-semibold uppercase tracking-wider rounded-sm hover:bg-white transition-colors"
                 title={`Enquire about ${artwork.title}`}
               >
-                <Mail size={13} />
                 <span className="hidden sm:inline">Enquire About This Work</span>
                 <span className="sm:hidden">Enquire</span>
               </button>

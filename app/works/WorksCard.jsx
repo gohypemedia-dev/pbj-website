@@ -2,13 +2,12 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { Maximize2, Mail } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 
 export default function WorksCard({
   artwork,
   priority = false,
-  onOpenLightbox,
-  onInquire
+  onOpenLightbox
 }) {
   const triggerRef = useRef(null);
 
@@ -41,41 +40,23 @@ export default function WorksCard({
           />
         </button>
 
-        {/* Action Controls Bar Overlay on Frame */}
-        <div className="absolute top-2.5 right-2.5 flex items-center space-x-1.5 opacity-90 sm:opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
-          {onInquire && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onInquire(artwork);
-              }}
-              className="p-1.5 bg-[#E9ECEF]/95 hover:bg-white text-[#1B2A49] rounded-sm shadow-sm transition-colors"
-              title={`Enquire about ${artwork.title}`}
-              aria-label={`Enquire about ${artwork.title}`}
-            >
-              <Mail size={13} />
-            </button>
-          )}
-
-          {onOpenLightbox && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleOpen();
-              }}
-              className="p-1.5 bg-[#E9ECEF]/95 hover:bg-white text-[#1B2A49] rounded-sm shadow-sm text-xs font-heading tracking-wider flex items-center space-x-1 transition-colors"
-              title={`Enlarge ${artwork.title}`}
-              aria-label={`Enlarge image for ${artwork.title}`}
-            >
-              <Maximize2 size={13} />
-              <span className="sr-only sm:not-sr-only text-[11px] uppercase">Enlarge</span>
-            </button>
-          )}
-        </div>
+        {/* Quick Zoom Trigger Button Overlay */}
+        {onOpenLightbox && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleOpen();
+            }}
+            className="absolute top-2.5 right-2.5 p-1.5 bg-[#E9ECEF]/95 hover:bg-white text-[#1B2A49] rounded-sm shadow-sm text-xs font-heading tracking-wider flex items-center space-x-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity"
+            title={`Enlarge ${artwork.title}`}
+            aria-label={`Enlarge image for ${artwork.title}`}
+          >
+            <Maximize2 size={13} />
+            <span className="sr-only sm:not-sr-only text-[11px] uppercase">Enlarge</span>
+          </button>
+        )}
       </div>
 
       {/* Artwork Metadata & Caption */}
