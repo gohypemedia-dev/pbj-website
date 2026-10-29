@@ -1,0 +1,113 @@
+Implement this directly in my existing project. Update only the /works page and its artwork data/assets. Do not stop at suggestions or a plan.
+
+ASSETS
+I have provided the extracted PBJ artworks package. Copy its public/artworks/pbj folder into the existing project's public/artworks/pbj folder. Use the 22 real JPEG files and artworks.json; do not generate or substitute images. If the package is unavailable, ask me to attach it instead of using placeholders. Image paths below are root-relative website paths, not currently hosted URLs. Keep the original extracted bytes; do not upscale, recolour, crop, or rotate paintings.
+
+IMPLEMENTATION
+Inspect the existing project and reuse its framework, components, styling and conventions. Use JS/JSX for new code. Preserve the header, footer, fonts, colours and existing gallery design. Replace the current seven gallery records with these 22 records in the supplied document order. Avoid duplicates. Use a single data source for cards, filters and the Enlarge lightbox. Do not change unrelated pages or delete shared assets.
+
+Display the full artwork with its actual image aspect ratio (width:100%; height:auto; or object-fit:contain when constrained). No object-cover or clipped hover zoom. Keep 3 desktop, 2 tablet and 1 mobile columns with comfortable spacing. Show title, year when valid, medium, dimensions when supplied, and artist. Preserve all source captions in the data. Add meaningful alt text, image dimensions and lazy loading below the fold. Retain working Enlarge/lightbox behaviour; show the same full image and metadata there, with accessible close button, Escape handling, focus management and mobile fitting.
+
+CONTENT
+Keep the heading Selected Works.
+Introduction: Joshi’s painting practice includes recurring bodies of work that explore abstraction, nature, urban change and the relationship between memory and consciousness.
+Supporting headline: Original abstract paintings in oil and acrylic, exhibited from Venice to Las Vegas.
+CTAs from document: View Paintings / Enquire About a Work. View Paintings should scroll to the gallery. Connect enquiry to the existing enquiry/contact flow and include artwork title when supported.
+
+SERIES DESCRIPTIONS (use verbatim; do not invent individual artwork essays)
+Mindscape — Abstract works exploring inner experience and states of consciousness.
+Nature — Works responding to the natural world and its changing forms.
+Abstraction — Paintings centred on colour, gesture and non-representational form.
+Subtle Change / Subtle Changes — Works concerned with environmental transformation and its effects on human life.
+Urban Complex — Work engaging with the contradictions and transformations of urban existence.
+River Returns — Works drawing on the river as a recurring subject and metaphor.
+Artificial Intelligence — Works exploring the theme of AI through painting.
+
+FILTERS
+Use All Works and populated, explicitly identified series from the supplied data: Abstraction, Artificial Intelligence, River Returns, Mindscape. Keep unassigned works visible in All Works. Retain the other documented series descriptions in data, but do not invent artwork assignments or show empty filter tabs. Show a selected series description above its results.
+
+DATA ACCURACY
+The source year for PBJ Abstraction 206 is literally “20013”. Retain this in originalCaption, leave the public year empty, and report it for confirmation; do not silently change it to 2013.
+Artificial Intelligence 9 (2018) and Artificial Intelligence 9 (2019) are separate artworks with distinct images, sizes and IDs.
+Units are missing for Artificial Intelligence 9 (2018) and Artificial Intelligence 10 (2019). Do not assume inches: show 36 × 36 and 72 × 36 without a unit, retaining an internal needs-confirmation note. Preserve 72 × 36 × 2 in for the 2019 AI 9 exactly; do not interpret the third number without confirmation.
+PBJ Abstraction 313 and Mindscape 7 specify only Acrylic; do not add a support material. River Returns 42 specifies Watercolour, without a support material. Untitled mixed media has no year or size; omit those missing fields gracefully.
+Dimension order is not labelled height/width in the source; preserve order and use actual image pixel dimensions for layout.
+Do not add prices, availability, provenance, dimensions, years, categories or individual descriptions not supplied.
+
+SEO CONTEXT FROM DOCUMENT
+Art discovery: Indian contemporary artist; Indian abstract artist; contemporary abstract painter India; Mumbai-based artist.
+Buying art: Prakash Bal Joshi paintings; original abstract paintings India; buy original paintings by Prakash Bal Joshi; contemporary Indian art for collectors.
+Artistic themes: abstract art on artificial intelligence; consciousness in contemporary art; climate change art India; river-inspired paintings; Saraswati River art.
+Use these naturally where appropriate; do not show keyword lists or stuff keywords into the page.
+
+ARTWORK DATA
+Read the attached artworks.json as the exact image-to-caption mapping. The complete catalogue is also below:
+
+1. PBJ Abstraction 316 | Year: 2026 | Oil on canvas | Size: 36 × 36 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-316-2026.jpg
+
+2. PBJ Abstraction 315 | Year: 2026 | Acrylic on canvas | Size: 30 × 30 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-315-2026.jpg
+
+3. PBJ Abstraction 307 | Year: 2024 | Acrylic on canvas | Size: 36 × 48 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-307-2024.jpg
+
+4. Artificial Intelligence 9 | Year: 2018 | Acrylic on canvas | Size: 36 × 36 (unit not stated) | Artist: Prakash Bal Joshi | Series: Artificial Intelligence
+Image: /artworks/pbj/artificial-intelligence-9-2018.jpg
+
+5. PBJ Abstraction 313 | Year: 2024 | Acrylic | Size: 24 × 30 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-313-2024.jpg
+
+6. PBJ Abstraction 314 | Year: 2024 | Acrylic on canvas | Size: 24 × 30 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-314-2024.jpg
+
+7. PBJ Abstraction 308 | Year: 2024 | Acrylic on canvas | Size: 36 × 48 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-308-2024.jpg
+
+8. Artificial Intelligence 10 | Year: 2019 | Acrylic on canvas | Size: 72 × 36 (unit not stated) | Artist: Prakash Bal Joshi | Series: Artificial Intelligence
+Image: /artworks/pbj/artificial-intelligence-10-2019.jpg
+
+9. River Returns 75 | Year: 2021 | Acrylic on archival paper | Size: 20 × 13 in | Artist: Prakash Bal Joshi | Series: River Returns
+Image: /artworks/pbj/river-returns-75-2021.jpg
+
+10. River Returns 42 | Year: 2021 | Watercolour | Size: 30 × 22 in | Artist: Prakash Bal Joshi | Series: River Returns
+Image: /artworks/pbj/river-returns-42-2021.jpg
+
+11. PBJ Abstraction 305 | Year: 2024 | Acrylic on canvas | Size: 36 × 36 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-305-2024.jpg
+
+12. Mindscape 7 | Year: 2016 | Acrylic | Size: 36 × 48 in | Artist: Prakash Bal Joshi | Series: Mindscape
+Image: /artworks/pbj/mindscape-7-2016.jpg
+
+13. Dream of Death | Year: 2008 | Acrylic on canvas | Size: 30 × 24 in | Artist: Prakash Bal Joshi | Series: unassigned
+Image: /artworks/pbj/dream-of-death-2008.jpg
+
+14. Shadow of a City | Year: 2010 | Oil on paper | Size: 15 × 11 in | Artist: Prakash Bal Joshi | Series: unassigned
+Image: /artworks/pbj/shadow-of-a-city-2010.jpg
+
+15. PBJ Abstraction 191 | Year: 2011 | Acrylic on canvas | Size: 48 × 36 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-191-2011.jpg
+
+16. PBJ Abstraction 206 | Year: not confirmed / not supplied | Oil on canvas | Size: 36 × 48 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-206.jpg
+
+17. Untitled | Year: not confirmed / not supplied | Mixed media | Size: not supplied | Artist: Prakash Bal Joshi | Series: unassigned
+Image: /artworks/pbj/untitled-mixed-media.jpg
+
+18. Supernatural | Year: 2009 | Acrylic on canvas | Size: 30 × 24 in | Artist: Prakash Bal Joshi | Series: unassigned
+Image: /artworks/pbj/supernatural-2009.jpg
+
+19. PBJ Abstraction 235 | Year: 2018 | Acrylic on canvas | Size: 30 × 30 in | Artist: Prakash Bal Joshi | Series: Abstraction
+Image: /artworks/pbj/pbj-abstraction-235-2018.jpg
+
+20. Artificial Intelligence 9 | Year: 2019 | Acrylic on canvas | Size: 72 × 36 × 2 in | Artist: Prakash Bal Joshi | Series: Artificial Intelligence
+Image: /artworks/pbj/artificial-intelligence-9-2019.jpg
+
+21. Untitled | Year: 2013 | Acrylic on canvas | Size: 24 × 16 in | Artist: Prakash Bal Joshi | Series: unassigned
+Image: /artworks/pbj/untitled-2013.jpg
+
+22. Untitled | Year: 2012 | Acrylic on canvas | Size: 24 × 24 in | Artist: Prakash Bal Joshi | Series: unassigned
+Image: /artworks/pbj/untitled-2012.jpg
+
+VALIDATION
+Verify all 22 images load, each matches its supplied caption and manifest, filters and Enlarge work, and there is no clipping or horizontal overflow at mobile/tablet/desktop sizes. Run the project's build and fix errors caused by this update. Report modified files, checks performed and unresolved source metadata. Do not deploy without my request.
