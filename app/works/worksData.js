@@ -1,5 +1,5 @@
 // Dedicated Works Dataset for /works
-// 22 original paintings by Prakash Bal Joshi in catalogue order
+// 21 original paintings by Prakash Bal Joshi in catalogue order (PBJ Abstraction 206 removed)
 // Preserves originalCaption and metadata internally without displaying editorial notes.
 
 export const WORKS_SERIES_DESCRIPTIONS = {
@@ -219,20 +219,6 @@ export const worksArtworksData = [
     width: 1379,
     height: 989,
     originalCaption: 'pbjabstraction 191 48"x36" acrylic on canvas Prakash Bal Joshi 2011'
-  },
-  {
-    id: "pbj-abstraction-206",
-    title: "PBJ Abstraction 206",
-    artist: "Prakash Bal Joshi",
-    medium: "Oil on canvas",
-    dimensions: "36 × 48 in",
-    year: null,
-    internalYearNotes: "Source states 20013; needs confirmation. Omitted from public display.",
-    series: "Abstraction",
-    image: "/artworks/pbj/pbj-abstraction-206.jpg",
-    width: 1377,
-    height: 1945,
-    originalCaption: 'pbjabstaction 206 36"x48" oil on canvas Prakash Bal Joshi 20013'
   },
   {
     id: "untitled-mixed-media",
