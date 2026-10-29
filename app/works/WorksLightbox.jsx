@@ -86,23 +86,24 @@ export default function WorksLightbox({
       role="dialog"
       aria-modal="true"
       aria-label={`Enlarged view: ${artwork.title}`}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#1B2A49]/90 backdrop-blur-md p-3 sm:p-6 lg:p-8 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#E9ECEF] p-2 sm:p-4 lg:p-6 animate-in fade-in duration-200"
       onClick={onClose}
     >
-      {/* Lightbox Shell */}
+      {/* Lightbox Shell: Stable container sizing across viewport */}
       <div
-        className="relative max-w-6xl w-full max-h-[96vh] flex flex-col justify-between"
+        className="relative w-full max-w-6xl h-full max-h-[100dvh] sm:max-h-[96dvh] flex flex-col justify-between overflow-hidden bg-[#E9ECEF]"
+        style={{ maxHeight: "calc(100dvh - 16px)" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Top Header Bar */}
-        <div className="w-full flex items-center justify-between text-[#E9ECEF] pb-3 border-b border-[#E9ECEF]/10">
-          <div className="text-left pr-4">
+        {/* 1. Header & Controls Area */}
+        <header className="w-full shrink-0 flex items-center justify-between text-[#1B2A49] pb-2 sm:pb-3 border-b border-[#1B2A49]/10 px-1 sm:px-2">
+          <div className="text-left pr-3 min-w-0">
             {artwork.series && (
-              <span className="text-[11px] sm:text-xs uppercase tracking-widest text-[#E9ECEF]/70 font-heading block">
+              <span className="text-[11px] sm:text-xs uppercase tracking-widest text-[#38435C]/80 font-heading block truncate">
                 {artwork.series}
               </span>
             )}
-            <h3 className="font-heading text-lg sm:text-2xl font-bold text-[#E9ECEF] leading-tight">
+            <h3 className="font-heading text-base sm:text-xl lg:text-2xl font-bold text-[#1B2A49] leading-tight truncate">
               {artwork.title}
             </h3>
           </div>
@@ -112,7 +113,7 @@ export default function WorksLightbox({
               <button
                 type="button"
                 onClick={() => onInquire(artwork)}
-                className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-[#E9ECEF] text-[#1B2A49] font-heading text-xs font-semibold uppercase tracking-wider rounded-sm hover:bg-white transition-colors"
+                className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 border border-[#1B2A49]/25 bg-white/80 hover:bg-white text-[#1B2A49] font-heading text-xs font-semibold uppercase tracking-wider rounded-sm shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-[#1B2A49] transition-all cursor-pointer"
                 title={`Enquire about ${artwork.title}`}
               >
                 <span className="hidden sm:inline">Enquire About This Work</span>
@@ -124,71 +125,82 @@ export default function WorksLightbox({
               ref={closeButtonRef}
               type="button"
               onClick={onClose}
-              className="p-2 sm:p-2.5 rounded-full bg-[#E9ECEF]/10 text-[#E9ECEF] hover:bg-[#E9ECEF]/20 focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-colors"
+              className="p-1.5 sm:p-2.5 rounded-full bg-white/80 hover:bg-white text-[#1B2A49] border border-[#1B2A49]/15 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1B2A49] transition-colors cursor-pointer"
               aria-label="Close enlarged view"
             >
               <X size={20} className="sm:w-[22px] sm:h-[22px]" />
             </button>
           </div>
-        </div>
+        </header>
 
-        {/* Central Presentation: Full Painting without Cropping or Distortion */}
-        <div className="relative w-full h-[60vh] sm:h-[68vh] lg:h-[72vh] flex items-center justify-center my-auto py-2">
-          {/* Previous Arrow */}
-          {onPrev && (
-            <button
-              type="button"
-              onClick={onPrev}
-              className="absolute left-1 sm:left-3 z-10 p-2.5 sm:p-3 rounded-full bg-[#1B2A49]/70 text-[#E9ECEF] hover:bg-[#1B2A49] focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-all shadow-lg"
-              aria-label="Previous artwork"
-            >
-              <ChevronLeft size={22} className="sm:w-6 sm:h-6" />
-            </button>
-          )}
-
-          {/* Painting Image - Uncropped Natural Aspect Ratio */}
-          <div className="relative w-full h-full flex items-center justify-center">
-            <Image
-              src={artwork.image}
-              alt={`${artwork.title} by ${artwork.artist}${artwork.year ? ` (${artwork.year})` : ""}`}
-              width={artwork.width}
-              height={artwork.height}
-              className="max-h-[58vh] sm:max-h-[66vh] lg:max-h-[70vh] w-auto max-w-full object-contain drop-shadow-2xl"
-              priority
-              sizes="(max-width: 1280px) 100vw, 1200px"
-            />
+        {/* 2. Central Presentation: Stable Stage with Reserved Anchor Controls */}
+        <div className="flex-1 min-h-0 w-full flex items-center justify-between relative py-2 sm:py-3">
+          {/* Previous Arrow - Stable Reserved Side Anchor */}
+          <div className="shrink-0 z-20 flex items-center justify-center w-10 sm:w-14 lg:w-16">
+            {onPrev ? (
+              <button
+                type="button"
+                onClick={onPrev}
+                className="p-2 sm:p-3.5 rounded-full bg-white/80 hover:bg-white text-[#1B2A49] border border-[#1B2A49]/15 focus:outline-none focus:ring-2 focus:ring-[#1B2A49] transition-all shadow-sm sm:shadow-md active:scale-95 cursor-pointer"
+                aria-label="Previous artwork"
+              >
+                <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
+              </button>
+            ) : (
+              <div className="w-10 sm:w-14 lg:w-16" aria-hidden="true" />
+            )}
           </div>
 
-          {/* Next Arrow */}
-          {onNext && (
-            <button
-              type="button"
-              onClick={onNext}
-              className="absolute right-1 sm:right-3 z-10 p-2.5 sm:p-3 rounded-full bg-[#1B2A49]/70 text-[#E9ECEF] hover:bg-[#1B2A49] focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-all shadow-lg"
-              aria-label="Next artwork"
-            >
-              <ChevronRight size={22} className="sm:w-6 sm:h-6" />
-            </button>
-          )}
-        </div>
-
-        {/* Bottom Metadata Bar */}
-        <div className="w-full pt-3 border-t border-[#E9ECEF]/10 flex flex-col sm:flex-row items-center justify-between text-[#E9ECEF]/80 text-xs sm:text-sm gap-2">
-          <div className="text-center sm:text-left">
-            <span className="font-heading uppercase tracking-wider text-[11px] sm:text-xs text-[#E9ECEF]/70 mr-2">
-              Artist: {artwork.artist}
-            </span>
-            <span className="font-body italic text-[#E9ECEF]/90">
-              {[artwork.medium, artwork.dimensions, artwork.year].filter(Boolean).join(" · ")}
-            </span>
+          {/* Standardised Artwork Stage Area: Stable Width & Height for Every Artwork */}
+          <div className="flex-1 min-h-0 h-full w-full relative flex items-center justify-center mx-1 sm:mx-2">
+            <div className="relative w-full h-full max-w-5xl flex items-center justify-center">
+              <Image
+                key={artwork.id}
+                src={artwork.image}
+                alt={`${artwork.title} by ${artwork.artist}${artwork.year ? ` (${artwork.year})` : ""}`}
+                fill
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 80vw, 1200px"
+                className="object-contain object-center drop-shadow-2xl select-none"
+                priority
+              />
+            </div>
           </div>
 
-          <p className="text-[11px] text-[#E9ECEF]/50 hidden sm:block">
-            Use <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-[10px]">←</kbd> <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-[10px]">→</kbd> to navigate, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-[10px]">Esc</kbd> to close
-          </p>
+          {/* Next Arrow - Stable Reserved Side Anchor */}
+          <div className="shrink-0 z-20 flex items-center justify-center w-10 sm:w-14 lg:w-16">
+            {onNext ? (
+              <button
+                type="button"
+                onClick={onNext}
+                className="p-2 sm:p-3.5 rounded-full bg-white/80 hover:bg-white text-[#1B2A49] border border-[#1B2A49]/15 focus:outline-none focus:ring-2 focus:ring-[#1B2A49] transition-all shadow-sm sm:shadow-md active:scale-95 cursor-pointer"
+                aria-label="Next artwork"
+              >
+                <ChevronRight size={20} className="sm:w-6 sm:h-6" />
+              </button>
+            ) : (
+              <div className="w-10 sm:w-14 lg:w-16" aria-hidden="true" />
+            )}
+          </div>
         </div>
+
+        {/* 3. Separate Artwork Caption Area */}
+        <footer className="w-full shrink-0 pt-2 sm:pt-3 border-t border-[#1B2A49]/10 px-1 sm:px-2 max-h-[22vh] sm:max-h-[16vh] overflow-y-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[#38435C] text-xs sm:text-sm gap-1.5 sm:gap-2">
+            <div className="text-center sm:text-left leading-relaxed">
+              <span className="font-heading uppercase tracking-wider text-[11px] sm:text-xs text-[#1B2A49] font-medium mr-2">
+                Artist: {artwork.artist}
+              </span>
+              <span className="font-body italic text-[#38435C]">
+                {[artwork.medium, artwork.dimensions, artwork.year].filter(Boolean).join(" · ")}
+              </span>
+            </div>
+
+            <p className="text-[11px] text-[#38435C]/60 hidden lg:block shrink-0">
+              Use <kbd className="px-1.5 py-0.5 bg-black/5 border border-[#1B2A49]/10 rounded text-[10px] text-[#1B2A49]">←</kbd> <kbd className="px-1.5 py-0.5 bg-black/5 border border-[#1B2A49]/10 rounded text-[10px] text-[#1B2A49]">→</kbd> to navigate, <kbd className="px-1.5 py-0.5 bg-black/5 border border-[#1B2A49]/10 rounded text-[10px] text-[#1B2A49]">Esc</kbd> to close
+            </p>
+          </div>
+        </footer>
       </div>
     </div>
   );
 }
-
