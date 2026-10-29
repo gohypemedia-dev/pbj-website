@@ -2,6 +2,25 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  async redirects() {
+    return [
+      {
+        source: "/writings",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/events",
+        destination: "/media#events",
+        permanent: true,
+      },
+      {
+        source: "/exhibitions",
+        destination: "/media#events",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     // Clear the Navigation Inspector's saved pause mode in local previews.
     if (process.env.NODE_ENV !== "development") return [];

@@ -65,8 +65,6 @@ export default function Header() {
     { href: "/", label: "Home", description: "Studio & Selected Overview" },
     { href: "/about", label: "About", description: "Biography & Philosophy" },
     { href: "/works", label: "Works", description: "Selected Paintings & Series" },
-    { href: "/events", label: "Events", description: "Exhibitions & Presentations" },
-    { href: "/writings", label: "Writings", description: "Books, Short Stories & Essays" },
     { href: "/media", label: "Media", description: "Press, Reviews & Features" },
     { href: "/contact", label: "Contacts", description: "Studio Visits & Enquiries" }
   ];
@@ -75,20 +73,22 @@ export default function Header() {
     if (href === "/") {
       return pathname === "/";
     }
-    if (href === "/events") {
-      return (
-        pathname === "/events" ||
-        pathname.startsWith("/events/") ||
-        pathname === "/exhibitions" ||
-        pathname.startsWith("/exhibitions/")
-      );
-    }
     if (href === "/contact") {
       return (
         pathname === "/contact" ||
         pathname.startsWith("/contact/") ||
         pathname === "/contacts" ||
         pathname.startsWith("/contacts/")
+      );
+    }
+    if (href === "/media") {
+      return (
+        pathname === "/media" ||
+        pathname.startsWith("/media/") ||
+        pathname === "/events" ||
+        pathname.startsWith("/events/") ||
+        pathname === "/exhibitions" ||
+        pathname.startsWith("/exhibitions/")
       );
     }
     return pathname === href || pathname.startsWith(href + "/");
