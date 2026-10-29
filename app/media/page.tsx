@@ -90,12 +90,6 @@ export default function MediaPage() {
           >
             <span>Events &amp; Exhibitions</span>
           </a>
-          <a
-            href="#media-resources"
-            className="inline-flex items-center px-4 py-2 border border-[#1B2A49]/20 bg-white/60 hover:bg-white text-[#1B2A49] font-heading text-xs font-semibold uppercase tracking-wider rounded-sm transition-colors shadow-xs"
-          >
-            <span>Press Kit &amp; Inquiries</span>
-          </a>
         </div>
       </header>
 
