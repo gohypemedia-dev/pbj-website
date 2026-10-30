@@ -34,12 +34,16 @@ export default function HomePage() {
   };
 
   return (
-    <div className="w-full bg-[#E9ECEF] text-[#38435C]">
-      {/* Parallax Hero with 5 Works Catalogue Artworks */}
-      <ArtistHero onOpenArtwork={setSelectedArtwork} />
+    <div className="w-full bg-[#E9ECEF] text-[#38435C] relative">
+      {/* Sticky Parallax Hero Section */}
+      <div className="hero-sticky-container">
+        <ArtistHero onOpenArtwork={setSelectedArtwork} />
+      </div>
 
-      {/* Editorial Story, Rotating Themes, Selected Works, & Thematic Archive */}
-      <HomeScrollSections onOpenArtwork={setSelectedArtwork} />
+      {/* Next Section that scrolls on top with parallax curtain reveal */}
+      <div className="next-section-overlay">
+        <HomeScrollSections onOpenArtwork={setSelectedArtwork} />
+      </div>
 
       {/* Interactive Lightbox Modal */}
       <LightboxModal

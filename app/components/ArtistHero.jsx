@@ -5,95 +5,94 @@ import Image from "next/image";
 import { worksArtworksData } from "@/works/worksData";
 import { useIntroReady } from "./IntroProvider";
 
-// 5 curated flagship paintings for hero parallax (Outer left, Inner left, Centre wide, Inner right, Outer right)
-const heroWorks = [
-  worksArtworksData[0],  // PBJ Abstraction 316 (2026)
-  worksArtworksData[3],  // Artificial Intelligence 9 (2018)
-  worksArtworksData[8],  // River Returns 75 (2021) - centre wide panoramic
-  worksArtworksData[10], // PBJ Abstraction 305 (2024)
-  worksArtworksData[1],  // PBJ Abstraction 315 (2026)
-];
+// Flagship artwork for the edge-to-edge hero banner: Artificial Intelligence 10 (2019)
+const heroArtwork =
+  worksArtworksData.find((a) => a.id === "artificial-intelligence-10-2019") ||
+  worksArtworksData[7];
 
 export default function ArtistHero({ onOpenArtwork }) {
   const ready = useIntroReady();
-  const sectionRef = useRef(null);
-  const [imagesReady, setImagesReady] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const heroRef = useRef(null);
+  const parallaxLayerRef = useRef(null);
+  const veilRef = useRef(null);
 
   useEffect(() => {
     let active = true;
-    const reveal = () => { if (active) setImagesReady(true); };
-    // Decode before movement so large paintings don't pop into moving frames.
-    const timeout = setTimeout(() => { void document.fonts.ready.then(reveal); }, 1600);
-    const images = [...(sectionRef.current?.querySelectorAll("img") ?? [])];
-    void Promise.allSettled([
-      ...images.map((image) => image.decode()),
-      document.fonts.ready,
-    ]).then(reveal);
-    return () => { active = false; clearTimeout(timeout); };
+    const timer = setTimeout(() => {
+      if (active) setImageLoaded(true);
+    }, 600);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || !ready || !imagesReady) return;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
     let frame = 0;
-    const reset = () => {
-      section.style.removeProperty("--hero-images-progress");
-    };
-    const ease = (value) => {
-      const t = Math.max(0, Math.min(1, value));
-      return t * t * (3 - 2 * t);
-    };
-    const update = () => {
+    const updateParallax = () => {
       frame = 0;
-      if (reduced.matches) {
-        reset();
-        return;
+      const scrollY = window.scrollY;
+      if (parallaxLayerRef.current) {
+        // Subtle downward parallax shift as the user scrolls
+        const translateY = Math.min(scrollY * 0.22, 140);
+        parallaxLayerRef.current.style.transform = `translate3d(0, ${translateY}px, 0)`;
       }
-      const rect = section.getBoundingClientRect();
-      const start = section.offsetTop - (document.querySelector("header")?.offsetHeight ?? 0);
-      const progress = Math.max(0, Math.min(1, (window.scrollY - start) / rect.height));
-      const paintings = ease((progress - .2) / .8);
-      section.style.setProperty("--hero-images-progress", paintings.toFixed(4));
+      if (veilRef.current) {
+        // Veil gently darkens as next section slides over
+        const opacity = Math.min(Math.max(scrollY / 500, 0), 0.4);
+        veilRef.current.style.opacity = opacity.toFixed(3);
+      }
     };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(updateParallax);
+    };
+
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    reduced.addEventListener("change", schedule);
-    update();
+    updateParallax();
+
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      reduced.removeEventListener("change", schedule);
-      reset();
     };
-  }, [ready, imagesReady]);
+  }, []);
 
   return (
-    <section ref={sectionRef} className={`artist-hero ${ready && imagesReady ? "is-ready" : ""}`} aria-label="Prakash Bal Joshi">
-      <h1 className="sr-only">Prakash Bal Joshi</h1>
-      <p className="hero-kicker hero-rise">A life in colour. A world within.</p>
-      <div className="hero-paintings">
-        {heroWorks.map((artwork, index) => (
-          <button
-            key={artwork.id}
-            type="button"
-            onClick={() => onOpenArtwork ? onOpenArtwork(artwork) : null}
-            className={`hero-painting hero-painting-${index} hero-rise cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B2A49]`}
-            aria-label={`View ${artwork.title}${artwork.year ? ` (${artwork.year})` : ""} by ${artwork.artist}`}
-          >
+    <section
+      ref={heroRef}
+      className={`artist-hero ${ready && imageLoaded ? "is-ready" : ""}`}
+      aria-label="Prakash Bal Joshi - Artificial Intelligence 10"
+    >
+      <h1 className="sr-only">
+        Prakash Bal Joshi &ndash; Artificial Intelligence 10 (2019)
+      </h1>
+
+      <div className="hero-banner-frame">
+        <button
+          type="button"
+          onClick={() => (onOpenArtwork ? onOpenArtwork(heroArtwork) : null)}
+          className="hero-banner-button"
+          aria-label={`View ${heroArtwork.title}${heroArtwork.year ? ` (${heroArtwork.year})` : ""} by ${heroArtwork.artist}`}
+        >
+          <div ref={parallaxLayerRef} className="hero-parallax-layer">
             <Image
-              src={artwork.image}
-              alt={`${artwork.title} (${artwork.year || ""}) - ${artwork.medium} by ${artwork.artist}`}
+              src={heroArtwork.image}
+              alt={`${heroArtwork.title}${heroArtwork.year ? ` (${heroArtwork.year})` : ""} - ${heroArtwork.medium} by ${heroArtwork.artist}`}
               fill
               priority
-              sizes="(max-width: 600px) 70vw, 50vw"
+              quality={95}
+              sizes="100vw"
+              className="hero-banner-image"
+              onLoad={() => setImageLoaded(true)}
             />
-          </button>
-        ))}
+          </div>
+          <div ref={veilRef} className="hero-parallax-veil" aria-hidden="true" />
+        </button>
       </div>
-      <noscript><style>{".artist-hero .hero-rise { animation: none !important; opacity: 1 !important; transform: none !important; }"}</style></noscript>
     </section>
   );
 }
