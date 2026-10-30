@@ -3,34 +3,32 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Artwork } from "@/data/artworks";
 import { X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
-interface LightboxModalProps {
-  artwork: Artwork | null;
-  onClose: () => void;
-  onPrev?: () => void;
-  onNext?: () => void;
-  onInquire?: (artwork: Artwork) => void;
-}
-
+/**
+ * @param {object} props
+ * @param {any} [props.artwork]
+ * @param {() => void} props.onClose
+ * @param {(() => void)} [props.onPrev]
+ * @param {(() => void)} [props.onNext]
+ * @param {((artwork: any) => void)} [props.onInquire]
+ */
 export default function LightboxModal({
   artwork,
   onClose,
   onPrev,
   onNext,
   onInquire
-}: LightboxModalProps) {
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
+}) {
+  const closeButtonRef = useRef(null);
 
   // Focus restoration & keyboard navigation
   useEffect(() => {
     if (!artwork) return;
 
-    // Focus the close button when opened
     closeButtonRef.current?.focus();
 
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         onClose();
       } else if (e.key === "ArrowLeft" && onPrev) {
@@ -68,7 +66,7 @@ export default function LightboxModal({
         <div className="w-full flex items-center justify-between text-[#E9ECEF] pb-4">
           <div className="text-left">
             <span className="text-xs uppercase tracking-widest text-[#E9ECEF]/70 font-heading">
-              {artwork.series}
+              {artwork.series || "Original Artwork"}
             </span>
             <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#E9ECEF]">
               {artwork.title}
@@ -80,7 +78,7 @@ export default function LightboxModal({
               <button
                 type="button"
                 onClick={() => onInquire(artwork)}
-                className="hidden sm:inline-flex items-center space-x-2 px-4 py-2 bg-[#E9ECEF] text-[#1B2A49] font-heading text-xs font-semibold uppercase tracking-wider rounded-sm hover:bg-[#E9ECEF]/90 transition-colors"
+                className="hidden sm:inline-flex items-center space-x-2 px-4 py-2 bg-[#E9ECEF] text-[#1B2A49] font-heading text-xs font-semibold uppercase tracking-wider rounded-sm hover:bg-[#E9ECEF]/90 transition-colors cursor-pointer"
               >
                 <span>Acquisition Enquiry</span>
                 <ArrowRight size={13} />
@@ -91,7 +89,7 @@ export default function LightboxModal({
               ref={closeButtonRef}
               type="button"
               onClick={onClose}
-              className="p-2.5 rounded-full bg-[#E9ECEF]/10 text-[#E9ECEF] hover:bg-[#E9ECEF]/20 focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-colors"
+              className="p-2.5 rounded-full bg-[#E9ECEF]/10 text-[#E9ECEF] hover:bg-[#E9ECEF]/20 focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-colors cursor-pointer"
               aria-label="Close enlarged view"
             >
               <X size={22} />
@@ -106,7 +104,7 @@ export default function LightboxModal({
             <button
               type="button"
               onClick={onPrev}
-              className="absolute left-2 sm:left-4 z-10 p-3 rounded-full bg-[#1B2A49]/60 text-[#E9ECEF] hover:bg-[#1B2A49] focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-all"
+              className="absolute left-2 sm:left-4 z-10 p-3 rounded-full bg-[#1B2A49]/60 text-[#E9ECEF] hover:bg-[#1B2A49] focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-all cursor-pointer"
               aria-label="Previous artwork"
             >
               <ChevronLeft size={24} />
@@ -117,7 +115,7 @@ export default function LightboxModal({
           <div className="relative w-full h-full max-w-full max-h-full">
             <Image
               src={artwork.image}
-              alt={`${artwork.title} by Prakash Bal Joshi`}
+              alt={`${artwork.title} by ${artwork.artist || "Prakash Bal Joshi"}`}
               fill
               className="object-contain drop-shadow-2xl"
               priority
@@ -130,7 +128,7 @@ export default function LightboxModal({
             <button
               type="button"
               onClick={onNext}
-              className="absolute right-2 sm:right-4 z-10 p-3 rounded-full bg-[#1B2A49]/60 text-[#E9ECEF] hover:bg-[#1B2A49] focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-all"
+              className="absolute right-2 sm:right-4 z-10 p-3 rounded-full bg-[#1B2A49]/60 text-[#E9ECEF] hover:bg-[#1B2A49] focus:outline-none focus:ring-2 focus:ring-[#E9ECEF] transition-all cursor-pointer"
               aria-label="Next artwork"
             >
               <ChevronRight size={24} />
@@ -141,16 +139,16 @@ export default function LightboxModal({
         {/* Bottom Metadata & Links Bar */}
         <div className="w-full pt-4 flex flex-col sm:flex-row items-center justify-between text-[#E9ECEF]/80 text-xs sm:text-sm mt-2 gap-2">
           <p className="font-body italic text-center sm:text-left">
-            {artwork.medium} &middot; {artwork.dimensions} &middot; {artwork.year}
+            {[artwork.medium, artwork.dimensions, artwork.year].filter(Boolean).join(" · ")}
           </p>
 
           <div className="flex items-center space-x-4">
             <Link
-              href={`/works/${artwork.id}`}
+              href="/works"
               onClick={onClose}
               className="hover:text-white underline underline-offset-4 font-heading uppercase tracking-wider text-xs"
             >
-              Go to Full Detail Page &rarr;
+              Explore Full Collection in Works &rarr;
             </Link>
           </div>
         </div>

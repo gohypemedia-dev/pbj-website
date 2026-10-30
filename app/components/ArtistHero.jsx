@@ -1,16 +1,22 @@
 "use client";
 
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { artworksData } from "@/data/artworks";
+import { worksArtworksData } from "@/works/worksData";
 import { useIntroReady } from "./IntroProvider";
-import { useEffect, useRef, useState } from "react";
 
-const heroWorks = [artworksData[1], artworksData[4], artworksData[0], artworksData[5], artworksData[2]];
+// 5 curated flagship paintings for hero parallax (Outer left, Inner left, Centre wide, Inner right, Outer right)
+const heroWorks = [
+  worksArtworksData[0],  // PBJ Abstraction 316 (2026)
+  worksArtworksData[3],  // Artificial Intelligence 9 (2018)
+  worksArtworksData[8],  // River Returns 75 (2021) - centre wide panoramic
+  worksArtworksData[10], // PBJ Abstraction 305 (2024)
+  worksArtworksData[1],  // PBJ Abstraction 315 (2026)
+];
 
-export default function ArtistHero() {
+export default function ArtistHero({ onOpenArtwork }) {
   const ready = useIntroReady();
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
   const [imagesReady, setImagesReady] = useState(false);
 
   useEffect(() => {
@@ -34,7 +40,7 @@ export default function ArtistHero() {
     const reset = () => {
       section.style.removeProperty("--hero-images-progress");
     };
-    const ease = (value: number) => {
+    const ease = (value) => {
       const t = Math.max(0, Math.min(1, value));
       return t * t * (3 - 2 * t);
     };
@@ -70,9 +76,21 @@ export default function ArtistHero() {
       <p className="hero-kicker hero-rise">A life in colour. A world within.</p>
       <div className="hero-paintings">
         {heroWorks.map((artwork, index) => (
-          <Link href={`/works/${artwork.id}`} key={artwork.id} className={`hero-painting hero-painting-${index} hero-rise`} aria-label={`Explore ${artwork.title}`}>
-            <Image src={artwork.image} alt={artwork.title} fill priority sizes="(max-width: 600px) 70vw, 50vw" />
-          </Link>
+          <button
+            key={artwork.id}
+            type="button"
+            onClick={() => onOpenArtwork ? onOpenArtwork(artwork) : null}
+            className={`hero-painting hero-painting-${index} hero-rise cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B2A49]`}
+            aria-label={`View ${artwork.title}${artwork.year ? ` (${artwork.year})` : ""} by ${artwork.artist}`}
+          >
+            <Image
+              src={artwork.image}
+              alt={`${artwork.title} (${artwork.year || ""}) - ${artwork.medium} by ${artwork.artist}`}
+              fill
+              priority
+              sizes="(max-width: 600px) 70vw, 50vw"
+            />
+          </button>
         ))}
       </div>
       <noscript><style>{".artist-hero .hero-rise { animation: none !important; opacity: 1 !important; transform: none !important; }"}</style></noscript>
