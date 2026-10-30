@@ -34,16 +34,10 @@ export default function HomePage() {
   };
 
   return (
-    <div className="w-full bg-[#E9ECEF] text-[#38435C] relative">
-      {/* Sticky Parallax Hero Section */}
-      <div className="hero-sticky-container">
-        <ArtistHero />
-      </div>
+    <div className="w-full bg-[#E9ECEF] text-[#38435C]">
+      <ArtistHero />
 
-      {/* Next Section that scrolls on top with parallax curtain reveal */}
-      <div className="next-section-overlay">
-        <HomeScrollSections onOpenArtwork={setSelectedArtwork} />
-      </div>
+      <HomeScrollSections onOpenArtwork={setSelectedArtwork} />
 
       {/* Lightbox Modal */}
       <LightboxModal

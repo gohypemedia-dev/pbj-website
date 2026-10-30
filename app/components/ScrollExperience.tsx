@@ -3,8 +3,6 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ScrollExperience() {
   const pathname = usePathname();
@@ -15,11 +13,6 @@ export default function ScrollExperience() {
     const setup = () => {
       dispose();
       if (reduced.matches) return;
-
-      if (typeof window !== "undefined") {
-        gsap.registerPlugin(ScrollTrigger);
-      }
-
       const lenis = new Lenis({
         autoRaf: true,
         // A longer, gentle settle keeps the hero and scroll reveals in sync.
@@ -31,10 +24,6 @@ export default function ScrollExperience() {
         anchors: { offset: -120 },
         prevent: (node) => !!node.closest('[role="dialog"], [data-lenis-prevent]'),
       });
-
-      // Synchronize Lenis smooth scroll with GSAP ScrollTrigger
-      lenis.on("scroll", ScrollTrigger.update);
-
       const syncLock = () => {
         if (document.body.style.overflow === "hidden") lenis.stop();
         else lenis.start();
@@ -43,18 +32,11 @@ export default function ScrollExperience() {
       bodyObserver.observe(document.body, { attributes: true, attributeFilter: ["style"] });
       syncLock();
 
-      dispose = () => {
-        lenis.destroy();
-        bodyObserver.disconnect();
-        ScrollTrigger.refresh();
-      };
+      dispose = () => { lenis.destroy(); bodyObserver.disconnect(); };
     };
     setup();
     reduced.addEventListener("change", setup);
-    return () => {
-      dispose();
-      reduced.removeEventListener("change", setup);
-    };
+    return () => { dispose(); reduced.removeEventListener("change", setup); };
   }, [pathname]);
   return null;
 }

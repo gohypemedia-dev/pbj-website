@@ -2,11 +2,18 @@
 
 import Image from "next/image";
 import ThemePhrase from "./ThemePhrase";
+import ImageArchive from "./ImageArchive";
 import { imageArchive } from "@/data/imageArchive";
 import { useScrollSectionsMotion } from "./useScrollSectionsMotion";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { artistData } from "@/data/artist";
 import { artworksData, type Artwork } from "@/data/artworks";
+import { exhibitionsData } from "@/data/exhibitions";
+
+function RevealWords({ text }: { text: string }) {
+  return <span aria-label={text}><span aria-hidden="true">{text.split(" ").map((word, index) => <span key={index}><span style={{ whiteSpace: "nowrap" }}>{Array.from(word).map((letter, letterIndex) => <span key={letterIndex} data-about-letter>{letter}</span>)}</span>{" "}</span>)}</span></span>;
+}
 
 export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (artwork: Artwork) => void }) {
   useScrollSectionsMotion();
@@ -15,33 +22,18 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
       <section className="story-about" aria-labelledby="story-about-title">
         <h2 id="story-about-title" className="story-label">About the artist</h2>
         <div>
-          <p className="story-intro">
-            An artist, a writer.<br />A lifetime of looking closer.
-          </p>
-          <p>
-            Abstract paintings shaped by memory, nature, and the quiet movement of water.
-          </p>
-        </div>
-        <div>
-          <p>
-            Prakash Bal Joshi follows an intuitive practice in oil and acrylic. Each painting begins with a mark, and finds its own course.
-          </p>
+          <p className="story-intro"><RevealWords text="An artist, a writer." /><br /><RevealWords text="A lifetime of looking closer." /></p>
+          <p><RevealWords text="Abstract paintings shaped by memory, nature, and the quiet movement of water." /></p>
         </div>
       </section>
 
-      <section className="story-philosophy" aria-label="Artistic quote">
-        <div className="philosophy-inner" data-scroll-reveal>
-          <blockquote className="philosophy-quote">
-            &ldquo;Water carries human memory, ecological fragility, and the quiet rhythm of time. Each canvas begins without preconception—a mark that finds its own course.&rdquo;
-          </blockquote>
-          <p className="philosophy-byline">
-            {artistData.diacriticName}
-          </p>
+      <section className="story-themes" aria-labelledby="themes-title">
+        <h2 id="themes-title" className="sr-only">Rivers, memory, and life: themes in the artist’s work</h2>
+        <div className="theme-frame" aria-hidden="true">
+          <ThemePhrase />
         </div>
       </section>
 
-      {/* Selected Works and scrolling gallery section hidden per user request */}
-      {/*
       <section id="selected-works" className="scroll-gallery" aria-labelledby="scroll-gallery-title">
         <div className="gallery-title-layer"><h2 id="scroll-gallery-title" aria-label="Selected works"><span aria-hidden="true">Selected</span><div className="gallery-changing-title" aria-hidden="true">{["WORKS", "COLOUR", "STORIES"].map((word, index) => <b key={word} data-gallery-word className={index === 0 ? "is-active" : ""}>{word}</b>)}</div></h2></div>
         <div className="scroll-gallery-grid">
@@ -70,7 +62,34 @@ export default function HomeScrollSections({ onOpenArtwork }: { onOpenArtwork: (
       <div className="gallery-archive-footer">
         <Link href="/works" className="gallery-archive">Explore all works <ArrowUpRight size={20} /></Link>
       </div>
-      */}
+
+      <ImageArchive />
+
+      <section className="story-exhibitions" aria-labelledby="story-exhibitions-title">
+        <div className="exhibitions-heading" data-scroll-reveal>
+          <p className="story-label">Across places &amp; perspectives</p>
+          <h2 id="story-exhibitions-title">In good<br /><span>company.</span></h2>
+          <Link href="/exhibitions" className="story-link">Exhibition history <ArrowUpRight size={18} /></Link>
+        </div>
+        <div className="exhibitions-list">
+          {exhibitionsData.slice(0, 3).map((exhibition) => <article key={exhibition.id} data-scroll-reveal>
+            <span className="story-label">{exhibition.year} / {exhibition.type}</span>
+            <h3>{exhibition.title}</h3>
+            <p>{exhibition.venue}<br />{exhibition.city}, {exhibition.country}</p>
+            <p>{exhibition.description}</p>
+          </article>)}
+        </div>
+      </section>
+
+      <section className="story-contact" aria-labelledby="story-contact-title">
+        <p className="story-label" data-scroll-reveal>Acquisitions · Collaborations · Studio visits</p>
+        <h2 id="story-contact-title" data-scroll-reveal><span>Let’s</span> start<br />a conversation.</h2>
+        <div data-scroll-reveal>
+          <a href={`mailto:${artistData.contact.email}`} className="story-email">{artistData.contact.email}<ArrowUpRight /></a>
+          <p>Mumbai, India. Studio visits by appointment.</p>
+          <Link href="/contact" className="story-link">Contact the studio <ArrowUpRight size={18} /></Link>
+        </div>
+      </section>
     </div>
   );
 }
