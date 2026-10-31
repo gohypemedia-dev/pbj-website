@@ -71,11 +71,7 @@ export default function WorksGallery() {
           </ol>
         </nav>
 
-        {/* Compact Eyebrow & Heading */}
-        <span className="text-xs font-heading font-semibold uppercase tracking-[0.18em] text-[#1B2A49]/80 block mb-1 text-left">
-          SELECTED WORKS
-        </span>
-
+        {/* Heading */}
         <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B2A49] tracking-tight leading-[1.15] text-left">
           Works
         </h1>
