@@ -64,17 +64,12 @@ export default function FlyThrough({ onOpenArtwork }) {
       });
 
       tl.to(state, { z: TRAVEL, duration: 1, onUpdate: render }, 0)
-        // "Step inside." begins hidden at scroll=0, fades in after the person starts scrolling, then flies past
+        // "Step inside." is visible right in the starting, then scales up and fades out as user scrolls forward
         .fromTo(
           ".fly__intro",
-          { opacity: 0, scale: 0.8 },
-          { opacity: 1, scale: 1, duration: 0.12 },
-          0.06
-        )
-        .to(
-          ".fly__intro",
-          { opacity: 0, scale: 1.5, duration: 0.14 },
-          0.22
+          { opacity: 1, scale: 1 },
+          { opacity: 0, scale: 1.6, duration: 0.16 },
+          0.02
         )
         .fromTo(".fly__outro", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.16 }, 0.8)
         .fromTo(".fly__glow", { scale: 0.4, opacity: 0 }, { scale: 1.4, opacity: 1, duration: 1 }, 0);
@@ -126,15 +121,17 @@ export default function FlyThrough({ onOpenArtwork }) {
           </div>
         ))}
       </div>
-      <div className="fly__intro">
-        <p className="fly__big">
-          Step <em>inside.</em>
-        </p>
-      </div>
-      <div className="fly__outro">
-        <p className="fly__big">
-          Worlds drawn <em>in light.</em>
-        </p>
+      <div className="fly__ui" aria-hidden="true">
+        <div className="fly__intro">
+          <p className="fly__big">
+            Step <em>inside.</em>
+          </p>
+        </div>
+        <div className="fly__outro">
+          <p className="fly__big">
+            Worlds drawn <em>in light.</em>
+          </p>
+        </div>
       </div>
     </section>
   );

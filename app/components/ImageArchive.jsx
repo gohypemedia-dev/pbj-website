@@ -4,6 +4,8 @@ import React from "react";
 import Image from "next/image";
 import { worksArtworksData } from "@/works/worksData";
 
+const getWork = (id) => worksArtworksData.find((a) => a.id === id);
+
 export default function ImageArchive({ onOpenArtwork }) {
   const groups = [
     {
@@ -12,16 +14,17 @@ export default function ImageArchive({ onOpenArtwork }) {
       description: "Explorations of colour fields, spontaneous gesture, and non-representational form.",
       label: "Abstraction",
       items: [
-        worksArtworksData[0],  // PBJ Abstraction 316 (2026)
-        worksArtworksData[1],  // PBJ Abstraction 315 (2026)
-        worksArtworksData[2],  // PBJ Abstraction 307 (2024)
-        worksArtworksData[4],  // PBJ Abstraction 313 (2024)
-        worksArtworksData[5],  // PBJ Abstraction 314 (2024)
-        worksArtworksData[6],  // PBJ Abstraction 308 (2024)
-        worksArtworksData[10], // PBJ Abstraction 305 (2024)
-        worksArtworksData[14], // PBJ Abstraction 191 (2011)
-        worksArtworksData[17], // PBJ Abstraction 235 (2018)
-      ]
+        getWork("pbj-abstraction-316-2026"),
+        getWork("pbj-abstraction-315-2026"),
+        getWork("pbj-abstraction-307-2024"),
+        getWork("pbj-abstraction-313-2024"),
+        getWork("pbj-abstraction-314-2024"),
+        getWork("pbj-abstraction-308-2024"),
+        getWork("pbj-abstraction-305-2024"),
+        getWork("pbj-abstraction-191-2011"),
+        getWork("pbj-abstraction-206-2013"),
+        getWork("pbj-abstraction-235-2018"),
+      ].filter(Boolean)
     },
     {
       key: "thematic",
@@ -29,19 +32,19 @@ export default function ImageArchive({ onOpenArtwork }) {
       description: "Works examining the flow of rivers, urban complexities, inner mindscapes, and artificial intelligence.",
       label: "Thematic Work",
       items: [
-        worksArtworksData[8],  // River Returns 75 (2021)
-        worksArtworksData[3],  // Artificial Intelligence 9 (2018)
-        worksArtworksData[9],  // River Returns 42 (2021)
-        worksArtworksData[11], // Mindscape 7 (2016)
-        worksArtworksData[7],  // Artificial Intelligence 10 (2019)
-        worksArtworksData[18], // Artificial Intelligence 9 (2019)
-        worksArtworksData[13], // Shadow of a City (2010)
-        worksArtworksData[12], // Dream of Death (2008)
-        worksArtworksData[16], // Supernatural (2009)
-        worksArtworksData[15], // Untitled (Mixed media)
-        worksArtworksData[19], // Untitled (2013)
-        worksArtworksData[20], // Untitled (2012)
-      ]
+        getWork("river-returns-75-2021"),
+        getWork("artificial-intelligence-9-2018"),
+        getWork("river-returns-42-2021"),
+        getWork("mindscape-7-2016"),
+        getWork("artificial-intelligence-10-2019"),
+        getWork("artificial-intelligence-9-2019"),
+        getWork("shadow-of-a-city-2010"),
+        getWork("dream-of-death-2008"),
+        getWork("supernatural-2009"),
+        getWork("untitled-mixed-media"),
+        getWork("untitled-2013"),
+        getWork("untitled-2012"),
+      ].filter(Boolean)
     }
   ];
 
@@ -58,38 +61,40 @@ export default function ImageArchive({ onOpenArtwork }) {
           alt={`${item.title}${item.year ? ` (${item.year})` : ""} - ${item.medium} by ${item.artist}`}
           width={item.width}
           height={item.height}
-          sizes="(max-width: 767px) 42vw, 22vw"
-          className="w-full h-auto block"
+          loading="lazy"
+          sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="w-full h-auto block object-contain"
         />
       </button>
-      <figcaption className="mt-2 text-xs font-body text-[var(--text-body)]">
-        <span className="font-medium text-[var(--text-heading)]">{item.title}</span>
-        {item.year && <span className="opacity-70 ml-1.5">({item.year})</span>}
+      <figcaption className="archive-caption text-xs mt-2 text-[#38435C]">
+        <strong className="text-[#1B2A49]">{item.title}</strong>
+        {item.year && <span>, {item.year}</span>}
+        <span>. {item.medium}</span>
+        {item.dimensions && <span>, {item.dimensions}</span>}
       </figcaption>
     </figure>
   );
 
   return (
-    <section className="image-archive" aria-label="Curated artwork series and thematic archive">
+    <div className="space-y-12">
       {groups.map((group) => (
-        <div className="archive-group" key={group.key}>
-          <div className="archive-heading">
-            <h2>{group.title}</h2>
-            <p>{group.description}</p>
+        <section key={group.key} className="space-y-4">
+          <header>
+            <span className="eyebrow-label text-xs uppercase tracking-wider text-[#1B2A49] block mb-1">
+              {group.label}
+            </span>
+            <h3 className="font-heading text-2xl font-bold text-[#1B2A49]">
+              {group.title}
+            </h3>
+            <p className="font-serif italic text-sm text-[#38435C] mt-1 max-w-2xl">
+              {group.description}
+            </p>
+          </header>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+            {group.items.map(renderArtwork)}
           </div>
-          <div className="archive-grid">
-            {group.items.slice(0, 4).map(renderArtwork)}
-          </div>
-          <details className="archive-more">
-            <summary>
-              View the full series <span>({group.items.length} works)</span>
-            </summary>
-            <div className="archive-grid">
-              {group.items.slice(4).map(renderArtwork)}
-            </div>
-          </details>
-        </div>
+        </section>
       ))}
-    </section>
+    </div>
   );
 }

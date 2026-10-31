@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./site.css";
-import "lenis/dist/lenis.css";
 import localFont from "next/font/local";
 
 const iconicFont = localFont({

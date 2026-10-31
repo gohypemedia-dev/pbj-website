@@ -7,26 +7,6 @@ import { ArrowUpRight } from "lucide-react";
 import { artistData } from "@/data/artist";
 import FlyThrough from "./FlyThrough";
 
-function RevealWords({ text }) {
-  return (
-    <span aria-label={text}>
-      <span aria-hidden="true">
-        {text.split(" ").map((word, index) => (
-          <span key={index}>
-            <span style={{ whiteSpace: "nowrap" }}>
-              {Array.from(word).map((letter, letterIndex) => (
-                <span key={letterIndex} data-about-letter>
-                  {letter}
-                </span>
-              ))}
-            </span>{" "}
-          </span>
-        ))}
-      </span>
-    </span>
-  );
-}
-
 export default function HomeScrollSections({ onOpenArtwork }) {
   useScrollSectionsMotion();
 
@@ -35,14 +15,20 @@ export default function HomeScrollSections({ onOpenArtwork }) {
       {/* Editorial About Section */}
       <section className="story-about" aria-labelledby="story-about-title">
         <h2 id="story-about-title" className="story-label">About the artist</h2>
-        <div>
-          <p className="story-intro">
-            <RevealWords text="An artist, a writer. A lifetime of looking closer." />
+        <div className="story-bio" data-scroll-reveal>
+          <p>
+            Prakash Bal Joshi is a self-taught artist from Mumbai who was born in 1951. His writing examines the inconsistencies of a society that is changing quickly, the fleeting character of the natural world, and the psychological complexity of human experience.
+          </p>
+          <p>
+            The mythological River Saraswati, which he treats as both a literal presence and a metaphor for the passage of time; a power that carries, alters, and erases, recurs frequently in his work.
+          </p>
+          <p>
+            In addition to art, he writes Marathi short stories and works as a political writer and columnist.
           </p>
         </div>
       </section>
 
-      {/* 3D Corridor FlyThrough Section (replacing old scroll-gallery) */}
+      {/* 3D Corridor FlyThrough Section */}
       <FlyThrough onOpenArtwork={onOpenArtwork} />
 
       {/* Studio Contact Section */}

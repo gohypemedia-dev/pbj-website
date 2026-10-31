@@ -20,7 +20,7 @@ export const metadata = {
   openGraph: {
     title: "Selected Works | Prakash Bal Joshi",
     description:
-      "Original abstract paintings in oil and acrylic by Indian contemporary artist Prakash Bal Joshi, exhibited from Venice to Las Vegas.",
+      "Original abstract paintings in oil and acrylic by Indian contemporary artist Prakash Bal Joshi.",
     images: [
       {
         url: "/artworks/pbj/pbj-abstraction-316-2026.jpg",

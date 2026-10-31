@@ -29,7 +29,7 @@ export default function WorksEnquiryModal({
       const detailsSuffix = artworkDetails ? ` (${artworkDetails})` : "";
 
       setMessage(
-        `Dear Studio of Prakash Bal Joshi,\n\nI am writing to enquire about "${artwork.title}"${detailsSuffix}.\n\nPlease let me know the current availability and details.\n\nThank you,\n${name || "[Your Name]"}`
+        `Dear Studio of Prakash Bal Joshi,\n\nI am writing to enquire about "${artwork.title}"${detailsSuffix} [Ref: ${artwork.id}].\n\nPlease let me know the current availability and pricing details.\n\nThank you,\n${name || "[Your Name]"}`
       );
     } else {
       setMessage(
@@ -94,7 +94,7 @@ export default function WorksEnquiryModal({
   if (!isOpen) return null;
 
   const subjectText = artwork
-    ? `Enquiry: "${artwork.title}"${artwork.year ? ` (${artwork.year})` : ""}`
+    ? `Enquiry: "${artwork.title}"${artwork.year ? ` (${artwork.year})` : ""} [Ref: ${artwork.id}]`
     : "Studio Enquiry: Prakash Bal Joshi";
 
   const mailtoLink = `mailto:${artistData.contact.email}?subject=${encodeURIComponent(
@@ -130,7 +130,7 @@ export default function WorksEnquiryModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="flex items-start justify-between pb-4 mb-5 border-b border-[#1B2A49]/10">
+        <div className="flex items-start justify-between pb-4 mb-5">
           <div>
             <span className="eyebrow-label text-[#1B2A49]">Contact the Studio</span>
             <h2

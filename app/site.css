@@ -168,7 +168,7 @@ textarea:focus-visible {
 
 /* Light gallery divider */
 .gallery-divider {
-  border-color: var(--border-subtle);
+  border: none;
 }
 
 /* Prefer reduced motion */
@@ -510,7 +510,7 @@ blockquote.font-heading {
   padding: 0;
   overflow: hidden;
   background-color: var(--bg-main, #E9ECEF);
-  aspect-ratio: 1246 / 631;
+  aspect-ratio: 1024 / 519;
   max-height: calc(100vh - 100px);
   min-height: 380px;
 }
@@ -668,7 +668,7 @@ blockquote.font-heading {
   align-items: center;
   gap: 20px;
   padding-bottom: 5px;
-  border-bottom: 1px solid var(--text-heading);
+  border-bottom: none;
 }
 
 .hero-scroll {
@@ -731,7 +731,7 @@ blockquote.font-heading {
   }
 
   .hero-banner-frame {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 1024 / 519;
     min-height: 240px;
     max-height: 480px;
   }
@@ -823,8 +823,35 @@ blockquote.font-heading {
 }
 
 /* Scroll-led editorial sections, with native sticky positioning. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
 html.lenis {
   scroll-behavior: auto !important;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
 }
 
 .scroll-story {
@@ -891,13 +918,34 @@ html.lenis {
   }
 }
 
+.story-bio {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.story-bio p {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.75;
+  letter-spacing: normal;
+  color: var(--text-heading, #1B2A49);
+  opacity: 0.88;
+  margin: 0 auto 1.35em;
+  text-align: center;
+}
+
+.story-bio p:last-child {
+  margin-bottom: 0;
+}
+
 .story-link {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--border-strong);
+  border-bottom: none;
   font: 12px/1.5 var(--font-heading);
   letter-spacing: .04em;
   text-decoration: none;
@@ -905,7 +953,7 @@ html.lenis {
 
 .story-statement {
   min-height: 110svh;
-  border-block: 1px solid var(--border-subtle);
+  border-block: none;
   position: relative;
   margin: 0 4vw;
 }
@@ -1114,7 +1162,7 @@ html.lenis {
   gap: 10vw;
   margin: 0 4vw;
   padding: 18vh 0;
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
   align-items: start;
 }
 
@@ -1137,7 +1185,7 @@ html.lenis {
 .exhibitions-list article {
   padding: 0 0 7vh;
   margin-bottom: 7vh;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: none;
 }
 
 .exhibitions-list h3 {
@@ -1154,7 +1202,7 @@ html.lenis {
 .story-contact {
   padding: 15vh 4vw 20vh;
   text-align: center;
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
 }
 
 .story-contact h2 {
@@ -1175,7 +1223,7 @@ html.lenis {
   align-items: center;
   gap: 24px;
   padding: 18px 0;
-  border-bottom: 1px solid var(--border-strong);
+  border-bottom: none;
 }
 
 .story-contact>div>p {
@@ -1475,7 +1523,7 @@ html.lenis {
 .footer-rights {
   margin: 25px 0 0;
   padding-top: 16px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
   font: 10px/1.5 var(--font-heading);
   text-align: right;
 }
@@ -1779,7 +1827,7 @@ button {
 }
 
 .archive-group {
-  border-top: 1px solid var(--border-strong);
+  border-top: none;
   padding: 70px 0 30px;
 }
 
@@ -1838,7 +1886,7 @@ button {
   width: fit-content;
   cursor: pointer;
   padding: 12px 0;
-  border-bottom: 1px solid var(--text-heading);
+  border-bottom: none;
   font: 16px/1.5 var(--font-body);
 }
 
@@ -1968,7 +2016,7 @@ button {
 }
 
 .footer-bottom {
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
   padding-top: 24px;
   width: 100%;
 }
@@ -2050,8 +2098,6 @@ button {
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  perspective: 1200px;
-  perspective-origin: 50% 50%;
   background-color: var(--bg-main, #E9ECEF);
   color: var(--text-heading, #1B2A49);
 }
@@ -2069,8 +2115,18 @@ button {
   inset: 0;
   width: 100%;
   height: 100%;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
   transform-style: preserve-3d;
   pointer-events: auto;
+  z-index: 10;
+}
+
+.fly__ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
 }
 
 .fly__item {
@@ -2153,16 +2209,23 @@ button {
 .fly__intro,
 .fly__outro {
   position: absolute;
-  opacity: 0;
   will-change: transform, opacity;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   pointer-events: none;
-  z-index: 10;
+  z-index: 100;
   width: 90%;
   max-width: 900px;
+}
+
+.fly__intro {
+  opacity: 1;
+}
+
+.fly__outro {
+  opacity: 0;
 }
 
 .fly__label,
@@ -2184,6 +2247,7 @@ button {
   letter-spacing: -0.04em;
   margin: 0;
   color: var(--text-heading, #1B2A49);
+  text-shadow: 0 0 24px rgba(233, 236, 239, 0.95), 0 0 40px rgba(233, 236, 239, 0.8), 0 2px 8px rgba(255, 255, 255, 0.9);
 }
 
 .fly__big em {
@@ -2197,7 +2261,7 @@ button {
 }
 
 @media (max-width: 767px) {
-  .fly {
+  .fly__stage {
     perspective: 800px;
   }
   .fly__item {

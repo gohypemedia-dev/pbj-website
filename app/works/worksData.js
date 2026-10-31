@@ -1,5 +1,5 @@
 // Dedicated Works Dataset for /works
-// 21 original paintings by Prakash Bal Joshi in catalogue order (PBJ Abstraction 206 removed)
+// Authoritative catalogue of 22 original paintings by Prakash Bal Joshi in document order.
 // Preserves originalCaption and metadata internally without displaying editorial notes.
 
 export const WORKS_SERIES_DESCRIPTIONS = {
@@ -39,7 +39,7 @@ export const worksArtworksData = [
     title: "PBJ Abstraction 315",
     artist: "Prakash Bal Joshi",
     medium: "Acrylic on canvas",
-    dimensions: "30 × 30 in",
+    dimensions: null, // Unsupported 30 x 30 in omitted per client specification
     year: "2026",
     series: "Abstraction",
     image: "/artworks/pbj/pbj-abstraction-315-2026.jpg",
@@ -65,8 +65,7 @@ export const worksArtworksData = [
     title: "Artificial Intelligence 9",
     artist: "Prakash Bal Joshi",
     medium: "Acrylic on canvas",
-    dimensions: "36 × 36",
-    internalDimensionNotes: "Unit not stated; internal note only",
+    dimensions: "36 × 36", // Units not stated in source; preserved without invented unit
     year: "2018",
     series: "Artificial Intelligence",
     image: "/artworks/pbj/artificial-intelligence-9-2018.jpg",
@@ -78,7 +77,7 @@ export const worksArtworksData = [
     id: "pbj-abstraction-313-2024",
     title: "PBJ Abstraction 313",
     artist: "Prakash Bal Joshi",
-    medium: "Acrylic",
+    medium: "Acrylic", // Explicitly Acrylic; not expanded to Acrylic on Canvas
     dimensions: "24 × 30 in",
     year: "2024",
     series: "Abstraction",
@@ -115,16 +114,15 @@ export const worksArtworksData = [
   },
   {
     id: "artificial-intelligence-10-2019",
-    title: "Artificial Intelligence 10",
+    title: "Artificial Intelligence - 10",
     artist: "Prakash Bal Joshi",
     medium: "Acrylic on canvas",
-    dimensions: "72 × 36",
-    internalDimensionNotes: "Unit not stated; internal note only",
+    dimensions: "72 × 36", // Units not stated in source; preserved without invented unit
     year: "2019",
     series: "Artificial Intelligence",
-    image: "/artworks/pbj/artificial-intelligence-10-2019.jpg",
-    width: 1246,
-    height: 631,
+    image: "/artworks/pbj/homepage-hero-banner.jpg",
+    width: 1024,
+    height: 519,
     originalCaption: "artificial intelligence -10 acrylic on canvas 72x36 prakash bal joshi 2019"
   },
   {
@@ -187,7 +185,6 @@ export const worksArtworksData = [
     dimensions: "30 × 24 in",
     year: "2008",
     series: null,
-    internalSeriesNotes: "None supplied",
     image: "/artworks/pbj/dream-of-death-2008.jpg",
     width: 1380,
     height: 1098,
@@ -201,7 +198,6 @@ export const worksArtworksData = [
     dimensions: "15 × 11 in",
     year: "2010",
     series: null,
-    internalSeriesNotes: "None supplied",
     image: "/artworks/pbj/shadow-of-a-city-2010.jpg",
     width: 1382,
     height: 932,
@@ -221,16 +217,26 @@ export const worksArtworksData = [
     originalCaption: 'pbjabstraction 191 48"x36" acrylic on canvas Prakash Bal Joshi 2011'
   },
   {
+    id: "pbj-abstraction-206-2013",
+    title: "PBJ Abstaction 206", // Source spelling "Abstaction" preserved
+    artist: "Prakash Bal Joshi",
+    medium: "Oil on canvas",
+    dimensions: "36 × 48 in",
+    year: "2013",
+    series: "Abstraction",
+    image: "/artworks/pbj/pbj-abstraction-206.jpg",
+    width: 1377,
+    height: 1945,
+    originalCaption: 'pbjabstaction 206 36"x48" oil on canvas Prakash Bal Joshi 20013'
+  },
+  {
     id: "untitled-mixed-media",
     title: "Untitled",
     artist: "Prakash Bal Joshi",
     medium: "Mixed media",
     dimensions: null,
-    internalDimensionNotes: "Not supplied",
     year: null,
-    internalYearNotes: "Not supplied",
     series: null,
-    internalSeriesNotes: "None supplied",
     image: "/artworks/pbj/untitled-mixed-media.jpg",
     width: 1379,
     height: 1026,
@@ -244,7 +250,6 @@ export const worksArtworksData = [
     dimensions: "30 × 24 in",
     year: "2009",
     series: null,
-    internalSeriesNotes: "None supplied",
     image: "/artworks/pbj/supernatural-2009.jpg",
     width: 649,
     height: 512,
@@ -265,10 +270,10 @@ export const worksArtworksData = [
   },
   {
     id: "artificial-intelligence-9-2019",
-    title: "Artificial Intelligence 9",
+    title: "Artificial intelligence - 9",
     artist: "Prakash Bal Joshi",
     medium: "Acrylic on canvas",
-    dimensions: "72 × 36 × 2 in",
+    dimensions: '72" × 36" × 2"', // Preserved verbatim from source document
     year: "2019",
     series: "Artificial Intelligence",
     image: "/artworks/pbj/artificial-intelligence-9-2019.jpg",
@@ -284,11 +289,10 @@ export const worksArtworksData = [
     dimensions: "24 × 16 in",
     year: "2013",
     series: null,
-    internalSeriesNotes: "None supplied",
     image: "/artworks/pbj/untitled-2013.jpg",
     width: 1324,
     height: 2020,
-    originalCaption: "Untitled 24”x16”acrylic on canvas pbj 2013"
+    originalCaption: 'Untitled 24”x16”acrylic on canvas pbj 2013'
   },
   {
     id: "untitled-2012",
@@ -298,11 +302,9 @@ export const worksArtworksData = [
     dimensions: "24 × 24 in",
     year: "2012",
     series: null,
-    internalSeriesNotes: "None supplied",
     image: "/artworks/pbj/untitled-2012.jpg",
     width: 886,
     height: 886,
-    originalCaption: "Untitled 24”x24” acrylic on canvas pbj 2012"
+    originalCaption: 'Untitled 24”x24” acrylic on canvas pbj 2012'
   }
 ];
-
