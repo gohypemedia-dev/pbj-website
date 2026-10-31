@@ -1,16 +1,12 @@
 "use client";
 
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
-  Search,
-  X,
   Maximize2,
   Play,
   ExternalLink,
   BookOpen,
-  Calendar,
   ChevronDown,
-  Info,
 } from "lucide-react";
 import {
   pressArticles,
@@ -20,9 +16,6 @@ import {
 import MediaLightbox from "./MediaLightbox";
 
 export default function MediaPageClient() {
-  // Press filtering state
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedYear, setSelectedYear] = useState("all");
   const [visibleCount, setVisibleCount] = useState(9);
 
   // Lightbox state
@@ -31,44 +24,6 @@ export default function MediaPageClient() {
 
   // Video embed state (click to load player)
   const [activeVideoId, setActiveVideoId] = useState(null);
-
-  // Available years from press articles
-  const availableYears = useMemo(() => {
-    const years = Array.from(new Set(pressArticles.map((a) => a.year)));
-    return years.sort((a, b) => b - a);
-  }, []);
-
-  // Filtered articles
-  const filteredArticles = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-    return pressArticles.filter((item) => {
-      // Year check
-      if (selectedYear !== "all" && item.year !== Number(selectedYear)) {
-        return false;
-      }
-      // Query check (publication, title, date, translation, notes)
-      if (q) {
-        const pub = (item.publication || "").toLowerCase();
-        const altPub = (item.altPublication || "").toLowerCase();
-        const title = (item.title || "").toLowerCase();
-        const transl = (item.translation || "").toLowerCase();
-        const date = (item.date || "").toLowerCase();
-        const yr = String(item.year);
-        const matches =
-          pub.includes(q) ||
-          altPub.includes(q) ||
-          title.includes(q) ||
-          transl.includes(q) ||
-          date.includes(q) ||
-          yr.includes(q);
-        if (!matches) return false;
-      }
-      return true;
-    });
-  }, [searchQuery, selectedYear]);
-
-  // Actual count visible on screen
-  const visibleArticleCount = Math.min(visibleCount, filteredArticles.length);
 
   const handleOpenLightbox = (index, triggerEl) => {
     activeTriggerRef.current = triggerEl;
@@ -79,14 +34,8 @@ export default function MediaPageClient() {
     setLightboxIndex(null);
   };
 
-  const handleResetFilters = () => {
-    setSearchQuery("");
-    setSelectedYear("all");
-    setVisibleCount(9);
-  };
-
   const handleShowMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 9, filteredArticles.length));
+    setVisibleCount((prev) => Math.min(prev + 9, pressArticles.length));
   };
 
   return (
@@ -97,161 +46,22 @@ export default function MediaPageClient() {
       {/* Main Content Area */}
       <main className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-12 pt-8 sm:pt-12 pb-16 sm:pb-24 space-y-16 sm:space-y-20 text-left">
         {/* ============================================================ */}
-        {/* SECTION 1: PRESS & FEATURES */}
+        {/* SECTION 1: FEATURES */}
         {/* ============================================================ */}
         <section id="press" aria-labelledby="heading-press" className="scroll-mt-24 text-left">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 text-left">
-            <div className="text-left">
-              <span className="text-xs font-heading font-semibold uppercase tracking-[0.18em] text-[#1B2A49]/80 block mb-1 text-left">
-                PRINT ARCHIVE
-              </span>
-              <h2
-                id="heading-press"
-                className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B2A49] tracking-tight text-left"
-              >
-                Press &amp; Features
-              </h2>
-              <p className="font-serif italic text-sm sm:text-base text-[#38435C] mt-1 max-w-2xl text-left">
-                A consolidated archive of 23 published newspaper articles, critical profiles, and
-                reviews from 2016 to 2008.
-              </p>
-            </div>
-
-            {/* Live Count Indicator */}
-            <div
-              className="text-xs font-mono text-[#38435C]/80 self-start md:self-end text-left"
-              aria-live="polite"
-              aria-atomic="true"
+          <div className="mb-6 text-left">
+            <h2
+              id="heading-press"
+              className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B2A49] tracking-tight text-left"
             >
-              Showing {visibleArticleCount} of {filteredArticles.length} records
-              {filteredArticles.length < pressArticles.length && (
-                <span className="text-[#1B2A49] font-medium ml-1">
-                  (filtered from {pressArticles.length})
-                </span>
-              )}
-            </div>
+              Features
+            </h2>
           </div>
-
-          {/* Search & Filter Controls */}
-          <div className="bg-white/70 p-4 sm:p-5 rounded-sm border border-[#1B2A49]/12 mb-8 space-y-4 shadow-2xs text-left">
-            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between text-left">
-              {/* Search Bar */}
-              <div className="relative flex-1 max-w-md text-left">
-                <Search
-                  size={16}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#38435C]/50 pointer-events-none"
-                />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setVisibleCount(9);
-                  }}
-                  placeholder="Search publication, headline, or topic..."
-                  aria-label="Search press archive"
-                  className="w-full pl-9 pr-9 py-2 text-sm bg-white border border-[#1B2A49]/20 rounded-sm text-[#1B2A49] placeholder-[#38435C]/50 focus:outline-hidden focus:ring-1 focus:ring-[#1B2A49] focus:border-[#1B2A49] transition-all text-left"
-                />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSearchQuery("");
-                      setVisibleCount(9);
-                    }}
-                    aria-label="Clear search query"
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-[#38435C]/60 hover:text-[#1B2A49] transition-colors"
-                  >
-                    <X size={14} />
-                  </button>
-                )}
-              </div>
-
-              {/* Reset Control (only shown if filtering is active) */}
-              {(searchQuery || selectedYear !== "all") && (
-                <button
-                  type="button"
-                  onClick={handleResetFilters}
-                  className="inline-flex items-center justify-center px-3 py-2 text-xs font-heading uppercase tracking-wider font-semibold text-[#1B2A49] bg-white border border-[#1B2A49]/20 hover:bg-[#E9ECEF] rounded-sm transition-colors min-h-[38px] self-start"
-                >
-                  Reset all filters
-                </button>
-              )}
-            </div>
-
-            {/* Year Filters */}
-            <div className="pt-2 text-left">
-              <span className="text-[11px] font-heading font-semibold uppercase tracking-wider text-[#1B2A49]/70 block mb-2 text-left">
-                Filter by Year:
-              </span>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 text-left">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSelectedYear("all");
-                    setVisibleCount(9);
-                  }}
-                  aria-pressed={selectedYear === "all"}
-                  className={`px-3 py-1.5 text-xs font-heading tracking-wider rounded-sm transition-colors min-h-[36px] ${
-                    selectedYear === "all"
-                      ? "bg-[#1B2A49] text-white font-semibold shadow-xs"
-                      : "bg-white/80 hover:bg-white text-[#38435C] border border-[#1B2A49]/15"
-                  }`}
-                >
-                  All ({pressArticles.length})
-                </button>
-                {availableYears.map((yr) => {
-                  const countInYear = pressArticles.filter((a) => a.year === yr).length;
-                  const isSelected = selectedYear === String(yr);
-                  return (
-                    <button
-                      key={yr}
-                      type="button"
-                      onClick={() => {
-                        setSelectedYear(isSelected ? "all" : String(yr));
-                        setVisibleCount(9);
-                      }}
-                      aria-pressed={isSelected}
-                      className={`px-3 py-1.5 text-xs font-heading tracking-wider rounded-sm transition-colors min-h-[36px] ${
-                        isSelected
-                          ? "bg-[#1B2A49] text-white font-semibold shadow-xs"
-                          : "bg-white/80 hover:bg-white text-[#38435C] border border-[#1B2A49]/15"
-                      }`}
-                    >
-                      {yr} ({countInYear})
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Empty Search Result State (Left aligned) */}
-          {filteredArticles.length === 0 && (
-            <div className="bg-white/80 border border-[#1B2A49]/15 rounded-sm p-6 sm:p-8 text-left max-w-xl">
-              <Info size={24} className="text-[#1B2A49]/60 mb-2" />
-              <h3 className="font-heading font-bold text-lg text-[#1B2A49] mb-1 text-left">
-                No matching press records found
-              </h3>
-              <p className="font-serif italic text-sm text-[#38435C] mb-4 text-left">
-                No articles matched your criteria “{searchQuery}” in{" "}
-                {selectedYear === "all" ? "any year" : selectedYear}.
-              </p>
-              <button
-                type="button"
-                onClick={handleResetFilters}
-                className="px-4 py-2 bg-[#1B2A49] hover:bg-[#253961] text-white text-xs font-heading uppercase tracking-wider font-semibold rounded-sm transition-colors"
-              >
-                Reset filters
-              </button>
-            </div>
-          )}
 
           {/* Press Articles Grid (Desktop: 3 cols, Tablet: 2 cols, Mobile: 1 col) */}
-          {filteredArticles.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 text-left">
-              {filteredArticles.map((article, idx) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 text-left">
+            {pressArticles.map((article, idx) => {
                 const isHidden = idx >= visibleCount;
                 return (
                   <article
@@ -345,10 +155,9 @@ export default function MediaPageClient() {
                 );
               })}
             </div>
-          )}
 
           {/* Show More Button (Left aligned) */}
-          {visibleCount < filteredArticles.length && (
+          {visibleCount < pressArticles.length && (
             <div className="mt-8 text-left">
               <button
                 type="button"
@@ -356,7 +165,7 @@ export default function MediaPageClient() {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-[#1B2A49] hover:text-white text-[#1B2A49] border border-[#1B2A49]/30 font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all shadow-xs hover:shadow-md min-h-[44px]"
               >
                 <span>
-                  Show more features ({filteredArticles.length - visibleCount} remaining)
+                  Show more features ({pressArticles.length - visibleCount} remaining)
                 </span>
                 <ChevronDown size={15} />
               </button>
@@ -569,7 +378,7 @@ export default function MediaPageClient() {
       {/* Accessible Fullscreen Lightbox Modal */}
       {lightboxIndex !== null && (
         <MediaLightbox
-          articles={filteredArticles}
+          articles={pressArticles}
           currentIndex={lightboxIndex}
           onClose={handleCloseLightbox}
           onNavigate={(nextIdx) => setLightboxIndex(nextIdx)}
