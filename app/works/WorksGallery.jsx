@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import Link from "next/link";
-import { ArrowLeft, Mail, ExternalLink } from "lucide-react";
+import { Mail, ExternalLink } from "lucide-react";
 import { worksArtworksData } from "./worksData";
 import WorksCard from "./WorksCard";
 import WorksLightbox from "./WorksLightbox";
@@ -52,25 +51,6 @@ export default function WorksGallery() {
     <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-8 lg:py-12 text-left">
       {/* Editorial Header */}
       <header className="mb-8 sm:mb-12 text-left">
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-3 text-left">
-          <ol className="flex items-center space-x-2 text-xs font-heading uppercase tracking-widest text-[#38435C]/80">
-            <li>
-              <Link
-                href="/"
-                className="hover:text-[#1B2A49] transition-colors inline-flex items-center space-x-1"
-              >
-                <ArrowLeft size={13} className="mr-0.5" />
-                <span>Home</span>
-              </Link>
-            </li>
-            <li className="text-[#1B2A49]/40">/</li>
-            <li className="text-[#1B2A49] font-semibold" aria-current="page">
-              Works
-            </li>
-          </ol>
-        </nav>
-
         {/* Heading */}
         <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B2A49] tracking-tight leading-[1.15] text-left">
           Works

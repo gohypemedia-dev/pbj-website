@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { exhibitionsData } from "@/data/exhibitions";
 import { artistData } from "@/data/artist";
-import { ArrowLeft, Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
   title: `Events & Exhibitions | ${artistData.diacriticName}`,
@@ -16,13 +16,6 @@ export default function EventsPage() {
     <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 py-8 lg:py-12">
       {/* Top Header */}
       <div className="mb-8 pb-5 flex flex-col items-center sm:items-start text-center sm:text-left">
-        <Link
-          href="/"
-          className="inline-flex items-center space-x-1.5 font-heading text-xs uppercase tracking-widest text-[#38435C] hover:text-[#1B2A49] mb-3 mx-auto sm:mx-0"
-        >
-          <ArrowLeft size={14} />
-          <span>Home</span>
-        </Link>
         <span className="eyebrow-label text-[#1B2A49] block text-center sm:text-left">
           Curatorial History &amp; Events
         </span>

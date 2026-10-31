@@ -123,12 +123,12 @@ export default function FlyThrough({ onOpenArtwork }) {
       </div>
       <div className="fly__ui" aria-hidden="true">
         <div className="fly__intro">
-          <p className="fly__big">
+          <p className="fly__big whitespace-nowrap text-center">
             Step <em>inside.</em>
           </p>
         </div>
         <div className="fly__outro">
-          <p className="fly__big">
+          <p className="fly__big whitespace-nowrap text-center">
             Worlds drawn <em>in light.</em>
           </p>
         </div>

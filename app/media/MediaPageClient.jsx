@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useRef } from "react";
-import Link from "next/link";
 import {
-  ArrowLeft,
   Search,
   X,
   Maximize2,
@@ -93,41 +91,11 @@ export default function MediaPageClient() {
 
   return (
     <div className="min-h-screen bg-[#E9ECEF] text-[#38435C] selection:bg-[#1B2A49] selection:text-white overflow-x-hidden text-left">
-      {/* Top Header / Introduction */}
-      <header className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-12 pt-8 sm:pt-10 pb-2 text-left">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-4 text-left">
-          <ol className="flex items-center space-x-2 text-xs font-heading uppercase tracking-widest text-[#38435C]/80">
-            <li>
-              <Link
-                href="/"
-                className="inline-flex items-center space-x-1.5 hover:text-[#1B2A49] transition-colors"
-              >
-                <ArrowLeft size={13} />
-                <span>Home</span>
-              </Link>
-            </li>
-            <li className="text-[#1B2A49]/40">/</li>
-            <li className="text-[#1B2A49] font-semibold" aria-current="page">
-              Media
-            </li>
-          </ol>
-        </nav>
-
-        {/* Clean Editorial Title & Description */}
-        <div className="max-w-3xl text-left">
-          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B2A49] tracking-tight leading-[1.15] text-left">
-            Media &amp; Archive
-          </h1>
-          <p className="font-serif italic text-base sm:text-lg text-[#38435C] mt-2 leading-relaxed text-left">
-            Explore press features, videos, books and exhibition records from Prakash Bal Joshi’s
-            practice.
-          </p>
-        </div>
-      </header>
+      {/* Screen-reader heading for accessibility and SEO */}
+      <h1 className="sr-only">Media &amp; Archive</h1>
 
       {/* Main Content Area */}
-      <main className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12 space-y-16 sm:space-y-20 text-left">
+      <main className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-12 pt-8 sm:pt-12 pb-16 sm:pb-24 space-y-16 sm:space-y-20 text-left">
         {/* ============================================================ */}
         {/* SECTION 1: PRESS & FEATURES */}
         {/* ============================================================ */}
