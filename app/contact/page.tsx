@@ -32,25 +32,25 @@ export default function ContactPage() {
       <main className="max-w-[560px] mx-auto text-center">
         {/* Contact Heading & Details */}
         <section className="text-center" aria-label="Contact Information">
-          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-[#1B2A49] tracking-tight text-center">
+          <h1 className="font-heading text-5xl sm:text-6xl font-bold text-[#1B2A49] tracking-tight text-center">
             Contact
           </h1>
 
-          <p className="font-serif italic text-base sm:text-lg text-[#38435C] mt-2 text-center">
+          <p className="font-serif italic text-lg sm:text-xl md:text-2xl text-[#38435C] mt-3 text-center">
             For the price list, enquire here:
           </p>
 
-          <div className="mt-4 space-y-1.5 text-center">
+          <div className="mt-5 space-y-2.5 text-center">
             <div>
               <a
                 href="mailto:studio@prakashbaljoshi.com"
-                className="font-serif text-base sm:text-lg text-[#1B2A49] hover:underline font-medium inline-block"
+                className="font-serif text-xl sm:text-2xl md:text-[26px] text-[#1B2A49] hover:underline font-semibold inline-block tracking-tight"
               >
                 studio@prakashbaljoshi.com
               </a>
             </div>
 
-            <p className="font-serif text-sm sm:text-base text-[#38435C]">
+            <p className="font-serif text-base sm:text-lg md:text-xl text-[#38435C]">
               Phone no:{" "}
               <a
                 href="tel:9869014555"
@@ -60,7 +60,7 @@ export default function ContactPage() {
               </a>
             </p>
 
-            <p className="font-serif text-xs sm:text-sm text-[#38435C]/85 leading-relaxed max-w-[420px] mx-auto">
+            <p className="font-serif text-sm sm:text-base md:text-[17px] text-[#38435C]/85 leading-relaxed max-w-[480px] mx-auto">
               Studio address: LG13, Avior Corporate Park, LBS Road, Mulund (West).
             </p>
           </div>

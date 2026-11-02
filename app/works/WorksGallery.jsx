@@ -81,7 +81,10 @@ export default function WorksGallery() {
 
       {/* Compact Closing Section: Studio Acquisition & Enquiry */}
       <section className="mt-16 sm:mt-24 pt-8 sm:pt-12 text-left">
-        <h2 className="font-heading text-2xl sm:text-3xl font-bold text-[#1B2A49] text-left">
+        <h2
+          className="font-serif text-2xl sm:text-3xl font-bold text-[#1B2A49] text-left"
+          style={{ fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' }}
+        >
           Enquire About a Work
         </h2>
         <p className="font-serif italic text-base sm:text-lg text-[#38435C] mt-2 text-left">

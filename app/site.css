@@ -956,13 +956,18 @@ html.lenis {
 .story-link {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  padding: 12px 0;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0;
   border-bottom: none;
-  font: 12px/1.5 var(--font-heading);
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  line-height: 1.5;
   letter-spacing: .04em;
   text-decoration: none;
+  text-align: center;
+  margin: 0 auto;
+  color: var(--text-heading, #1B2A49);
 }
 
 .story-statement {
@@ -1214,15 +1219,35 @@ html.lenis {
 }
 
 .story-contact {
-  padding: 15vh 4vw 20vh;
+  padding: clamp(60px, 12vh, 160px) 4vw clamp(60px, 14vh, 180px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
   border-top: none;
+  width: 100%;
+}
+
+.story-contact .story-label {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  line-height: 1.5;
+  letter-spacing: .06em;
+  font-weight: 500;
+  text-align: center;
+  color: var(--text-heading, #1B2A49);
 }
 
 .story-contact h2 {
-  font: 700 clamp(3.5rem, 7.8vw, 8.5rem)/.98 var(--font-heading);
-  letter-spacing: -.07em;
-  margin: 6vh 0;
+  font: 700 clamp(3rem, 7.5vw, 7.5rem)/1.02 var(--font-heading);
+  letter-spacing: -.02em;
+  margin: clamp(24px, 5vh, 48px) auto;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
 }
 
 .story-contact h2 span {
@@ -1230,19 +1255,35 @@ html.lenis {
   letter-spacing: -.02em;
 }
 
-.story-email {
-  font: clamp(1rem, 2vw, 1.7rem)/1.5 var(--font-body);
-  display: inline-flex;
-  justify-content: space-between;
+.story-contact>div {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 24px;
-  padding: 18px 0;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.story-email {
+  font: clamp(1.2rem, 2.3vw, 2rem)/1.4 var(--font-body);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
   border-bottom: none;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .story-contact>div>p {
-  font: 12px/1.5 var(--font-heading);
-  margin: 22px 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  line-height: 1.5;
+  margin: 20px auto;
+  text-align: center;
+  color: var(--text-heading, #1B2A49);
 }
 
 @media (max-width: 767px) {
@@ -1343,11 +1384,19 @@ html.lenis {
   }
 
   .story-contact {
-    padding: 90px 6vw;
+    padding: 64px 5vw 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .story-contact h2 {
-    font-size: 12vw;
+    font-size: clamp(2.4rem, 11vw, 4.2rem);
+    line-height: 1.05;
+    text-align: center;
+    margin: 20px auto;
   }
 }
 
