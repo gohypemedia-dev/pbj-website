@@ -32,7 +32,7 @@ export default function HomeScrollSections({ onOpenArtwork }) {
       <FlyThrough onOpenArtwork={onOpenArtwork} />
 
       {/* Studio Contact Section */}
-      <section className="story-contact flex flex-col items-center justify-center text-center mx-auto w-full" aria-labelledby="story-contact-title">
+      <section className="story-contact relative z-30 bg-[#E9ECEF] flex flex-col items-center justify-center text-center mx-auto w-full" aria-labelledby="story-contact-title">
         <p className="story-label text-center mx-auto" data-scroll-reveal>Acquisitions · Collaborations · Studio visits</p>
         <h2 id="story-contact-title" className="text-center mx-auto w-full" data-scroll-reveal><span>Let’s</span> start<br />a conversation.</h2>
         <div className="flex flex-col items-center justify-center text-center w-full mx-auto" data-scroll-reveal>

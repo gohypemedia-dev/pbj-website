@@ -58,14 +58,19 @@ export default function FlyThrough({ onOpenArtwork }) {
           start: "top top",
           end: "+=360%",
           pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
           scrub: 1,
           invalidateOnRefresh: true,
         },
       });
 
       tl.to(state, { z: TRAVEL, duration: 1, onUpdate: render }, 0)
-        .fromTo(".fly__outro", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.16 }, 0.8)
-        .fromTo(".fly__glow", { scale: 0.4, opacity: 0 }, { scale: 1.4, opacity: 1, duration: 1 }, 0);
+        .fromTo(".fly__glow", { scale: 0.4, opacity: 0 }, { scale: 1.4, opacity: 0.85, duration: 0.75 }, 0)
+        .to(".fly__glow", { opacity: 0, duration: 0.2 }, 0.8)
+        .to(".fly__stage", { opacity: 0, duration: 0.15 }, 0.85)
+        .fromTo(".fly__outro", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.15 }, 0.75)
+        .to(".fly__outro", { opacity: 0, scale: 1.05, duration: 0.1 }, 0.9);
     }, root);
 
     return () => ctx.revert();

@@ -1219,6 +1219,9 @@ html.lenis {
 }
 
 .story-contact {
+  position: relative;
+  z-index: 30;
+  background-color: var(--bg-main, #E9ECEF);
   padding: clamp(60px, 12vh, 160px) 4vw clamp(60px, 14vh, 180px);
   display: flex;
   flex-direction: column;
@@ -1384,19 +1387,39 @@ html.lenis {
   }
 
   .story-contact {
-    padding: 64px 5vw 80px;
+    position: relative;
+    z-index: 30;
+    background-color: var(--bg-main, #E9ECEF);
+    min-height: 100svh;
+    min-height: 100vh;
+    padding: 72px 6vw 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow: hidden;
   }
 
   .story-contact h2 {
-    font-size: clamp(2.4rem, 11vw, 4.2rem);
-    line-height: 1.05;
+    font-size: clamp(2.2rem, 9.5vw, 3.8rem);
+    line-height: 1.08;
     text-align: center;
-    margin: 20px auto;
+    margin: 16px auto 20px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .story-email {
+    font-size: clamp(1rem, 4.4vw, 1.4rem);
+    gap: 8px;
+    word-break: break-word;
+  }
+
+  .story-contact > div > p {
+    font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+    margin: 14px auto;
+    max-width: 320px;
   }
 }
 
