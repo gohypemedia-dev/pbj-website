@@ -212,8 +212,8 @@ export const worksArtworksData = [
     year: "2011",
     series: "Abstraction",
     image: "/artworks/pbj/pbj-abstraction-191-2011.jpg",
-    width: 1379,
-    height: 989,
+    width: 1024,
+    height: 733,
     originalCaption: 'pbjabstraction 191 48"x36" acrylic on canvas Prakash Bal Joshi 2011'
   },
   {
