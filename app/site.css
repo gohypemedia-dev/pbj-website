@@ -2361,46 +2361,184 @@ button {
 }
 
 @media (max-width: 767px) {
+  .fly {
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  .fly__glow {
+    inset: -10%;
+    opacity: 0.6;
+  }
+
   .fly__stage {
-    perspective: 800px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    perspective: none !important;
+    transform-style: flat !important;
+    overflow: visible;
   }
+
   .fly__item {
-    width: calc(var(--w, 36) * 1.5vw);
-    min-width: 200px;
-    max-width: 85vw;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    width: min(calc(100vw - 40px), 360px);
+    max-width: calc(100vw - 40px);
+    min-width: 0;
+    aspect-ratio: auto !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-origin: center center;
+    will-change: transform, opacity;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    pointer-events: auto;
   }
-  .fly__big {
-    font-size: clamp(2.2rem, 9vw, 3.5rem);
-    white-space: nowrap;
-    text-align: center;
+
+  .fly__item-button {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+    border: none;
+    outline: none;
   }
-  .fly__outro .fly__big {
-    font-size: clamp(0.95rem, 5.2vw, 1.85rem);
+
+  .fly__img-wrap {
+    width: 100%;
+    height: auto;
+    max-height: min(52vh, calc(100svh - 220px));
+    aspect-ratio: var(--ar, 1.2);
+    border-radius: 4px;
+    box-shadow: 0 14px 34px rgba(27, 42, 73, 0.14), 0 3px 10px rgba(27, 42, 73, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    background-color: #d8dfe5;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .fly__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #e5eaef;
+  }
+
+  .fly__caption {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100%;
+    margin-top: 10px;
+    padding: 0 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-heading);
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: none;
+    line-height: 1.4;
+  }
+
+  .fly__caption-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1B2A49;
+    letter-spacing: 0.01em;
     white-space: nowrap;
-    text-align: center;
-    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 12px;
+  }
+
+  .fly__caption-year {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #5A6B82;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .fly {
-    height: auto;
-    overflow: visible;
+    height: auto !important;
+    overflow: visible !important;
   }
   .fly__stage {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    padding: 40px 5vw;
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+    padding: 40px 20px !important;
+    width: 100% !important;
+    height: auto !important;
+    perspective: none !important;
+  }
+  @media (min-width: 640px) {
+    .fly__stage {
+      grid-template-columns: repeat(2, 1fr) !important;
+      padding: 40px 5vw !important;
+      gap: 28px !important;
+    }
   }
   .fly__item {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto !important;
     transform: none !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
+  .fly__img-wrap {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: var(--ar, 1.2) !important;
+  }
+  .fly__caption {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 8px !important;
+    opacity: 1 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+}
+
+/* About Section Archive Headings */
+#solo-exhibitions-heading,
+#group-exhibitions-heading,
+#charity-auctions-heading,
+#awards-recognitions-heading,
+#collections-heading,
+#art-camps-heading {
+  font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+
+/* Media Press Clipping Article Titles & Fallbacks */
+.press-article-title,
+article h3[lang] {
+  font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
+  letter-spacing: normal !important;
 }

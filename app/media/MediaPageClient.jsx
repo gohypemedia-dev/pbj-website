@@ -189,20 +189,27 @@ export default function MediaPageClient() {
                         {/* Article Title when supplied */}
                         {article.title ? (
                           <h3
-                            className="font-serif italic text-base sm:text-lg text-[#1B2A49] leading-snug line-clamp-2 mt-1 text-left"
+                            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                            className="press-article-title italic text-base sm:text-lg text-[#1B2A49] leading-snug line-clamp-2 mt-1 text-left font-normal"
                             lang={article.language === "Marathi" ? "mr" : "en"}
                           >
                             “{article.title}”
                           </h3>
                         ) : (
-                          <p className="text-xs font-serif italic text-[#38435C]/60 mt-1 text-left">
+                          <p
+                            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                            className="press-article-title text-xs italic text-[#38435C]/60 mt-1 text-left"
+                          >
                             Documented newspaper feature
                           </p>
                         )}
 
                         {/* Translation when provided (Prabhat) */}
                         {article.translation && (
-                          <p className="text-xs text-[#38435C]/80 mt-1 italic text-left">
+                          <p
+                            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                            className="press-article-title text-xs text-[#38435C]/80 mt-1 italic text-left"
+                          >
                             Transl: “{article.translation}”
                           </p>
                         )}

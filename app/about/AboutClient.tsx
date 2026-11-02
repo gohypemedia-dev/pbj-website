@@ -28,8 +28,12 @@ function ArchiveSection({
   return (
     <section aria-labelledby={`${idPrefix}-heading`} className="w-full pt-10 sm:pt-14">
       {/* Section Header as plain text */}
-      <div className="mb-8">
-        <h2 id={`${idPrefix}-heading`} className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-wide text-left text-[#1B2A49]">
+      <div className="mb-8 text-left">
+        <h2
+          id={`${idPrefix}-heading`}
+          style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+          className="text-[17px] sm:text-xl md:text-2xl font-bold uppercase tracking-wide text-left whitespace-nowrap text-[#1B2A49]"
+        >
           {title}
         </h2>
       </div>
@@ -135,8 +139,12 @@ export default function AboutClient() {
 
       {/* 8. COLLECTIONS */}
       <section aria-labelledby="collections-heading" className="w-full pt-10 sm:pt-14">
-        <div className="mb-8">
-          <h2 id="collections-heading" className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-wide text-left text-[#1B2A49]">
+        <div className="mb-8 text-left">
+          <h2
+            id="collections-heading"
+            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+            className="text-[17px] sm:text-xl md:text-2xl font-bold uppercase tracking-wide text-left whitespace-nowrap text-[#1B2A49]"
+          >
             Collections
           </h2>
         </div>

@@ -50,17 +50,29 @@ export default function ContactPage() {
               </a>
             </div>
 
-            <p className="font-serif text-base sm:text-lg md:text-xl text-[#38435C]">
+            <p
+              style={{
+                fontFamily: '"Hoefler Text", "Baskerville", Cambria, "Times New Roman", serif',
+                fontVariantNumeric: "lining-nums tabular-nums",
+                fontFeatureSettings: '"lnum" 1, "tnum" 1',
+              }}
+              className="text-base sm:text-lg md:text-xl text-[#38435C]"
+            >
               Phone no:{" "}
               <a
                 href="tel:9869014555"
-                className="text-[#1B2A49] hover:underline font-medium"
+                style={{
+                  fontFamily: '"Hoefler Text", "Baskerville", Cambria, "Times New Roman", serif',
+                  fontVariantNumeric: "lining-nums tabular-nums",
+                  fontFeatureSettings: '"lnum" 1, "tnum" 1',
+                }}
+                className="text-[#1B2A49] hover:underline font-medium inline-block align-baseline"
               >
                 9869014555
               </a>
             </p>
 
-            <p className="font-serif text-sm sm:text-base md:text-[17px] text-[#38435C]/85 leading-relaxed max-w-[480px] mx-auto">
+            <p className="font-serif text-[13px] sm:text-[15px] md:text-[17px] text-[#38435C]/85 leading-relaxed text-center mx-auto whitespace-nowrap">
               Studio address: LG13, Avior Corporate Park, LBS Road, Mulund (West).
             </p>
           </div>

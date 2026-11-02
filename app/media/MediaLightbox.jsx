@@ -200,7 +200,10 @@ export default function MediaLightbox({
             <span className="text-xs text-white/70 whitespace-nowrap">{current.date}</span>
           </div>
           {current.title && (
-            <p className="text-xs sm:text-sm text-white/80 italic truncate font-serif mt-0.5">
+            <p
+              style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+              className="press-article-title text-xs sm:text-sm text-white/80 italic truncate mt-0.5"
+            >
               {current.title}
             </p>
           )}
