@@ -9,16 +9,16 @@ import { worksArtworksData } from "@/works/worksData";
 // 10 curated artworks from the Works catalogue hung in 3D space.
 // x/y in vw/vh from centre, z in px (more negative = further away into the corridor).
 const items = [
-  { artwork: worksArtworksData[0],  x: -30, y: -14, z: -300,  w: 30 }, // PBJ Abstraction 316
-  { artwork: worksArtworksData[1],  x: 30,  y: 16,  z: -800,  w: 22 }, // PBJ Abstraction 315
-  { artwork: worksArtworksData[2],  x: -26, y: 22,  z: -1300, w: 28 }, // PBJ Abstraction 307
-  { artwork: worksArtworksData[3],  x: 28,  y: -20, z: -1800, w: 26 }, // Artificial Intelligence 9
-  { artwork: worksArtworksData[4],  x: -32, y: -6,  z: -2300, w: 30 }, // PBJ Abstraction 313
-  { artwork: worksArtworksData[5],  x: 24,  y: 20,  z: -2800, w: 24 }, // PBJ Abstraction 314
-  { artwork: worksArtworksData[6],  x: -18, y: -24, z: -3300, w: 20 }, // PBJ Abstraction 308
-  { artwork: worksArtworksData[8],  x: 30,  y: -4,  z: -3800, w: 28 }, // River Returns 75
-  { artwork: worksArtworksData[9],  x: -28, y: 18,  z: -4300, w: 26 }, // River Returns 42
-  { artwork: worksArtworksData[11], x: 22,  y: -22, z: -4800, w: 26 }, // Mindscape 7
+  { artwork: worksArtworksData[0],  x: -30, y: -12, z: -300,  w: 42 }, // PBJ Abstraction 316
+  { artwork: worksArtworksData[1],  x: 30,  y: 14,  z: -800,  w: 35 }, // PBJ Abstraction 315
+  { artwork: worksArtworksData[2],  x: -26, y: 20,  z: -1300, w: 40 }, // PBJ Abstraction 307
+  { artwork: worksArtworksData[3],  x: 28,  y: -18, z: -1800, w: 38 }, // Artificial Intelligence 9
+  { artwork: worksArtworksData[4],  x: -30, y: -6,  z: -2300, w: 42 }, // PBJ Abstraction 313
+  { artwork: worksArtworksData[5],  x: 25,  y: 18,  z: -2800, w: 36 }, // PBJ Abstraction 314
+  { artwork: worksArtworksData[6],  x: -20, y: -20, z: -3300, w: 32 }, // PBJ Abstraction 308
+  { artwork: worksArtworksData[8],  x: 28,  y: -4,  z: -3800, w: 40 }, // River Returns 75
+  { artwork: worksArtworksData[9],  x: -28, y: 16,  z: -4300, w: 38 }, // River Returns 42
+  { artwork: worksArtworksData[11], x: 24,  y: -20, z: -4800, w: 38 }, // Mindscape 7
 ];
 
 const TRAVEL = 5600;
@@ -105,7 +105,7 @@ export default function FlyThrough({ onOpenArtwork }) {
                   src={it.artwork.image}
                   alt={`${it.artwork.title}${it.artwork.year ? ` (${it.artwork.year})` : ""} - ${it.artwork.medium} by ${it.artwork.artist}`}
                   fill
-                  sizes="(max-width: 900px) 45vw, 25vw"
+                  sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 42vw"
                   className="fly__img"
                 />
               </div>

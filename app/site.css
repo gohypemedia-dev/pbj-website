@@ -2219,9 +2219,9 @@ button {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(var(--w, 26) * 1vw);
-  min-width: 180px;
-  max-width: 520px;
+  width: calc(var(--w, 36) * 1vw);
+  min-width: 240px;
+  max-width: 760px;
   transform-origin: center center;
   will-change: transform, opacity;
   z-index: 2;
@@ -2365,8 +2365,9 @@ button {
     perspective: 800px;
   }
   .fly__item {
-    width: calc(var(--w, 26) * 1.5vw);
-    min-width: 140px;
+    width: calc(var(--w, 36) * 1.5vw);
+    min-width: 200px;
+    max-width: 85vw;
   }
   .fly__big {
     font-size: clamp(2.2rem, 9vw, 3.5rem);
