@@ -5,7 +5,6 @@ import {
   Maximize2,
   Play,
   ExternalLink,
-  BookOpen,
   ChevronDown,
 } from "lucide-react";
 import {
@@ -327,7 +326,10 @@ export default function MediaPageClient() {
                     {/* Video Editorial Content */}
                     <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between text-left">
                       <div className="text-left">
-                        <h3 className="font-heading font-bold text-base sm:text-lg text-[#1B2A49] leading-snug text-left">
+                        <h3
+                          style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                          className="media-video-title font-bold text-base sm:text-lg text-[#1B2A49] leading-snug text-left"
+                        >
                           {vid.title}
                         </h3>
                         <p className="font-serif italic text-xs sm:text-sm text-[#38435C] mt-2 leading-relaxed text-left">
@@ -357,7 +359,11 @@ export default function MediaPageClient() {
             {publicEvents && publicEvents.length > 0 && (
               <div className="mt-12 sm:mt-16 text-left">
                 <div className="mb-6 text-left">
-                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#1B2A49] tracking-tight text-left">
+                  <h3
+                    id="documented-exhibitions-heading"
+                    style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                    className="media-events-heading text-xl sm:text-2xl font-bold text-[#1B2A49] tracking-tight text-left"
+                  >
                     Documented Exhibitions &amp; Milestones
                   </h3>
                   <p className="font-serif italic text-xs sm:text-sm text-[#38435C]/80 mt-1 text-left">
@@ -433,9 +439,8 @@ export default function MediaPageClient() {
                   <div className="text-left">
                     {/* Top Book Accent & Format */}
                     <div className="flex items-center justify-between pb-3 mb-3 text-left">
-                      <span className="inline-flex items-center gap-1.5 text-xs font-heading font-semibold uppercase tracking-wider text-[#1B2A49]">
-                        <BookOpen size={14} className="text-[#1B2A49]/70" />
-                        <span>{book.format || (book.year ? `Published ${book.year}` : "Book")}</span>
+                      <span className="text-xs font-heading font-semibold uppercase tracking-wider text-[#1B2A49]">
+                        {book.format || (book.year ? `Published ${book.year}` : "Book")}
                       </span>
                       {book.language && (
                         <span className="text-[11px] font-mono text-[#38435C]/60 uppercase">
@@ -445,7 +450,10 @@ export default function MediaPageClient() {
                     </div>
 
                     {/* Book Title */}
-                    <h3 className="font-heading font-bold text-lg sm:text-xl text-[#1B2A49] leading-snug text-left">
+                    <h3
+                      style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                      className="media-book-title font-bold text-lg sm:text-xl text-[#1B2A49] leading-snug text-left"
+                    >
                       {book.title}
                     </h3>
 

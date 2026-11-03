@@ -1245,8 +1245,8 @@ html.lenis {
 }
 
 .story-contact h2 {
-  font: 700 clamp(3rem, 7.5vw, 7.5rem)/1.02 var(--font-heading);
-  letter-spacing: -.02em;
+  font: 500 clamp(2.5rem, 5.5vw, 5rem)/1.12 "Hoefler Text", "Baskerville", "Georgia", serif;
+  letter-spacing: -.015em;
   margin: clamp(24px, 5vh, 48px) auto;
   text-align: center;
   width: 100%;
@@ -1254,8 +1254,10 @@ html.lenis {
 }
 
 .story-contact h2 span {
-  font: 400 1.25em/.9 var(--font-signature);
-  letter-spacing: -.02em;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: inherit;
+  letter-spacing: inherit;
 }
 
 .story-contact>div {
@@ -1401,8 +1403,8 @@ html.lenis {
   }
 
   .story-contact h2 {
-    font-size: clamp(2.2rem, 9.5vw, 3.8rem);
-    line-height: 1.08;
+    font-size: clamp(2rem, 8.5vw, 3.2rem);
+    line-height: 1.15;
     text-align: center;
     margin: 16px auto 20px;
     width: 100%;
@@ -1792,7 +1794,6 @@ html.lenis {
 .statement-line,
 .gallery-title-layer h2,
 .exhibitions-heading h2,
-.story-contact h2,
 .theme-phrase {
   font-family: var(--font-display);
   font-weight: 700;
@@ -1802,7 +1803,6 @@ html.lenis {
 .statement-line .statement-script,
 .gallery-title-layer h2 span,
 .exhibitions-heading h2 span,
-.story-contact h2 span,
 .theme-prefix,
 .footer-signoff span {
   font-family: var(--font-display);
@@ -2537,7 +2537,28 @@ button {
 
 /* Media Press Clipping Article Titles & Fallbacks */
 .press-article-title,
-article h3[lang] {
+article h3[lang],
+.media-video-title,
+.media-book-title,
+.media-events-heading,
+#documented-exhibitions-heading {
   font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
   letter-spacing: normal !important;
+}
+
+/* Studio Contact Title Typography */
+#story-contact-title,
+.story-contact h2 {
+  font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em !important;
+}
+
+#story-contact-title span,
+.story-contact h2 span {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  font-size: 1em !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
 }

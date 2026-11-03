@@ -28,7 +28,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="w-full px-5 sm:px-6 pt-8 sm:pt-12 lg:pt-16 pb-16 sm:pb-24">
+    <div className="w-full px-4 sm:px-6 pt-8 sm:pt-12 lg:pt-16 pb-16 sm:pb-24">
       <main className="max-w-[560px] mx-auto text-center">
         {/* Contact Heading & Details */}
         <section className="text-center" aria-label="Contact Information">
@@ -72,7 +72,7 @@ export default function ContactPage() {
               </a>
             </p>
 
-            <p className="font-serif text-[13px] sm:text-[15px] md:text-[17px] text-[#38435C]/85 leading-relaxed text-center mx-auto whitespace-nowrap">
+            <p className="font-serif text-[clamp(10px,2.65vw,13px)] sm:text-[15px] md:text-[17px] text-[#38435C]/85 leading-relaxed text-center mx-auto whitespace-nowrap">
               Studio address: LG13, Avior Corporate Park, LBS Road, Mulund (West).
             </p>
           </div>
