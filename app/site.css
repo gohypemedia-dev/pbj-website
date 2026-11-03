@@ -2541,7 +2541,8 @@ article h3[lang],
 .media-video-title,
 .media-book-title,
 .media-events-heading,
-#documented-exhibitions-heading {
+#documented-exhibitions-heading,
+.works-page-title {
   font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
   letter-spacing: normal !important;
 }

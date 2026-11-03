@@ -72,8 +72,8 @@ export default function ContactPage() {
               </a>
             </p>
 
-            <p className="font-serif text-[clamp(10px,2.65vw,13px)] sm:text-[15px] md:text-[17px] text-[#38435C]/85 leading-relaxed text-center mx-auto whitespace-nowrap">
-              Studio address: LG13, Avior Corporate Park, LBS Road, Mulund (West).
+            <p className="font-serif text-[13.5px] sm:text-[15px] md:text-[17px] text-[#38435C]/85 leading-relaxed text-center mx-auto sm:whitespace-nowrap">
+              Studio address: LG13, Avior Corporate Park,<span className="sm:hidden"><br /></span> LBS Road, Mulund (West).
             </p>
           </div>
         </section>
