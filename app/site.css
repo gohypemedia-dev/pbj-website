@@ -1245,12 +1245,13 @@ html.lenis {
 }
 
 .story-contact h2 {
-  font: 500 clamp(2.5rem, 5.5vw, 5rem)/1.12 "Hoefler Text", "Baskerville", "Georgia", serif;
+  font: 500 clamp(2.2rem, 4.8vw, 4.5rem)/1.15 "Hoefler Text", "Baskerville", "Georgia", serif;
   letter-spacing: -.015em;
   margin: clamp(24px, 5vh, 48px) auto;
   text-align: center;
   width: 100%;
-  max-width: 900px;
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 .story-contact h2 span {
@@ -1403,12 +1404,13 @@ html.lenis {
   }
 
   .story-contact h2 {
-    font-size: clamp(2rem, 8.5vw, 3.2rem);
+    font-size: clamp(1.4rem, 6.2vw, 2.75rem);
     line-height: 1.15;
     text-align: center;
     margin: 16px auto 20px;
     width: 100%;
     max-width: 100%;
+    white-space: nowrap;
   }
 
   .story-email {
@@ -2543,7 +2545,9 @@ button {
   white-space: nowrap !important;
 }
 
-/* Media Press Clipping Article Titles & Fallbacks */
+/* Media & Contact Page Titles, Press Clipping Article Titles & Fallbacks */
+.contact-page-title,
+.media-page-title,
 .press-article-title,
 article h3[lang],
 .media-video-title,
@@ -2561,6 +2565,8 @@ article h3[lang],
   font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
   font-weight: 500 !important;
   letter-spacing: -0.015em !important;
+  text-align: center !important;
+  white-space: nowrap !important;
 }
 
 #story-contact-title span,
@@ -2570,4 +2576,9 @@ article h3[lang],
   font-size: 1em !important;
   line-height: inherit !important;
   letter-spacing: inherit !important;
+}
+
+/* About Page Year Typography */
+.about-year {
+  font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
 }

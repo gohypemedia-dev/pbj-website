@@ -66,7 +66,7 @@ export default function Header() {
     { href: "/about", label: "About", description: "Biography & Philosophy" },
     { href: "/works", label: "Works", description: "Selected Paintings & Series" },
     { href: "/media", label: "Media", description: "Press, Reviews & Features" },
-    { href: "/contact", label: "Contacts", description: "Studio Visits & Enquiries" }
+    { href: "/contact", label: "Contact", description: "Studio Visits & Enquiries" }
   ];
 
   const isLinkActive = (href: string) => {

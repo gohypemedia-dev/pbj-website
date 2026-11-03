@@ -36,16 +36,15 @@ export default function HomeScrollSections({ onOpenArtwork }) {
         <h2
           id="story-contact-title"
           style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
-          className="text-center mx-auto w-full"
+          className="text-center mx-auto w-full whitespace-nowrap"
           data-scroll-reveal
         >
-          <span style={{ fontFamily: "inherit", fontSize: "1em", fontWeight: "inherit" }}>Let’s</span> start
-          <br />a conversation.
+          Connect to the team
         </h2>
         <div className="flex flex-col items-center justify-center text-center w-full mx-auto" data-scroll-reveal>
           <a href={`mailto:${artistData.contact.email}`} className="story-email inline-flex items-center justify-center mx-auto gap-2.5">{artistData.contact.email}<ArrowUpRight size={20} /></a>
-          <p className="text-center mx-auto">Mumbai, India. Studio visits by appointment.</p>
-          <Link href="/contact" className="story-link inline-flex items-center justify-center mx-auto gap-2">Contact the studio <ArrowUpRight size={19} /></Link>
+          <p className="text-center mx-auto">Studio visits by appointment.</p>
+          <Link href="/contact" className="story-link inline-flex items-center justify-center mx-auto">Contact the studio</Link>
         </div>
       </section>
     </div>

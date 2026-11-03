@@ -81,7 +81,10 @@ export default function MediaPageClient() {
       <main className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-12 pt-8 sm:pt-12 pb-16 sm:pb-24 text-left">
         {/* Compact Page Heading */}
         <div className="mb-6 sm:mb-8 text-left">
-          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1B2A49] tracking-tight leading-[1.15] text-left">
+          <h1
+            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+            className="media-page-title text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1B2A49] tracking-tight leading-[1.15] text-left"
+          >
             Media &amp; Archive
           </h1>
         </div>
@@ -163,13 +166,6 @@ export default function MediaPageClient() {
                         className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                         loading={idx < 6 ? "eager" : "lazy"}
                       />
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-[#1B2A49]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1B2A49]/90 text-white text-xs font-heading tracking-wider uppercase rounded-sm shadow-md">
-                          <Maximize2 size={13} />
-                          <span>View clipping</span>
-                        </span>
-                      </div>
                     </div>
 
                     {/* Card Editorial Metadata */}
@@ -207,7 +203,7 @@ export default function MediaPageClient() {
                         {article.translation && (
                           <p
                             style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
-                            className="press-article-title text-xs text-[#38435C]/80 mt-1 italic text-left"
+                            className="press-article-title text-xs text-[#38435C]/80 mt-2.5 sm:mt-3 italic text-left"
                           >
                             Transl: “{article.translation}”
                           </p>

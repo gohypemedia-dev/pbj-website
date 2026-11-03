@@ -336,17 +336,6 @@ export default function WorksLightbox({
                 </dd>
               </div>
 
-              {artwork.dimensions && (
-                <div className="flex justify-between items-baseline gap-2">
-                  <dt className="font-heading uppercase tracking-wider text-[11px] text-[#1B2A49]/70 font-semibold">
-                    Dimensions
-                  </dt>
-                  <dd className="font-sans text-[#38435C] text-right">
-                    {artwork.dimensions}
-                  </dd>
-                </div>
-              )}
-
               <div className="flex justify-between items-baseline gap-2">
                 <dt className="font-heading uppercase tracking-wider text-[11px] text-[#1B2A49]/70 font-semibold">
                   Catalogue ID

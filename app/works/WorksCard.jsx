@@ -78,12 +78,6 @@ export default function WorksCard({
         <p className="font-serif italic text-xs sm:text-sm text-[#38435C]/90 text-left">
           {artwork.medium}
         </p>
-
-        {artwork.dimensions && (
-          <p className="font-sans text-xs text-[#38435C]/75 text-left">
-            {artwork.dimensions}
-          </p>
-        )}
       </div>
     </article>
   );

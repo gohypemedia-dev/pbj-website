@@ -111,7 +111,7 @@ export default function WorksEnquiryModal({
   };
 
   const formattedArtworkMeta = artwork
-    ? [artwork.artist, artwork.medium, artwork.dimensions, artwork.year]
+    ? [artwork.artist, artwork.medium, artwork.year]
         .filter(Boolean)
         .join(" · ")
     : null;

@@ -32,7 +32,10 @@ export default function ContactPage() {
       <main className="max-w-[560px] mx-auto text-center">
         {/* Contact Heading & Details */}
         <section className="text-center" aria-label="Contact Information">
-          <h1 className="font-heading text-5xl sm:text-6xl font-bold text-[#1B2A49] tracking-tight text-center">
+          <h1
+            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+            className="contact-page-title text-5xl sm:text-6xl font-bold text-[#1B2A49] tracking-tight text-center"
+          >
             Contact
           </h1>
 
@@ -125,9 +128,9 @@ export default function ContactPage() {
           <div>
             <label
               htmlFor="contact-message"
-              className="block text-xs font-heading font-semibold uppercase tracking-wider text-[#1B2A49] mb-1.5 text-left"
+              className="sr-only"
             >
-              Message <span aria-hidden="true" className="text-[#1B2A49]">*</span>
+              Message
             </label>
             <textarea
               id="contact-message"
@@ -137,6 +140,7 @@ export default function ContactPage() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Your message or enquiry..."
+              aria-label="Message"
               className="w-full h-[120px] min-h-[120px] p-4 bg-white border border-[#1B2A49]/20 rounded-xs sm:rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:outline-hidden focus:border-[#1B2A49] focus:ring-1 focus:ring-[#1B2A49] transition-all font-body text-sm text-left resize-y"
             />
           </div>
