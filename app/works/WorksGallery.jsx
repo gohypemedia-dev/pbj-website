@@ -52,7 +52,10 @@ export default function WorksGallery() {
       {/* Editorial Header */}
       <header className="mb-8 sm:mb-12 text-left">
         {/* Heading */}
-        <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B2A49] tracking-tight leading-[1.15] text-left">
+        <h1
+          style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+          className="works-page-title text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B2A49] tracking-tight leading-[1.15] text-left"
+        >
           Works
         </h1>
 
