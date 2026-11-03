@@ -1222,7 +1222,7 @@ html.lenis {
   position: relative;
   z-index: 30;
   background-color: var(--bg-main, #E9ECEF);
-  padding: clamp(60px, 12vh, 160px) 4vw clamp(60px, 14vh, 180px);
+  padding: clamp(48px, 8vh, 110px) 4vw clamp(48px, 10vh, 130px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1390,9 +1390,8 @@ html.lenis {
     position: relative;
     z-index: 30;
     background-color: var(--bg-main, #E9ECEF);
-    min-height: 100svh;
-    min-height: 100vh;
-    padding: 72px 6vw 80px;
+    min-height: auto;
+    padding: 44px 6vw 56px;
     display: flex;
     flex-direction: column;
     align-items: center;

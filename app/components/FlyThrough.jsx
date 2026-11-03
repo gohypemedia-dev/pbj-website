@@ -87,10 +87,10 @@ export default function FlyThrough({ onOpenArtwork }) {
     mm.add("(max-width: 767px)", () => {
       const els = gsap.utils.toArray(".fly__item");
       const N = items.length;
-      // Target focal points: item 0 focused at 0, item 9 at 0.82
+      // Target focal points: evenly distributed up to 0.90 so gallery transitions smoothly
       const targets = [];
       for (let i = 0; i < N; i++) {
-        targets.push((i / (N - 1)) * 0.82);
+        targets.push((i / (N - 1)) * 0.90);
       }
       // Gentle lateral micro-offsets in vw: subtle natural breathing without edge clipping
       const mobileX = [0, 1.5, -1.5, 1.2, -1.2, 1.5, -1.2, 1.2, -1.5, 0];
@@ -101,6 +101,7 @@ export default function FlyThrough({ onOpenArtwork }) {
         els.forEach((el, i) => {
           const target = targets[i];
           const diff = p - target;
+          const isLast = i === N - 1;
           let y = 0;
           let scale = 1;
           let opacity = 1;
@@ -119,31 +120,32 @@ export default function FlyThrough({ onOpenArtwork }) {
             opacity = Math.pow(t, 2);
             visible = opacity > 0.02;
             zIndex = 10;
-          } else if (diff <= 0.05) {
+          } else if (diff <= 0.06) {
             // Prime viewing moment in center
-            y = -diff * 18;
+            y = -diff * 14;
             scale = 1.0;
             opacity = 1.0;
             visible = true;
             zIndex = 30;
-          } else if (diff <= 0.18) {
-            // Gliding upward out of view
-            const t = (diff - 0.05) / 0.13;
-            y = -0.9 - t * 54; // from -0.9vh to -55vh
+          } else if (!isLast && diff <= 0.18) {
+            // Gliding upward out of view for non-last items
+            const t = (diff - 0.06) / 0.12;
+            y = -0.8 - t * 54; // from -0.8vh to -55vh
             scale = 1.0 - t * 0.06;
             opacity = Math.pow(Math.max(0, 1 - t), 1.2);
             visible = opacity > 0.02;
             zIndex = 15;
+          } else if (isLast) {
+            // Final artwork remains beautifully framed; avoids leaving a giant empty space below
+            y = -Math.min(8, (diff - 0.06) * 16);
+            scale = 1.0;
+            opacity = 1.0;
+            visible = true;
+            zIndex = 30;
           } else {
             // Far above
             visible = false;
             opacity = 0;
-          }
-
-          // Fade out completely as user exits into next section
-          if (p >= 0.98) {
-            opacity = 0;
-            visible = false;
           }
 
           el.style.opacity = String(opacity);
@@ -159,7 +161,7 @@ export default function FlyThrough({ onOpenArtwork }) {
         scrollTrigger: {
           trigger: root.current,
           start: "top top",
-          end: "+=420%",
+          end: "+=260%",
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
