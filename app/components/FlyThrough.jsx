@@ -83,75 +83,63 @@ export default function FlyThrough({ onOpenArtwork }) {
       };
     });
 
-    // MOBILE (< 768px): Controlled Vertical Parallax Showcase
+    // MOBILE (< 768px): Focused Single Artwork Presentation
     mm.add("(max-width: 767px)", () => {
       const els = gsap.utils.toArray(".fly__item");
       const N = items.length;
-      // Target focal points: evenly distributed up to 0.90 so gallery transitions smoothly
-      const targets = [];
-      for (let i = 0; i < N; i++) {
-        targets.push((i / (N - 1)) * 0.90);
-      }
-      // Gentle lateral micro-offsets in vw: subtle natural breathing without edge clipping
-      const mobileX = [0, 1.5, -1.5, 1.2, -1.2, 1.5, -1.2, 1.2, -1.5, 0];
       const state = { progress: 0 };
 
       const renderMobile = () => {
         const p = state.progress;
-        els.forEach((el, i) => {
-          const target = targets[i];
-          const diff = p - target;
-          const isLast = i === N - 1;
-          let y = 0;
-          let scale = 1;
-          let opacity = 1;
-          let zIndex = 1;
-          let visible = true;
+        const floatIndex = p * (N - 1);
+        const currentIndex = Math.min(Math.floor(floatIndex), N - 1);
+        const fraction = floatIndex - currentIndex;
 
-          if (diff < -0.15) {
-            // Far below
-            visible = false;
-            opacity = 0;
-          } else if (diff < 0) {
-            // Arriving from below
-            const t = (diff + 0.15) / 0.15;
-            y = (1 - t) * 55; // from +55vh to 0vh
-            scale = 0.90 + t * 0.10;
-            opacity = Math.pow(t, 2);
-            visible = opacity > 0.02;
-            zIndex = 10;
-          } else if (diff <= 0.06) {
-            // Prime viewing moment in center
-            y = -diff * 14;
-            scale = 1.0;
-            opacity = 1.0;
-            visible = true;
-            zIndex = 30;
-          } else if (!isLast && diff <= 0.18) {
-            // Gliding upward out of view for non-last items
-            const t = (diff - 0.06) / 0.12;
-            y = -0.8 - t * 54; // from -0.8vh to -55vh
-            scale = 1.0 - t * 0.06;
-            opacity = Math.pow(Math.max(0, 1 - t), 1.2);
-            visible = opacity > 0.02;
-            zIndex = 15;
-          } else if (isLast) {
-            // Final artwork remains beautifully framed; avoids leaving a giant empty space below
-            y = -Math.min(8, (diff - 0.06) * 16);
-            scale = 1.0;
-            opacity = 1.0;
-            visible = true;
-            zIndex = 30;
+        els.forEach((el, i) => {
+          let opacity = 0;
+          let visible = false;
+          let zIndex = 1;
+
+          if (i === currentIndex) {
+            if (currentIndex === N - 1) {
+              opacity = 1;
+              visible = true;
+              zIndex = 10;
+            } else if (fraction < 0.65) {
+              opacity = 1;
+              visible = true;
+              zIndex = 10;
+            } else {
+              // Smooth crossfade out
+              const t = (fraction - 0.65) / 0.35;
+              opacity = Math.max(0, 1 - t);
+              visible = opacity > 0.01;
+              zIndex = 10;
+            }
+          } else if (i === currentIndex + 1 && currentIndex < N - 1) {
+            if (fraction >= 0.65) {
+              // Smooth crossfade in
+              const t = (fraction - 0.65) / 0.35;
+              opacity = Math.min(1, t);
+              visible = opacity > 0.01;
+              zIndex = 20;
+            } else {
+              opacity = 0;
+              visible = false;
+              zIndex = 1;
+            }
           } else {
-            // Far above
-            visible = false;
+            // Strictly hide all decorative/background artworks
             opacity = 0;
+            visible = false;
+            zIndex = 1;
           }
 
           el.style.opacity = String(opacity);
-          el.style.transform = `translate(-50%, -50%) translate3d(${mobileX[i] || 0}vw, ${y}vh, 0) scale(${scale})`;
+          el.style.transform = "translate(-50%, -50%)";
           el.style.visibility = visible ? "visible" : "hidden";
           el.style.zIndex = String(zIndex);
+          el.style.pointerEvents = visible && opacity > 0.4 ? "auto" : "none";
         });
       };
       renderMobile();
@@ -170,9 +158,7 @@ export default function FlyThrough({ onOpenArtwork }) {
         },
       });
 
-      tl.to(state, { progress: 1, duration: 1, onUpdate: renderMobile }, 0)
-        .fromTo(".fly__glow", { scale: 0.6, opacity: 0 }, { scale: 1.1, opacity: 0.55, duration: 0.6 }, 0)
-        .to(".fly__glow", { opacity: 0, duration: 0.25 }, 0.75);
+      tl.to(state, { progress: 1, duration: 1, onUpdate: renderMobile }, 0);
 
       return () => {
         els.forEach((el) => {
@@ -180,6 +166,7 @@ export default function FlyThrough({ onOpenArtwork }) {
           el.style.transform = "";
           el.style.visibility = "";
           el.style.zIndex = "";
+          el.style.pointerEvents = "";
         });
       };
     });

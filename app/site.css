@@ -2364,12 +2364,13 @@ button {
     height: 100vh;
     height: 100svh;
     overflow: hidden;
+    background-color: #F8F6F2 !important;
+    background: #F8F6F2 !important;
     touch-action: pan-y;
   }
 
   .fly__glow {
-    inset: -10%;
-    opacity: 0.6;
+    display: none !important;
   }
 
   .fly__stage {
@@ -2379,15 +2380,16 @@ button {
     height: 100%;
     perspective: none !important;
     transform-style: flat !important;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .fly__item {
     position: absolute;
-    top: 52%;
+    top: calc(50% + 20px);
     left: 50%;
-    width: min(calc(100vw - 40px), 360px);
-    max-width: calc(100vw - 40px);
+    transform: translate(-50%, -50%);
+    width: calc(100vw - 36px);
+    max-width: 440px;
     min-width: 0;
     aspect-ratio: auto !important;
     height: auto !important;
@@ -2415,26 +2417,30 @@ button {
     outline: none;
   }
 
+  .fly__item:hover .fly__img-wrap {
+    transform: none !important;
+    box-shadow: 0 4px 16px rgba(27, 42, 73, 0.08) !important;
+  }
+
   .fly__img-wrap {
     width: 100%;
     height: auto;
-    max-height: min(52vh, calc(100svh - 220px));
     aspect-ratio: var(--ar, 1.2);
     border-radius: 4px;
-    box-shadow: 0 14px 34px rgba(27, 42, 73, 0.14), 0 3px 10px rgba(27, 42, 73, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    background-color: #d8dfe5;
+    box-shadow: 0 4px 16px rgba(27, 42, 73, 0.08) !important;
+    border: none !important;
+    background-color: transparent !important;
     overflow: hidden;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: none;
   }
 
   .fly__img {
     display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background-color: #e5eaef;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background-color: transparent !important;
   }
 
   .fly__caption {
@@ -2443,12 +2449,12 @@ button {
     left: auto !important;
     right: auto !important;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 14px;
     padding: 0 4px;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-family: var(--font-heading);
+    font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: none;
@@ -2456,9 +2462,10 @@ button {
   }
 
   .fly__caption-title {
-    font-size: 13.5px;
+    font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
+    font-size: 14.5px;
     font-weight: 600;
-    color: #1B2A49;
+    color: #1B2A49 !important;
     letter-spacing: 0.01em;
     white-space: nowrap;
     overflow: hidden;
@@ -2467,9 +2474,10 @@ button {
   }
 
   .fly__caption-year {
-    font-size: 12.5px;
+    font-family: "Hoefler Text", "Baskerville", "Georgia", serif !important;
+    font-size: 13.5px;
     font-weight: 500;
-    color: #5A6B82;
+    color: #38435C !important;
     white-space: nowrap;
     flex-shrink: 0;
   }
