@@ -97,11 +97,9 @@ export default function Header() {
   return (
     <>
       <header
-        className={`${
-          pathname === "/" ? "home-header" : ""
-        } sticky top-0 z-40 bg-[#E9ECEF]/95 backdrop-blur-sm transition-colors`}
+        className="home-header site-header sticky top-0 z-40 bg-[#E9ECEF]/95 backdrop-blur-sm transition-colors"
       >
-        <div className="header-inner max-w-[1440px] mx-auto px-4 sm:px-5 lg:px-12 h-16 sm:h-18 lg:h-20 flex items-center justify-between flex-nowrap">
+        <div className="header-inner max-w-[1440px] mx-auto px-4 sm:px-5 lg:px-12 flex items-center justify-between flex-nowrap">
           {/* Left: Artist Wordmark */}
           <Link
             href="/"
@@ -115,7 +113,7 @@ export default function Header() {
 
           {/* Right: Desktop Navigation (hidden below 1024px) */}
           <nav
-            className="header-navigation hidden lg:flex items-center space-x-4 xl:space-x-7"
+            className="header-navigation hidden lg:flex items-center"
             aria-label="Main Navigation"
           >
             {navLinks.map((link) => {
@@ -124,7 +122,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`font-heading text-xs xl:text-sm uppercase tracking-[0.14em] transition-colors py-1 relative ${
+                  className={`font-heading transition-colors py-1 relative ${
                     isActive
                       ? "text-[#1B2A49] font-bold"
                       : "text-[#38435C] hover:text-[#1B2A49]"

@@ -88,7 +88,7 @@ export default function WorksGallery() {
           className="font-serif text-2xl sm:text-3xl font-bold text-[#1B2A49] text-left"
           style={{ fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' }}
         >
-          Enquire About Work
+          Enquire About Works
         </h2>
         <p className="font-serif italic text-base sm:text-lg text-[#38435C] mt-2 text-left">
           For further information on the portfolio and pricing, contact the studio.

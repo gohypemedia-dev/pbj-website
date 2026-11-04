@@ -39,7 +39,7 @@ export default function HomeScrollSections({ onOpenArtwork }) {
           className="text-center mx-auto w-full whitespace-nowrap"
           data-scroll-reveal
         >
-          Connect to the team
+          Connect with the team
         </h2>
         <div className="flex flex-col items-center justify-center text-center w-full mx-auto" data-scroll-reveal>
           <a href={`mailto:${artistData.contact.email}`} className="story-email inline-flex items-center justify-center mx-auto gap-2.5">{artistData.contact.email}<ArrowUpRight size={20} /></a>

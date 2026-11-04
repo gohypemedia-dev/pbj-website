@@ -1,15 +1,23 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { artistData } from "@/data/artist";
 
 /** A single opening sequence; the root layout stays mounted during navigation. */
 export default function OpeningAnimation({ onReveal }: { onReveal: () => void }) {
+  const pathname = usePathname();
   const overlayRef = useRef<HTMLDivElement>(null);
   const finishRef = useRef<() => void>(() => {});
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
+    if (pathname !== "/") {
+      onReveal();
+      setFinished(true);
+      return;
+    }
+
     const overlay = overlayRef.current;
     if (!overlay) return;
 
@@ -110,9 +118,9 @@ export default function OpeningAnimation({ onReveal }: { onReveal: () => void })
       window.removeEventListener("resize", finish);
       motion.removeEventListener("change", finish);
     };
-  }, [onReveal]);
+  }, [onReveal, pathname]);
 
-  if (finished) return null;
+  if (finished || pathname !== "/") return null;
 
   return (
     <div ref={overlayRef} className="opening-animation" aria-hidden="true" onPointerDown={() => finishRef.current()}>
