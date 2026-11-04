@@ -143,11 +143,16 @@ h6 {
 
 /* Accessible focus styling */
 a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
+button:focus-visible {
   outline: 2px solid var(--text-heading);
   outline-offset: 3px;
+}
+
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: none !important;
 }
 
 /* Restrained artwork card hover */
@@ -1253,6 +1258,24 @@ html.lenis {
   max-width: 38rem;
 }
 
+.view-all-works-cta {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  background-color: var(--bg-main, #E9ECEF);
+  padding-top: clamp(28px, 5vh, 48px);
+  padding-bottom: 0;
+}
+
+.view-all-works-cta + .story-contact {
+  padding-top: clamp(12px, 2.5vh, 24px);
+}
+
+.view-all-works-cta + .story-contact h2 {
+  margin-top: clamp(10px, 1.8vh, 18px);
+  margin-bottom: clamp(18px, 3.5vh, 32px);
+}
+
 .story-contact {
   position: relative;
   z-index: 30;
@@ -1422,6 +1445,20 @@ html.lenis {
 
   .exhibitions-heading {
     position: static;
+  }
+
+  .view-all-works-cta {
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+
+  .view-all-works-cta + .story-contact {
+    padding-top: 14px;
+  }
+
+  .view-all-works-cta + .story-contact h2 {
+    margin-top: 10px;
+    margin-bottom: 16px;
   }
 
   .story-contact {

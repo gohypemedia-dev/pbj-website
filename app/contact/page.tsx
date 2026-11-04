@@ -102,7 +102,7 @@ export default function ContactPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your name"
-              className="w-full h-12 px-4 bg-white border border-[#1B2A49]/20 rounded-xs sm:rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:outline-hidden focus:border-[#1B2A49] focus:ring-1 focus:ring-[#1B2A49] transition-all font-body text-sm text-left"
+              className="w-full h-12 px-4 bg-white border border-[#1B2A49]/20 rounded-xs sm:rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:outline-none focus:border-[#1B2A49] focus:ring-0 transition-all font-body text-sm text-left"
             />
           </div>
 
@@ -121,7 +121,7 @@ export default function ContactPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your.email@example.com"
-              className="w-full h-12 px-4 bg-white border border-[#1B2A49]/20 rounded-xs sm:rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:outline-hidden focus:border-[#1B2A49] focus:ring-1 focus:ring-[#1B2A49] transition-all font-body text-sm text-left"
+              className="w-full h-12 px-4 bg-white border border-[#1B2A49]/20 rounded-xs sm:rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:outline-none focus:border-[#1B2A49] focus:ring-0 transition-all font-body text-sm text-left"
             />
           </div>
 
@@ -141,7 +141,7 @@ export default function ContactPage() {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Your message or enquiry..."
               aria-label="Message"
-              className="w-full h-[120px] min-h-[120px] p-4 bg-white border border-[#1B2A49]/20 rounded-xs sm:rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:outline-hidden focus:border-[#1B2A49] focus:ring-1 focus:ring-[#1B2A49] transition-all font-body text-sm text-left resize-y"
+              className="w-full h-[120px] min-h-[120px] p-4 bg-white border border-[#1B2A49]/20 rounded-xs sm:rounded-sm text-[#1B2A49] placeholder:text-[#38435C]/50 focus:outline-none focus:border-[#1B2A49] focus:ring-0 transition-all font-body text-sm text-left resize-y"
             />
           </div>
 

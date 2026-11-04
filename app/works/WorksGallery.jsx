@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Mail, ExternalLink } from "lucide-react";
 import { worksArtworksData } from "./worksData";
 import WorksCard from "./WorksCard";
 import WorksLightbox from "./WorksLightbox";
@@ -93,14 +92,12 @@ export default function WorksGallery() {
         <p className="font-serif italic text-base sm:text-lg text-[#38435C] mt-2 text-left">
           For further information on the portfolio and pricing, contact the studio.
         </p>
-        <div className="mt-4 flex flex-wrap items-center gap-4 text-left">
+        <div className="mt-3 sm:mt-4 text-left">
           <a
             href="mailto:studio@prakashbaljoshi.com?subject=Portfolio%20and%20Pricing%20Enquiry%20-%20Prakash%20Bal%20Joshi"
-            className="inline-flex items-center gap-2 py-2.5 px-5 bg-[#1B2A49] hover:bg-[#253961] text-[#E9ECEF] font-heading text-xs font-semibold uppercase tracking-wider rounded-sm transition-colors shadow-xs cursor-pointer min-h-[44px]"
+            className="font-serif text-lg sm:text-xl text-[#1B2A49] hover:underline font-semibold inline-block text-left"
           >
-            <Mail size={14} />
-            <span>studio@prakashbaljoshi.com</span>
-            <ExternalLink size={12} className="opacity-75" />
+            studio@prakashbaljoshi.com
           </a>
         </div>
       </section>

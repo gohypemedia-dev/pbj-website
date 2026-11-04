@@ -32,7 +32,7 @@ export default function HomeScrollSections({ onOpenArtwork }) {
       <FlyThrough onOpenArtwork={onOpenArtwork} />
 
       {/* View All Works CTA Button */}
-      <div className="view-all-works-cta relative z-30 bg-[#E9ECEF] flex items-center justify-center text-center pt-8 pb-12 sm:pt-12 sm:pb-16 w-full">
+      <div className="view-all-works-cta relative z-30 bg-[#E9ECEF] flex items-center justify-center text-center w-full">
         <Link
           href="/works"
           className="inline-flex items-center justify-center px-8 py-3.5 bg-[#1B2A49] hover:bg-[#253961] text-[#E9ECEF] hover:text-white font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] rounded-xs transition-colors shadow-xs min-h-[46px]"
