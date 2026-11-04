@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import {
-  Maximize2,
   Play,
   ExternalLink,
   ChevronDown,
@@ -210,20 +209,11 @@ export default function MediaPageClient() {
                         )}
                       </div>
 
-                      {/* Card Footer Action */}
+                      {/* Card Footer */}
                       <div className="mt-4 pt-3 flex items-center justify-between text-left">
                         <span className="text-[11px] font-mono uppercase tracking-wider text-[#38435C]/60">
                           {article.language}
                         </span>
-                        <button
-                          type="button"
-                          tabIndex={isHidden ? -1 : 0}
-                          onClick={(e) => handleOpenLightbox(idx, e.currentTarget)}
-                          className="inline-flex items-center gap-1.5 text-xs font-heading font-semibold uppercase tracking-wider text-[#1B2A49] hover:text-[#2a4577] transition-colors p-1"
-                        >
-                          <Maximize2 size={13} />
-                          <span>View clipping</span>
-                        </button>
                       </div>
                     </div>
                   </article>
