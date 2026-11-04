@@ -55,7 +55,7 @@ export default function ContactPage() {
 
             <p
               style={{
-                fontFamily: '"Hoefler Text", "Baskerville", Cambria, "Times New Roman", serif',
+                fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif',
                 fontVariantNumeric: "lining-nums tabular-nums",
                 fontFeatureSettings: '"lnum" 1, "tnum" 1',
               }}
@@ -63,20 +63,33 @@ export default function ContactPage() {
             >
               Phone no:{" "}
               <a
-                href="tel:9869014555"
+                href="tel:+919869014555"
                 style={{
-                  fontFamily: '"Hoefler Text", "Baskerville", Cambria, "Times New Roman", serif',
+                  fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif',
                   fontVariantNumeric: "lining-nums tabular-nums",
                   fontFeatureSettings: '"lnum" 1, "tnum" 1',
                 }}
                 className="text-[#1B2A49] hover:underline font-medium inline-block align-baseline"
               >
-                9869014555
+                +91 98690 14555
               </a>
             </p>
 
-            <p className="font-serif text-[13.5px] sm:text-[15px] md:text-[17px] text-[#38435C]/85 leading-relaxed text-center mx-auto sm:whitespace-nowrap">
-              Studio address: LG13, Avior Corporate Park,<span className="sm:hidden"><br /></span> LBS Road, Mulund (West).
+            <p className="font-serif text-[13.5px] sm:text-[15px] md:text-[17px] text-[#38435C]/85 leading-relaxed text-center mx-auto">
+              Studio address:{" "}
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=LG13%2C+Avior+Corporate+Park%2C+LBS+Road%2C+Mulund+%28West%29%2C+Mumbai+400080"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1B2A49] hover:underline"
+                title="View studio location on Google Maps"
+              >
+                LG13, Avior Corporate Park, LBS Road, Mulund (West), Mumbai 400080.
+              </a>
+            </p>
+
+            <p className="font-serif italic text-[13px] sm:text-[14.5px] md:text-[16px] text-[#38435C]/80 text-center">
+              Visits by appointment.
             </p>
           </div>
         </section>
@@ -145,13 +158,16 @@ export default function ContactPage() {
             />
           </div>
 
-          <div className="pt-2">
+          <div className="pt-2 text-center">
             <button
               type="submit"
               className="w-full h-12 min-h-[48px] px-6 bg-[#1B2A49] hover:bg-[#253961] active:bg-[#121d33] text-[#E9ECEF] font-heading text-xs font-semibold uppercase tracking-[0.14em] rounded-xs sm:rounded-sm transition-colors cursor-pointer flex items-center justify-center focus:outline-hidden focus:ring-2 focus:ring-[#1B2A49] focus:ring-offset-2"
             >
               Open Email App
             </button>
+            <p className="text-xs text-[#38435C]/75 font-serif italic text-center mt-2.5">
+              Clicking &ldquo;Open Email App&rdquo; will open your email application with your message pre-filled to studio@prakashbaljoshi.com.
+            </p>
           </div>
         </form>
       </main>

@@ -1,16 +1,15 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
-  Maximize2,
   Play,
   ExternalLink,
-  ChevronDown,
 } from "lucide-react";
 import {
   pressArticles,
   videos,
   books,
+  archivalBooks,
   publicEvents,
 } from "./mediaData";
 import MediaLightbox from "./MediaLightbox";
@@ -23,7 +22,6 @@ const TABS = [
 
 export default function MediaPageClient() {
   const [activeTab, setActiveTab] = useState("features");
-  const [visibleCount, setVisibleCount] = useState(9);
 
   // Lightbox state
   const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -35,11 +33,49 @@ export default function MediaPageClient() {
   // Tab button refs for keyboard navigation
   const tabRefs = useRef([]);
 
+  // URL / Tab Synchronization for direct links (e.g. from /about -> /media?tab=books#book-gateway)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const syncTabFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get("tab");
+      const hash = window.location.hash;
+
+      if (tabParam === "books" || (hash && hash.startsWith("#book-"))) {
+        setActiveTab("books");
+        if (hash) {
+          setTimeout(() => {
+            const el = document.querySelector(hash);
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }, 150);
+        }
+      } else if (tabParam === "events" || (hash && hash.startsWith("#event-"))) {
+        setActiveTab("events");
+      } else if (tabParam === "features") {
+        setActiveTab("features");
+      }
+    };
+
+    syncTabFromUrl();
+    window.addEventListener("popstate", syncTabFromUrl);
+    window.addEventListener("hashchange", syncTabFromUrl);
+    return () => {
+      window.removeEventListener("popstate", syncTabFromUrl);
+      window.removeEventListener("hashchange", syncTabFromUrl);
+    };
+  }, []);
+
   const handleTabChange = (tabId) => {
     if (tabId !== "events") {
       setActiveVideoId(null);
     }
     setActiveTab(tabId);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", tabId);
+      window.history.replaceState({}, "", url.toString());
+    }
   };
 
   const handleTabKeyDown = (e, index) => {
@@ -69,10 +105,6 @@ export default function MediaPageClient() {
 
   const handleCloseLightbox = () => {
     setLightboxIndex(null);
-  };
-
-  const handleShowMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 9, pressArticles.length));
   };
 
   return (
@@ -124,7 +156,7 @@ export default function MediaPageClient() {
         </div>
 
         {/* ============================================================ */}
-        {/* PANEL 1: FEATURES */}
+        {/* PANEL 1: FEATURES (CLEAN ARTICLE / FEATURE TITLES LIST) */}
         {/* ============================================================ */}
         {activeTab === "features" && (
           <div
@@ -134,118 +166,49 @@ export default function MediaPageClient() {
             tabIndex={0}
             className="tab-panel-fade focus:outline-none text-left"
           >
-            {/* Press Articles Grid (Desktop: 3 cols, Tablet: 2 cols, Mobile: 1 col) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 text-left">
-              {pressArticles.map((article, idx) => {
-                const isHidden = idx >= visibleCount;
-                return (
-                  <article
-                    key={article.id}
-                    className={`group bg-white rounded-sm border border-[#1B2A49]/15 hover:border-[#1B2A49]/40 transition-all duration-200 flex flex-col overflow-hidden shadow-2xs hover:shadow-md text-left ${
-                      isHidden ? "hidden" : ""
-                    }`}
-                  >
-                    {/* Scan Preview Frame (object-fit: contain, neutral surround) */}
-                    <div
-                      className="relative w-full aspect-[700/500] bg-[#EEF1F5] p-2 sm:p-3 overflow-hidden cursor-pointer flex items-center justify-center"
-                      onClick={(e) => handleOpenLightbox(idx, e.currentTarget)}
-                      role="button"
-                      tabIndex={isHidden ? -1 : 0}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          handleOpenLightbox(idx, e.currentTarget);
-                        }
-                      }}
-                      aria-label={`View clipping for ${article.publication}, ${article.date}`}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={article.image}
-                        alt={`${article.publication} clipping preview - ${article.date}`}
-                        className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                        loading={idx < 6 ? "eager" : "lazy"}
-                      />
-                    </div>
-
-                    {/* Card Editorial Metadata */}
-                    <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between text-left">
-                      <div className="text-left">
-                        {/* Publication & Date Header */}
-                        <div className="flex items-baseline justify-between gap-2 mb-1.5 text-left">
-                          <span className="font-heading font-bold text-sm sm:text-base text-[#1B2A49] tracking-wide text-left">
-                            {article.publication}
-                          </span>
-                          <span className="text-xs font-sans text-[#38435C]/75 whitespace-nowrap">
-                            {article.date}
-                          </span>
-                        </div>
-
-                        {/* Article Title when supplied */}
-                        {article.title ? (
-                          <h3
-                            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
-                            className="press-article-title italic text-base sm:text-lg text-[#1B2A49] leading-snug line-clamp-2 mt-1 text-left font-normal"
-                            lang={article.language === "Marathi" ? "mr" : "en"}
-                          >
-                            “{article.title}”
-                          </h3>
-                        ) : (
-                          <p
-                            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
-                            className="press-article-title text-xs italic text-[#38435C]/60 mt-1 text-left"
-                          >
-                            Documented newspaper feature
-                          </p>
-                        )}
-
-                        {/* Translation when provided (Prabhat) */}
-                        {article.translation && (
-                          <p
-                            style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
-                            className="press-article-title text-xs text-[#38435C]/80 mt-2.5 sm:mt-3 italic text-left"
-                          >
-                            Transl: “{article.translation}”
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Card Footer Action */}
-                      <div className="mt-4 pt-3 flex items-center justify-between text-left">
-                        <span className="text-[11px] font-mono uppercase tracking-wider text-[#38435C]/60">
-                          {article.language}
-                        </span>
-                        <button
-                          type="button"
-                          tabIndex={isHidden ? -1 : 0}
-                          onClick={(e) => handleOpenLightbox(idx, e.currentTarget)}
-                          className="inline-flex items-center gap-1.5 text-xs font-heading font-semibold uppercase tracking-wider text-[#1B2A49] hover:text-[#2a4577] transition-colors p-1"
-                        >
-                          <Maximize2 size={13} />
-                          <span>View clipping</span>
-                        </button>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-
-            {/* Show More Button (Left aligned) */}
-            {visibleCount < pressArticles.length && (
-              <div className="mt-8 text-left">
-                <button
-                  type="button"
-                  onClick={handleShowMore}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-[#1B2A49] hover:text-white text-[#1B2A49] border border-[#1B2A49]/30 font-heading text-xs font-bold uppercase tracking-wider rounded-sm transition-all shadow-xs hover:shadow-md min-h-[44px]"
+            {/* Clean List of Feature / Article Titles */}
+            <div className="bg-white/60 border border-[#1B2A49]/12 rounded-sm divide-y divide-[#1B2A49]/10 text-left shadow-2xs">
+              {pressArticles.map((article, idx) => (
+                <article
+                  key={article.id}
+                  className="group p-4 sm:p-5 sm:px-6 hover:bg-white transition-colors flex flex-col md:flex-row md:items-baseline justify-between gap-2 md:gap-8 text-left"
                 >
-                  <span>
-                    Show more features ({pressArticles.length - visibleCount} remaining)
-                  </span>
-                  <ChevronDown size={15} />
-                </button>
-              </div>
-            )}
+                  <div className="flex-1 text-left">
+                    <button
+                      type="button"
+                      onClick={(e) => handleOpenLightbox(idx, e.currentTarget)}
+                      className="text-left font-serif text-lg sm:text-xl font-medium text-[#1B2A49] group-hover:text-[#253961] hover:underline cursor-pointer leading-snug transition-colors block"
+                      style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                      aria-label={`Open newspaper clipping for “${article.title}” (${article.publication}, ${article.date})`}
+                    >
+                      “{article.title}”
+                    </button>
+                    {article.translation && (
+                      <p
+                        style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                        className="text-xs sm:text-sm text-[#38435C]/80 mt-1 italic text-left"
+                      >
+                        Transl: “{article.translation}”
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-3 sm:gap-4 shrink-0 text-left pt-1 md:pt-0">
+                    <span className="font-heading font-semibold text-xs sm:text-sm text-[#1B2A49] tracking-wide">
+                      {article.publication}
+                    </span>
+                    <span className="text-xs text-[#38435C]/75 font-sans whitespace-nowrap">
+                      {article.date}
+                    </span>
+                    {article.language && article.language !== "English" && (
+                      <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 bg-[#1B2A49]/8 text-[#1B2A49] rounded-xs">
+                        {article.language}
+                      </span>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         )}
 
@@ -304,7 +267,7 @@ export default function MediaPageClient() {
                           {/* Dark Gradient Overlay */}
                           <div className="absolute inset-0 bg-[#0F172A]/40 group-hover:bg-[#0F172A]/25 transition-colors" />
 
-                          {/* Obvious Play Button Overlay */}
+                          {/* Play Button Overlay */}
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#1B2A49]/90 group-hover:bg-[#1B2A49] group-hover:scale-110 text-white flex items-center justify-center shadow-xl border border-white/20 transition-all">
                               <Play size={24} className="ml-1 fill-white" />
@@ -333,7 +296,7 @@ export default function MediaPageClient() {
                         </p>
                       </div>
 
-                      {/* Fallback Watch on YouTube Link */}
+                      {/* Watch on YouTube Link */}
                       <div className="mt-4 pt-3 text-left">
                         <a
                           href={vid.url}
@@ -425,12 +388,13 @@ export default function MediaPageClient() {
               changing societal values, and the living pulse of Mumbai.
             </p>
 
-            {/* Books Layout */}
+            {/* Featured Books Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl text-left">
               {books.map((book) => (
                 <article
+                  id={book.id}
                   key={book.id}
-                  className="bg-white rounded-sm border border-[#1B2A49]/15 hover:border-[#1B2A49]/35 transition-colors p-5 sm:p-6 flex flex-col justify-between shadow-2xs text-left"
+                  className="bg-white rounded-sm border border-[#1B2A49]/15 hover:border-[#1B2A49]/35 transition-colors p-5 sm:p-6 flex flex-col justify-between shadow-2xs text-left scroll-mt-28"
                 >
                   <div className="text-left">
                     {/* Top Book Accent & Format */}
@@ -502,6 +466,72 @@ export default function MediaPageClient() {
                 </article>
               ))}
             </div>
+
+            {/* Archival Literature & Short Fiction */}
+            {archivalBooks && archivalBooks.length > 0 && (
+              <div className="mt-12 sm:mt-16 text-left max-w-4xl">
+                <div className="mb-6 text-left">
+                  <h3
+                    style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                    className="text-xl sm:text-2xl font-bold text-[#1B2A49] tracking-tight text-left"
+                  >
+                    Archival Publications &amp; Short Fiction
+                  </h3>
+                  <p className="font-serif italic text-xs sm:text-sm text-[#38435C]/80 mt-1 text-left">
+                    Earlier Marathi short story collections and sketch-illustrated accounts.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 text-left">
+                  {archivalBooks.map((book) => (
+                    <article
+                      id={book.id}
+                      key={book.id}
+                      className="bg-white rounded-sm border border-[#1B2A49]/15 hover:border-[#1B2A49]/35 transition-colors p-5 sm:p-6 flex flex-col justify-between shadow-2xs text-left scroll-mt-28"
+                    >
+                      <div className="text-left">
+                        <div className="flex items-center justify-between pb-3 mb-3 text-left">
+                          <span className="text-xs font-heading font-semibold uppercase tracking-wider text-[#1B2A49]">
+                            {book.year ? `Published ${book.year}` : "Archival Book"}
+                          </span>
+                          {book.language && (
+                            <span className="text-[11px] font-mono text-[#38435C]/60 uppercase">
+                              {book.language}
+                            </span>
+                          )}
+                        </div>
+
+                        <h4
+                          style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+                          className="media-book-title font-bold text-lg sm:text-xl text-[#1B2A49] leading-snug text-left"
+                        >
+                          {book.title}
+                        </h4>
+
+                        <div className="mt-3 space-y-1 text-xs text-[#38435C] text-left">
+                          <p className="text-left">
+                            <strong className="text-[#1B2A49] font-semibold">Author:</strong>{" "}
+                            {book.author}
+                          </p>
+                        </div>
+
+                        {book.notes && (
+                          <p className="font-serif italic text-xs sm:text-sm text-[#38435C]/80 mt-3 leading-relaxed text-left">
+                            {book.notes}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="mt-6 pt-3 border-t border-[#1B2A49]/10 text-left">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-[#38435C]/50 block py-1 text-left">
+                          Archival Bibliographic Record
+                        </span>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </main>

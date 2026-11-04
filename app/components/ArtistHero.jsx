@@ -62,15 +62,11 @@ export default function ArtistHero({ onOpenArtwork }) {
   }, []);
 
   return (
-    <section
+    <figure
       ref={heroRef}
       className={`artist-hero ${ready && imageLoaded ? "is-ready" : ""}`}
       aria-label="Prakash Bal Joshi - Artificial Intelligence 10"
     >
-      <h1 className="sr-only">
-        Prakash Bal Joshi &ndash; Artificial Intelligence 10 (2019)
-      </h1>
-
       <div className="hero-banner-frame">
         <button
           type="button"
@@ -93,6 +89,10 @@ export default function ArtistHero({ onOpenArtwork }) {
           <div ref={veilRef} className="hero-parallax-veil" aria-hidden="true" />
         </button>
       </div>
-    </section>
+
+      <figcaption className="hero-artwork-caption">
+        Artificial Intelligence 10, 2019. Acrylic on canvas, 72 &times; 36 in.
+      </figcaption>
+    </figure>
   );
 }

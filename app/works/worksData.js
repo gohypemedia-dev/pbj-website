@@ -13,8 +13,8 @@ export const WORKS_SERIES_DESCRIPTIONS = {
 };
 
 export const WORKS_FILTER_TABS = [
-  { id: "all", label: "All Works" },
-  { id: "Abstraction", label: "Abstraction" },
+  { id: "all", label: "All works" },
+  { id: "PBJ Abstraction", label: "PBJ Abstraction" },
   { id: "Artificial Intelligence", label: "Artificial Intelligence" },
   { id: "River Returns", label: "River Returns" },
   { id: "Mindscape", label: "Mindscape" }

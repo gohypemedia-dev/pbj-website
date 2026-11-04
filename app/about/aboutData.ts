@@ -14,7 +14,7 @@ export const aboutBiography: string[] = [
   "Across his practice, rivers have a recurring presence, through which he questions the idea of spirituality, ecological loss, and impermanence. His preoccupation, particularly with the mythical River Saraswati, delves into its cultural memory and spiritual imagination. In his work, the river becomes both a physical presence and a metaphor for the passage of time: a force that carries, transforms, and erases.",
   "His relationship with water is shaped, in part, by a childhood experience of nearly drowning in a river, an encounter that lends the subject a deeply personal dimension.",
   "He further explores the contradictions of material development coexisting with ecological loss and the erosion of social values. Joshi, through his praxis, raises larger questions about what societies choose to preserve and what they allow to disappear.",
-  "Beyond his practice as a visual artist, Prakash Bal Joshi has cultivated a longstanding engagement with the world through journalism and Marathi literature. These parallel pursuits have informed his understanding of urban life, human relationships and the shifting social values of a rapidly changing society. As a political journalist and columnist, he has worked with newspapers including Sakal, The Indian Express and The Times of India. His contributions to journalism were recognised with the Excellence in Journalism Award from the Mantralaya Vidhimandal Vartahar Sangh in 2019, followed by the K. P. Samak Lifetime Achievement Award, presented by Maharashtra Governor Bhagat Singh Koshyari at Raj Bhavan, Mumbai, in 2021.",
+  "Beyond his practice as a visual artist, Prakash Bal Joshi has cultivated a longstanding engagement with the world through journalism and Marathi literature. These parallel pursuits have informed his understanding of urban life, human relationships and the shifting social values of a rapidly changing society. As a political journalist and columnist, he has worked with newspapers including Sakal, The Indian Express and The Times of India. His contributions to journalism were recognised with the Excellence in Journalism Award from the Mantralaya and Vidhimandal Vartahar Sangh in 2019, followed by the K. P. Samak Lifetime Achievement Award, presented by Maharashtra Governor Bhagat Singh Koshyari at Raj Bhavan, Mumbai, in 2021.",
   "Writing in Marathi, Joshi brings a similar attentiveness to the complexities of everyday life, exploring strained relationships, changing values and women’s empowerment among middle-class communities in rural and urban India. His fifteen-story collection, Mirror in the Hall and Other Stories (Ratna Books), translated by Smita Karandikar from the Marathi Arsa Baithakitalaa Aani Itar Katha, examines these concerns through intimate human narratives, each accompanied by an author sketch. His other books include Maitrinichi Goshta, a collection of short stories, and Gateway, a sketch-illustrated portrait of urban life in Mumbai.",
   "Recognising the breadth of his creative pursuits, reviewer Sumit Paul described him as a “versatile genius” in the Free Press Journal.",
   "Though journalism, literature and painting remain distinct pursuits, Joshi is grounded in a sustained attentiveness to the world and to the meanings concealed within ordinary experience. Across these disciplines, observation becomes a means of asking fundamental questions about existence, memory and change.",
@@ -23,7 +23,7 @@ export const aboutBiography: string[] = [
 
 export const soloExhibitions: ArchiveEntry[] = [
   { year: 2024, text: "“Inner-Impressions”, solo, ArtQuest Art Gallery, Vadala, Mumbai, India, Aug–Sept 2024." },
-  { year: 2024, text: "Exhibition (title not given), solo, Nitya Artist Centre Gallery, Prabhadevi, Mumbai, India, Mar 2024." },
+  { year: 2024, text: "Solo exhibition, Nitya Artist Centre Gallery, Prabhadevi, Mumbai, India, Mar 2024." },
   { year: 2017, text: "“Beyond Blue”, solo, Kokontan Gallery, Venice, Italy, Jul–Aug 2017." },
   { year: 2016, text: "“Mind Scape”, solo, Lalit Kala Kendra, New Delhi, India, Mar 2016." },
   { year: 2015, text: "“Space 4”, solo, Jehangir Art Gallery, Mumbai, India, Sept–Oct 2015." },
@@ -37,12 +37,12 @@ export const soloExhibitions: ArchiveEntry[] = [
 
 export const groupExhibitions: ArchiveEntry[] = [
   // 2025
-  { year: 2025, text: "“The Spectrum of Colour”, group exhibition, by Art Vista, Simroza Gallery, Mumbai, India, Feb 2025." },
+  { year: 2025, text: "“The Spectrum of Colour”, group exhibition by Art Vista, Cymroza Gallery, Mumbai, India, February 2025." },
   { year: 2025, text: "India Art Festival, group, Nehru Centre, Mumbai, India, Jan 2025.", editorialNote: "also listed under Art Camps" },
   // 2024
   { year: 2024, text: "India Art Festival, group, Bangalore, India, Dec 2024." },
   { year: 2024, text: "India Art Festival, group, Delhi, India, Nov 2024." },
-  { year: 2024, text: "“Amalgation-12”, group, Simroza Art Gallery, Mumbai, India, Sept 2024." },
+  { year: 2024, text: "“Amalgamation - 12”, group, Cymroza Art Gallery, Mumbai, India, Sept 2024." },
   { year: 2024, text: "India Art Festival, First Edition, group, Hyderabad, India, June 2024." },
   { year: 2024, text: "Mumbai Art Fair Contemporary Art Celebration, group, Nehru Centre, Worli, Mumbai, India, May 2024.", editorialNote: "also listed under Art Camps" },
   { year: 2024, text: "India Art Festival, group, Nehru Centre, Mumbai, India, Feb 2024." },
@@ -105,7 +105,7 @@ export const groupExhibitions: ArchiveEntry[] = [
   { year: 2016, text: "“Pigment – Colours with Purpose”, group, The Nargis Dutt Foundation, Bandra, Mumbai, India, June 2016." },
   // 2014
   { year: 2014, text: "India Art Festival, group, Nehru Centre, Worli, Mumbai, India, Dec 2014." },
-  { year: 2014, text: "Group exhibition, The Institute of Chicago, Chicago, USA, Jan 2014." },
+  { year: 2014, text: "Group exhibition, Arterie Fine Arts, Naperville, Illinois, Jan 2014." },
   { year: 2014, text: "India Arts Festival, group, Asiamania, Korea, Jan 2014." },
   // 2013
   { year: 2013, text: "Group show, Arterie Fine Arts, Chicago, USA, Dec 2013." },
@@ -116,8 +116,8 @@ export const groupExhibitions: ArchiveEntry[] = [
   { year: 2013, text: "Kala Ghoda Art Festival, group, Mumbai, Maharashtra, India, Feb 2013." },
   // 2012
   { year: 2012, text: "India Art Festival (India's Contemporary Art Fair), group, Mumbai, India, Nov 2012." },
-  { year: 2012, text: "GZ Art Basel, art festival, Basel, Switzerland, June 2012." },
-  { year: 2012, text: "“WOSSUP” art festival, Lokhandwala Complex, Andheri, Mumbai, India, Mar 2012." },
+  { year: 2012, text: "Art Basel, art festival, Basel, Switzerland, June 2012." },
+  { year: 2012, text: "“WOSSUP” Art festival, Lokhandwala Complex, Andheri, Mumbai, India, Mar 2012." },
   { year: 2012, text: "Kala Ghoda Art Festival, group, Mumbai, India, Feb 2012." },
   // 2011
   { year: 2011, text: "Mumbai Art Kallective (MARK), group, Mumbai, India, Nov 2011." },
@@ -152,13 +152,14 @@ export const awardsAndRecognitions: ArchiveEntry[] = [
   { year: 2025, text: "Invited Guest of Honour at the 7th International Festival of Fine Arts (FIAP), Morocco, 2025." },
   { year: 2024, text: "Yashwantrao Chavan State Award, Maharashtra, India, 2024. Awarded for the Marathi book Prakash Bal Joshi’s Stories (Prakash Bal Joshi Yanchya Katha)." },
   { year: 2022, text: "Honoured by the Governor of Maharashtra, Shri Bhagat Singh Koshyari, Raj Bhavan, Mumbai, India, 18 May 2022." },
-  { year: 2022, text: "Lifetime Achievement Award, 2022." },
+  { year: 2022, text: "Lifetime Achievement Award by Mantralaya and Vidhimandal Vartahar Sangh (2022)." },
   { year: 2021, text: "Certificate of Appreciation, Art Society of India, 2021." },
   { year: 2021, text: "Maldives International Peace Award, 2021." },
   { year: 2021, text: "Vagdhara Navratna Honour, 27 February 2021." },
   { year: 2021, text: "K. P. Samak Lifetime Achievement Award, 2021." },
   { year: 2020, text: "Artist Excellence Award, World Art Fair and Art for Awareness Foundation, 2020." },
-  { year: 2020, text: "Jeevan Gaurav Award (Lifetime Achievement Award), Mantralaya and Vidhi Mandal Vartahar Sangh, India, 2020." },
+  { year: 2020, text: "Jeevan Gaurav Award (Lifetime Achievement Award), Mantralaya and Vidhimandal Vartahar Sangh, India, 2020." },
+  { year: 2019, text: "Excellence in Journalism Award by Mantralaya and Vidhimandal Vartahar Sangh, 2019." },
   { year: 2016, text: "State Government Award, Maharashtra, India, 2016. Awarded for the book Prakash Bal Joshi Maanchya Katha." },
   { year: 2015, text: "Best Literary Work Award, Maharashtra State Board of Literature and Culture, Government of Maharashtra, India, 2015." }
 ];

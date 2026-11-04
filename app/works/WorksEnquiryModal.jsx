@@ -23,7 +23,7 @@ export default function WorksEnquiryModal({
   // Set default message when artwork changes
   useEffect(() => {
     if (artwork) {
-      const artworkDetails = [artwork.year, artwork.medium, artwork.dimensions]
+      const artworkDetails = [artwork.year, artwork.medium]
         .filter(Boolean)
         .join(", ");
       const detailsSuffix = artworkDetails ? ` (${artworkDetails})` : "";

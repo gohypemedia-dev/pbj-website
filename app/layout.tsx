@@ -59,9 +59,9 @@ export default function RootLayout({
         {/* Skip to Main Content Link for accessibility */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#1B2A49] text-[#E9ECEF] font-heading text-xs uppercase tracking-wider rounded"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[100] px-4 py-2.5 bg-[#1B2A49] shadow-lg border border-white/20 text-[#E9ECEF] font-heading text-xs uppercase tracking-wider rounded"
         >
-          Skip to main gallery content
+          Skip to main content
         </a>
 
         {/* Global Art-Directed Header */}

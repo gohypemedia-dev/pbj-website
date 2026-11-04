@@ -568,6 +568,26 @@ blockquote.font-heading {
   transform: scale(1.015);
 }
 
+.hero-artwork-caption {
+  width: 100%;
+  padding: 8px clamp(16px, 2.5vw, 48px);
+  font-family: var(--font-heading);
+  font-size: clamp(11.5px, 0.9vw, 13.5px);
+  color: var(--text-heading, #1B2A49);
+  opacity: 0.85;
+  text-align: right;
+  letter-spacing: 0.01em;
+  background-color: var(--bg-main, #E9ECEF);
+}
+
+@media (max-width: 767px) {
+  .hero-artwork-caption {
+    padding: 6px 18px;
+    font-size: 11.5px;
+    text-align: right;
+  }
+}
+
 .hero-kicker {
   position: absolute;
   top: 12%;
@@ -1237,7 +1257,7 @@ html.lenis {
   position: relative;
   z-index: 30;
   background-color: var(--bg-main, #E9ECEF);
-  padding: clamp(48px, 8vh, 110px) 4vw clamp(48px, 10vh, 130px);
+  padding: 20px 4vw clamp(48px, 10vh, 130px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1262,7 +1282,7 @@ html.lenis {
 .story-contact h2 {
   font: 500 clamp(2.2rem, 4.8vw, 4.5rem)/1.15 "Hoefler Text", "Baskerville", "Georgia", serif;
   letter-spacing: -.015em;
-  margin: clamp(24px, 5vh, 48px) auto;
+  margin: 12px auto 28px;
   text-align: center;
   width: 100%;
   max-width: 100%;
@@ -1409,7 +1429,7 @@ html.lenis {
     z-index: 30;
     background-color: var(--bg-main, #E9ECEF);
     min-height: auto;
-    padding: 44px 6vw 56px;
+    padding: 16px 6vw 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1422,7 +1442,7 @@ html.lenis {
     font-size: clamp(1.4rem, 6.2vw, 2.75rem);
     line-height: 1.15;
     text-align: center;
-    margin: 16px auto 20px;
+    margin: 10px auto 18px;
     width: 100%;
     max-width: 100%;
     white-space: nowrap;

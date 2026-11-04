@@ -120,10 +120,6 @@ export default function ArtworkDetailClient({
           {/* Key Specifications Table */}
           <div className="py-3.5 space-y-2 font-serif text-sm text-[#38435C] w-full">
             <div className="flex justify-between">
-              <span className="text-[#38435C]/70">Dimensions:</span>
-              <span className="font-medium text-[#1B2A49]">{artwork.dimensions}</span>
-            </div>
-            <div className="flex justify-between">
               <span className="text-[#38435C]/70">Medium:</span>
               <span className="font-medium text-[#1B2A49]">{artwork.medium}</span>
             </div>
