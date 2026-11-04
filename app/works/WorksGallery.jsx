@@ -1,43 +1,25 @@
 "use client";
 
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useRef } from "react";
 import { Mail, ExternalLink } from "lucide-react";
-import { worksArtworksData, WORKS_FILTER_TABS } from "./worksData";
+import { worksArtworksData } from "./worksData";
 import WorksCard from "./WorksCard";
 import WorksLightbox from "./WorksLightbox";
 import WorksEnquiryModal from "./WorksEnquiryModal";
 
 export default function WorksGallery() {
-  const [activeFilter, setActiveFilter] = useState("all");
   const [selectedArtworkIndex, setSelectedArtworkIndex] = useState(null);
   const [lightboxTrigger, setLightboxTrigger] = useState(null);
   const [enquiryArtwork, setEnquiryArtwork] = useState(null);
   const [enquiryTrigger, setEnquiryTrigger] = useState(null);
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
-  // Filter artworks by series without guessing unclassified artworks
-  const filteredArtworks = useMemo(() => {
-    if (activeFilter === "all") return worksArtworksData;
-    return worksArtworksData.filter((artwork) => {
-      if (activeFilter === "PBJ Abstraction" || activeFilter === "Abstraction") {
-        return (
-          artwork.series === "Abstraction" ||
-          artwork.series === "PBJ Abstraction" ||
-          (artwork.title && artwork.title.startsWith("PBJ Abstraction"))
-        );
-      }
-      return artwork.series === activeFilter;
-    });
-  }, [activeFilter]);
-
   const selectedArtwork =
-    selectedArtworkIndex !== null && filteredArtworks[selectedArtworkIndex]
-      ? filteredArtworks[selectedArtworkIndex]
-      : null;
+    selectedArtworkIndex !== null ? worksArtworksData[selectedArtworkIndex] : null;
 
   const handleNextLightbox = () => {
     setSelectedArtworkIndex((prev) =>
-      prev === null ? 0 : (prev + 1) % filteredArtworks.length
+      prev === null ? 0 : (prev + 1) % worksArtworksData.length
     );
   };
 
@@ -45,12 +27,12 @@ export default function WorksGallery() {
     setSelectedArtworkIndex((prev) =>
       prev === null
         ? 0
-        : (prev - 1 + filteredArtworks.length) % filteredArtworks.length
+        : (prev - 1 + worksArtworksData.length) % worksArtworksData.length
     );
   };
 
   const handleOpenLightbox = (artwork, triggerEl) => {
-    const idx = filteredArtworks.findIndex((a) => a.id === artwork.id);
+    const idx = worksArtworksData.findIndex((a) => a.id === artwork.id);
     setLightboxTrigger(triggerEl || null);
     setSelectedArtworkIndex(idx >= 0 ? idx : 0);
   };
@@ -68,7 +50,7 @@ export default function WorksGallery() {
   return (
     <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-8 lg:py-12 text-left">
       {/* Editorial Header */}
-      <header className="mb-8 sm:mb-10 text-left">
+      <header className="mb-8 sm:mb-12 text-left">
         {/* Heading */}
         <h1
           style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
@@ -83,34 +65,6 @@ export default function WorksGallery() {
         </p>
       </header>
 
-      {/* Series Filters */}
-      <nav
-        aria-label="Filter artworks by series"
-        className="mb-8 sm:mb-10 flex flex-wrap items-center gap-2 sm:gap-2.5 text-left"
-      >
-        {WORKS_FILTER_TABS.map((tab) => {
-          const isActive = activeFilter === tab.id;
-          return (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => {
-                setActiveFilter(tab.id);
-                setSelectedArtworkIndex(null);
-              }}
-              className={`px-3.5 sm:px-4 py-2 text-xs sm:text-[13px] font-heading tracking-wider rounded-xs transition-colors duration-200 cursor-pointer min-h-[40px] flex items-center justify-center ${
-                isActive
-                  ? "bg-[#1B2A49] text-[#E9ECEF] border border-[#1B2A49] shadow-xs font-semibold"
-                  : "bg-white/40 text-[#38435C] border border-[#1B2A49]/15 hover:bg-white/70 hover:text-[#1B2A49] font-medium"
-              }`}
-              aria-pressed={isActive}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
-      </nav>
-
       {/* Artworks Catalogue Grid */}
       {/* Consistent row-based layout: 3 columns on desktop, 2 on tablet, 1 on mobile */}
       <section
@@ -118,7 +72,7 @@ export default function WorksGallery() {
         aria-label="Paintings Catalogue"
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 items-start text-left"
       >
-        {filteredArtworks.map((artwork, idx) => (
+        {worksArtworksData.map((artwork, idx) => (
           <WorksCard
             key={artwork.id}
             artwork={artwork}
@@ -131,10 +85,10 @@ export default function WorksGallery() {
       {/* Compact Closing Section: Studio Acquisition & Enquiry */}
       <section className="mt-16 sm:mt-24 pt-8 sm:pt-12 text-left">
         <h2
-          className="text-2xl sm:text-3xl font-bold text-[#1B2A49] text-left"
-          style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
+          className="font-serif text-2xl sm:text-3xl font-bold text-[#1B2A49] text-left"
+          style={{ fontFamily: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' }}
         >
-          Enquire About Work
+          Enquire About Works
         </h2>
         <p className="font-serif italic text-base sm:text-lg text-[#38435C] mt-2 text-left">
           For further information on the portfolio and pricing, contact the studio.
@@ -156,11 +110,11 @@ export default function WorksGallery() {
         <WorksLightbox
           artwork={selectedArtwork}
           currentIndex={selectedArtworkIndex}
-          totalCount={filteredArtworks.length}
+          totalCount={worksArtworksData.length}
           triggerElement={lightboxTrigger}
           onClose={handleCloseLightbox}
-          onPrev={filteredArtworks.length > 1 ? handlePrevLightbox : undefined}
-          onNext={filteredArtworks.length > 1 ? handleNextLightbox : undefined}
+          onPrev={worksArtworksData.length > 1 ? handlePrevLightbox : undefined}
+          onNext={worksArtworksData.length > 1 ? handleNextLightbox : undefined}
           onInquire={(art) => {
             handleCloseLightbox();
             handleOpenEnquiry(art, lightboxTrigger);

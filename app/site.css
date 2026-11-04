@@ -1257,7 +1257,7 @@ html.lenis {
   position: relative;
   z-index: 30;
   background-color: var(--bg-main, #E9ECEF);
-  padding: 20px 4vw clamp(48px, 10vh, 130px);
+  padding: clamp(48px, 8vh, 110px) 4vw clamp(48px, 10vh, 130px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1282,7 +1282,7 @@ html.lenis {
 .story-contact h2 {
   font: 500 clamp(2.2rem, 4.8vw, 4.5rem)/1.15 "Hoefler Text", "Baskerville", "Georgia", serif;
   letter-spacing: -.015em;
-  margin: 12px auto 28px;
+  margin: clamp(24px, 5vh, 48px) auto;
   text-align: center;
   width: 100%;
   max-width: 100%;
@@ -1429,7 +1429,7 @@ html.lenis {
     z-index: 30;
     background-color: var(--bg-main, #E9ECEF);
     min-height: auto;
-    padding: 16px 6vw 48px;
+    padding: 44px 6vw 56px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1442,7 +1442,7 @@ html.lenis {
     font-size: clamp(1.4rem, 6.2vw, 2.75rem);
     line-height: 1.15;
     text-align: center;
-    margin: 10px auto 18px;
+    margin: 16px auto 20px;
     width: 100%;
     max-width: 100%;
     white-space: nowrap;

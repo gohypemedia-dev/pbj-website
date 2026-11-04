@@ -32,7 +32,7 @@ export default function HomeScrollSections({ onOpenArtwork }) {
       <FlyThrough onOpenArtwork={onOpenArtwork} />
 
       {/* View All Works CTA Button */}
-      <div className="view-all-works-cta relative z-30 bg-[#E9ECEF] flex items-center justify-center text-center pt-8 pb-2 sm:pt-10 sm:pb-3 w-full">
+      <div className="view-all-works-cta relative z-30 bg-[#E9ECEF] flex items-center justify-center text-center pt-8 pb-12 sm:pt-12 sm:pb-16 w-full">
         <Link
           href="/works"
           className="inline-flex items-center justify-center px-8 py-3.5 bg-[#1B2A49] hover:bg-[#253961] text-[#E9ECEF] hover:text-white font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] rounded-xs transition-colors shadow-xs min-h-[46px]"
@@ -43,11 +43,11 @@ export default function HomeScrollSections({ onOpenArtwork }) {
       </div>
 
       {/* Studio Contact Section */}
-      <section className="story-contact relative z-30 bg-[#E9ECEF] flex flex-col items-center justify-center text-center mx-auto w-full pt-4 pb-16 sm:pt-6 sm:pb-24" aria-labelledby="story-contact-title">
+      <section className="story-contact relative z-30 bg-[#E9ECEF] flex flex-col items-center justify-center text-center mx-auto w-full" aria-labelledby="story-contact-title">
         <h2
           id="story-contact-title"
           style={{ fontFamily: '"Hoefler Text", "Baskerville", "Georgia", serif' }}
-          className="text-center mx-auto w-full whitespace-nowrap mt-2 mb-6 sm:mt-3 sm:mb-8"
+          className="text-center mx-auto w-full whitespace-nowrap"
           data-scroll-reveal
         >
           Connect with the team
