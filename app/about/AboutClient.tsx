@@ -129,17 +129,17 @@ export default function AboutClient() {
 
       {/* 2. CENTRED ARTIST PHOTOGRAPH (Independent wrapper) */}
       <figure className="w-full flex flex-col items-center justify-center mb-10 sm:mb-14">
-        <div className="relative max-w-[400px] w-full flex flex-col items-center">
+        <div className="relative w-full max-w-[480px] flex flex-col items-center">
           <div className="w-full flex justify-center">
             <Image
               src="/artworks/artist-portrait.jpg"
               alt="Prakash Bal Joshi"
-              width={414}
-              height={414}
+              width={1024}
+              height={687}
               priority
               unoptimized
-              className="w-auto h-auto max-w-full max-h-[500px] object-contain rounded-sm shadow-[0_4px_24px_rgba(27,42,73,0.06)]"
-              sizes="(max-width: 640px) 90vw, 400px"
+              className="w-full h-auto max-w-full rounded-sm shadow-[0_4px_24px_rgba(27,42,73,0.06)]"
+              sizes="(max-width: 640px) 100vw, 480px"
             />
           </div>
         </div>
